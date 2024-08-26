@@ -12,7 +12,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class DBHelper {
-	
+	//DB도우미
 	protected Connection conn = null;
 	protected PreparedStatement psmt = null;
 	protected Statement stmt = null;
