@@ -1,4 +1,5 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<header>
         <div>
           <article class="top">
             <img src="../images/head_top_line.png" alt="">
@@ -26,3 +27,4 @@
           </nav>
         </div>
       
+</header>

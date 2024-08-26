@@ -1,10 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
     <style>
                 *{
             margin: 0;
@@ -154,12 +155,10 @@
         nav > p:nth-of-type(3){position: absolute; right: 3px; bottom:5px;}
 
     </style>
-    <link rel="stylesheet" href="../css/farmstory.css">
-    <script src="../js/includeHTML.js"></script>
 </head>
 <body>
     <div id="wrapper"></div>
-    <header  include-html="../TMP/header.html" id="header" ></header>
+    <%@ include file="/FarmStoryJSP/css/_header.jsp"%>
     <main>
         <div class="background">
             <img src="../images/sub_top_tit1.png" alt="1">
@@ -201,10 +200,6 @@
         </section>
     
     </main>
-
-    <footer  include-html="../TMP/footer.html"></footer>
+<%@ include file="/FarmStoryJSP/css/_footer.jsp"%>
 </body>
-<script>
-    includeHTML();
-</script>
 </html>
