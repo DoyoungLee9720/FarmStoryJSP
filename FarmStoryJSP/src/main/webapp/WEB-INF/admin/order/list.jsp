@@ -1,47 +1,18 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator</title>
-    <link rel="stylesheet" href="/admin/css/admin.css">
-    <style>
-        section>article:nth-child(2)>table{margin-bottom: 0;}
-        tbody>tr{
-            height: 90px;
-        }
-        section>article:nth-child(2)>table img{
-            width: 60px;
-            height: 60px;
-        }
-        section>article:nth-child(3)>h3{
-            overflow: hidden;
-            height: 50px;
-            margin: 0;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        section>article:nth-child(3)>h3>a[href]:nth-child(1){
-            display: block;
-            width: 50px;
-            float: left;
-            height: 14px;
-        }
-        section>article:nth-child(3)>p{
-            text-align: center;
-            padding: 10px 0;
-            box-sizing: border-box;
-        }
-        p>b{text-decoration: underline;}
-
-    </style>
-    <script src="/js/includeHTML.js"></script>
+	<link rel="stylesheet" href="/FarmStoryJSP/css/admin.css">
 </head>
 <body>
     <div id="wrap">
-        <header include-html="/admin/css/header.html" id="header"></header>
+        <%@ include file="../_header.jsp"%>
         <main>
-            <aside class="adNav" include-html="/admin/css/aside.html" id="aside"></aside>
+        <%@ include file="../_aside.jsp"%>
+        <section class="orderlist">
             <section>
                 <h3>주문목록</h3>
                 <article>
@@ -92,17 +63,16 @@
                     </p>
                 </article>
             </section>
+        </section>
         </main>
     </div>
-    <footer include-html="/admin/css/footer.html" id="footer"></footer>
+    <%@ include file="../_footer.jsp"%>
 </body>
 <script>
-    includeHTML(function() {
         const now = document.querySelector('a#orderlist[href]');
         if (now) {
             now.classList.add("now");
         }
-    });
 </script>
 </html>
 

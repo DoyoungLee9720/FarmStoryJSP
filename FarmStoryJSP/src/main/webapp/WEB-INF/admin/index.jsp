@@ -1,23 +1,23 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator</title>
-    <link rel="stylesheet" href="/admin/css/admin.css">
-    <script src="/js/includeHTML.js"></script>
+    <link rel="stylesheet" href="/FarmStoryJSP/css/admin.css">
 </head>
 <body>
     <div id="wrap">
-        <header include-html="/admin/css/header.html" id="header"></header>
+        <%@ include file="./_header.jsp"%>
         <main>
-            <aside class="adNav" include-html="/admin/css/aside.html" id="aside"></aside>
+            <%@ include file="./_aside.jsp"%>
             <section>
                 <h3>관리자 메인</h3>
                 <article>
                     <h3>
-                        <a href="./product/list.html">상품현황</a>
-                        <a href="./product/list.html" class="more">더보기</a>
+                        <a href="./product/list.do">상품현황</a>
+                        <a href="./product/list.do" class="more">더보기</a>
                     </h3>
                     <table>
                         <thead>
@@ -60,8 +60,8 @@
                 </article>
                 <article>
                     <h3>
-                        <a href="./order/list.html">주문현황</a>
-                        <a href="./order/list.html" class="more">더보기</a>
+                        <a href="./order/list.do">주문현황</a>
+                        <a href="./order/list.do" class="more">더보기</a>
                     </h3>
                     <table>
                         <thead>
@@ -112,8 +112,8 @@
                 </article>
                 <article>
                     <h3>
-                        <a href="./user/list.html">회원현황</a>
-                        <a href="./user/list.html" class="more">더보기</a>
+                        <a href="./user/list.do">회원현황</a>
+                        <a href="./user/list.do" class="more">더보기</a>
                     </h3>
                     <table>
                         <thead>
@@ -162,11 +162,8 @@
             </section>
         </main>
     </div>
-    <footer include-html="/admin/css/footer.html" id="footer"></footer>
+    <%@ include file="./_footer.jsp"%>
 </body>
-<script>
-    includeHTML();
-</script>
 </html>
 
 
