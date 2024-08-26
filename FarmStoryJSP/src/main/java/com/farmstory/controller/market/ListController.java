@@ -19,7 +19,7 @@ public class ListController extends HttpServlet{
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/market/list.jsp");
 		dispatcher.forward(req, resp);
-	
+
 	}
 
 }

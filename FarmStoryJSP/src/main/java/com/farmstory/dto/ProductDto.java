@@ -99,6 +99,6 @@ public class ProductDto {
 	public void setProRdate(String proRdate) {
 		this.proRdate = proRdate;
 	}
-	
+
 	
 }
