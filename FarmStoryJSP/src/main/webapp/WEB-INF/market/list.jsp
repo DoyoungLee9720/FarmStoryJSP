@@ -259,6 +259,6 @@
     </section>
     
   </main>
- <%@ include file="../../css/_footer.jsp" %><a></a>
+ <%@ include file="../../css/_footer.jsp" %>
 </body>
 </html>
