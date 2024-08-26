@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="../css/farmstory.css">
+	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 	<title>Farmstory</title>
 	<style>
 		main {
@@ -25,7 +25,7 @@
 	</style>
 </head>
 <body>
-	<%@ include file="/FarmStoryJSP/css/_header.jsp"%>
+	<%@ include file="/css/_header.jsp"%>
 
 
 
@@ -35,6 +35,6 @@
 
 
 
-	<%@ include file="/FarmStoryJSP/css/_footer.jsp"%>
+	<%@ include file="/css/_footer.jsp"%>
 </body>
 </html>

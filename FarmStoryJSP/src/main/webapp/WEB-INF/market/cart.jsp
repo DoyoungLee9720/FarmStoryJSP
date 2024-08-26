@@ -261,7 +261,7 @@
 
 </head>
 <body>
-<%@ include file="/FarmStoryJSP/css/_header.jsp"%>
+<%@ include file="/css/_header.jsp"%>
     <main>
         <div class="background">
             <img src="../images/sub_top_tit2.png" alt="1">
@@ -368,6 +368,6 @@
             </article>
         </section>
     </main>
-<%@ include file="/FarmStoryJSP/css/_footer.jsp"%>
+<%@ include file="/css/_footer.jsp"%>
 </body>
 </html>
