@@ -1,11 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../farmstory.css">
-    <script src="../js/includeHTML.js"></script>
+	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
     <title>상품상세보기</title>
     <style>
         main {
@@ -217,7 +217,7 @@
 </head>
 
 <body>
-    <header include-html="../TMP/header.html" id="header"></header>
+<%@ include file="/FarmStoryJSP/css/_header.jsp"%>
     <main>
         <div class="titleEvent"><img src="../images/sub_top_tit2.png" alt=""></div>
         <section class="mainSection">
@@ -306,10 +306,6 @@
         </section>
         
     </main>
-    
-    <footer include-html="../TMP/footer.html"></footer>
+<%@ include file="/FarmStoryJSP/css/_footer.jsp"%>
 </body>
-<script>
-    includeHTML();
-</script>
 </html>
