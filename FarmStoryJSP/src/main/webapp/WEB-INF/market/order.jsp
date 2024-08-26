@@ -248,7 +248,7 @@
 
 <body>
 	<div id="wrapper"></div>
-	<%@ include file="/FarmStoryJSP/css/_header.jsp"%>
+	<%@ include file="/css/_header.jsp"%>
 	<main>
 		<div class="titleEvent">
 			<img src="/FarmStoryJSP/images/sub_top_tit2.png" alt="">
@@ -418,7 +418,7 @@
 		</section>
 
 	</main>
-	<%@ include file="/FarmStoryJSP/css/_footer.jsp"%>
+	<%@ include file="/css/_footer.jsp"%>
 </body>
 
 </html>

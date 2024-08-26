@@ -24,7 +24,7 @@
   </style>
 </head>
 <body>
-<%@ include file="/FarmStoryJSP/css/_header.jsp"%>
+<%@ include file="/css/_header.jsp"%>
   <!-- header 끝-->
 
   <main>
@@ -32,6 +32,6 @@
   </main>
   
   <!-- footer 시작 -->
-    <%@ include file="/FarmStoryJSP/css/_footer.jsp"%>
+    <%@ include file="/css/_footer.jsp"%>
 </body>
 </html>
