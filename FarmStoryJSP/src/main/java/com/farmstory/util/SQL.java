@@ -1,3 +1,10 @@
+package com.farmstory.util;
+public class SQL{
+	//USER
+	public static final String SELECT_USERS = "select * from `User`";
+	
+}
+
 /*package com.jboard.util;
 
 public class SQL {

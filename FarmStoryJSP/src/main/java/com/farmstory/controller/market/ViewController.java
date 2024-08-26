@@ -1,5 +1,5 @@
 package com.farmstory.controller.market;
 
-public class ListController {
+public class ViewController {
 
 }
