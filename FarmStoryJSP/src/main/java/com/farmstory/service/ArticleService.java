@@ -1,11 +1,11 @@
-/*package com.farmstory.service;
+package com.farmstory.service;
 
 import java.util.List;
 
 import com.farmstory.dao.ArticleDao;
 import com.farmstory.dto.ArticleDto;
-import com.farmstory.dto.PageGroupDto;
-import com.farmstory.util.SQL;
+//import com.farmstory.dto.PageGroupDto;
+//import com.farmstory.util.SQL;
 
 public enum ArticleService {
 	
@@ -40,6 +40,8 @@ public enum ArticleService {
 	public int getCurrentNumber(int total, int currentPage) {
 		return (total - (currentPage-1)*10);
 	}
+	
+	/*
 	//현재 페이지 그룹 구하기
 	public  PageGroupDto getCurrentPageGroup(int currentPage) {
 		int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
@@ -48,6 +50,7 @@ public enum ArticleService {
 		
 		return  new PageGroupDto(pageGroupStart,pageGroupEnd);
 	}
+	*/
 	
 	
 	public int insertArticle(ArticleDto dto) {
@@ -69,10 +72,12 @@ public enum ArticleService {
 	public int deleteArticle(String no) {
 		return dao.deleteArticle(no);
 	}	
+	
+	/*
 	public int selectCountTotal() {
 		return dao.selectCountTotal();
 	}
 	public void updateHitCount(String no) {
 		dao.updateHitCount(no);
-	}
-}*/
+	}*/
+}
