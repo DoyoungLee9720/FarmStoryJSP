@@ -335,7 +335,7 @@ section>article:nth-child(2)>table img {
 	font-weight: bold;
 }
 
-.prodReg td, th {
+.prodReg td, .prodReg th {
 	text-align: left;
 }
 

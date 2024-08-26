@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,51 +32,24 @@
 								</tr>
 							</thead>
 							<tbody>
+							<c:forEach var="user" items="${users}">
 								<tr>
 									<td><input type="checkbox"></td>
-									<td>a101</td>
-									<td>김유신</td>
-									<td>유신123</td>
-									<td>yusin123@naver.com</td>
-									<td>010-1234-1001</td>
+									<td>${user.getUserId()}</td>
+									<td>${user.getUserName()}</td>
+									<td>${user.getUserNick()}</td>
+									<td>${user.getUserEmail()}</td>
+									<td>${user.getUserHp()}</td>
 									<td><select>
 											<option>1</option>
 											<option selected>2</option>
 											<option>3</option>
 									</select></td>
-									<td>2023-01-01 13:06:14</td>
+									<td>${user.getUserRegdate()}</td>
 									<td><a href="#">[상세확인]</a></td>
 								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td>a102</td>
-									<td>김춘추</td>
-									<td>춘추123</td>
-									<td>chunchu123@naver.com</td>
-									<td>010-1234-1002</td>
-									<td><select>
-											<option>1</option>
-											<option selected>2</option>
-											<option>3</option>
-									</select></td>
-									<td>2023-01-02 13:06:14</td>
-									<td><a href="#">[상세확인]</a></td>
-								</tr>
-								<tr>
-									<td><input type="checkbox"></td>
-									<td>a103</td>
-									<td>장보고</td>
-									<td>보고123</td>
-									<td>bogo123@naver.com</td>
-									<td>010-1234-1003</td>
-									<td><select>
-											<option>1</option>
-											<option selected>2</option>
-											<option>3</option>
-									</select></td>
-									<td>2023-01-03 13:06:14</td>
-									<td><a href="#">[상세확인]</a></td>
-								</tr>
+							</c:forEach>
+								
 							</tbody>
 						</table>
 					</article>
