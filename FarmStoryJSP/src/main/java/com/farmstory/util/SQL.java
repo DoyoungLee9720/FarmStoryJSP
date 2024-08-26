@@ -1,8 +1,154 @@
 package com.farmstory.util;
 public class SQL{
-	//USER
-	public static final String SELECT_USERS = "select * from `User`";
+	//PRODUCT
+	public static final String INSERT_PRODUCT 	= "INSERT INTO `product` set"
+													+ "`proname`=?,"
+													+ "`protype`=?,"
+													+ "`proprice`=?,"
+													+ "`propoint`=?,"
+													+ "`prosale`=?,"
+													+ "`prodeliveryfee`=?,"
+													+ "`proStock`=?,"
+													+ "`proimg1`=?,"
+													+ "`proimg2`=?,"
+													+ "`proimg3`=?,"
+													+ "`proETC`=?,"
+													+ "proRdate=NOW()";
+	public static final String SELECT_PRODUCT 	= "SELECT * from `product`";
+	public static final String SELECT_PRODUCTS	= "SELECT * from `product` where `prono`=?";
+	public static final String UPDATE_PRODUCTS 	= "UPDATE `product` set "
+													+ "`proname`=?,"
+													+ "`protype`=?,"
+													+ "`proprice`=?,"
+													+ "`propoint`=?,"
+													+ "`prosale`=?,"
+													+ "`prodeliveryfee`=?,"
+													+ "`proStock`=?,"
+													+ "`proimg1`=?,"
+													+ "`proimg2`=?,"
+													+ "`proimg3`=?,"
+													+ "`proETC`=?"
+													+ "WHERE `prono`=?";					
+	public static final String DELETE_PRODUCT = "DELETE from `product` where `prono`=?";
 	
+	//ARTICLE
+	public static final String INSERT_ARTICLE 	= "INSERT INTO `ARTICLE` set "
+													+ "`artGroup`=?,"
+													+ "`artCate`=?,"
+													+ "`artTitle`=?,"
+													+ "`artContent`=?,"
+													+ "`artFile`=?,"
+													+ "`arthit`=?,"
+													+ "`artComment`=?,"
+													+ "`artWriter`=?,"
+													+ "`artRegip`=?,"
+													+ "`artRdate`=NOW()";
+	public static final String SELECT_ARTICLE 	= "SELECT * FROM `ARTICLE` where `artNo`=?";
+	public static final String SELECT_ARTICLES 	= "SELECT * FROM `ARTICLE`";
+	public static final String UPDATE_ARTICLE 	= "UPDATE `ARTICLE` set "
+													+ "`artGroup`=?,"
+													+ "`artCate`=?,"
+													+ "`artTitle`=?,"
+													+ "`artContent`=?,"
+													+ "`artFile`=?,"
+													+ "`arthit`=?,"
+													+ "`artComment`=?,"
+													+ "`artWriter`=?,"
+													+ "`artRegip`=?"
+													+ "where `artNo`=?";
+												
+	public static final String DELETE_ARTICLE = "DELETE from `article` where `artNo`=?";
+	//조회수 증가
+	public static final String UPDATE_HIT_COUNT = "update `ARTICLE` set `arthit` = `arthit` + 1 where `artNo`=?";
+	//그룹별 + 카테고리별 총 글 갯수
+	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `article` where `artGroup`=? AND `artCate`=?";
+	
+	//COMMENT
+	public static final String INSERT_COMMENT 	= "INSERT INTO `COMMENT` set "
+													+ "`comParent`=?,"
+													+ "`comContent`=?,"
+													+ "`comWriter`=?,"
+													+ "`comRegip`=?,"
+													+ "`comRdate`=NOW()";
+	public static final String SELECT_COMMENT 	= "SELECT * FROM `COMMENT` where `ComNo`=?";
+	public static final String SELECT_COMMENTS 	= "SELECT * FROM `COMMENT`";
+	public static final String UPDATE_COMMENT 	= "UPDATE `COMMENT` set "
+													+ "`comParent`=?,"
+													+ "`comContent`=?,"
+													+ "`comWriter`=?,"
+													+ "`comRegip`=?,"
+													+ "where `ComNo`=?";
+	public static final String DELETE_COMMENT 	= "DELETE from `comment` where `ComNo`=?";
+	
+	//USER
+	public static final String INSERT_USERS = "INSERT INTO `user` set "
+												+ "UserId=?,"
+												+ "userPass=SHA2(?, 256),"
+												+ "userName=?,"
+												+ "userNick=?,"
+												+ "userEmail=?,"
+												+ "userHP=?,"
+												+ "UserRole=?,"
+												+ "userGrade=?,"
+												+ "UserZip=?"
+												+ "userAddr1=?,"
+												+ "UserAddr2=?,"
+												+ "UserRegip=?,"
+												+ "userRegdate=?";
+	public static final String SELECT_USER 	= "SELECT * FROM `User` `UserId`=? and `userPass`=SHA2(?,256)";
+	public static final String SELECT_USERS = "SELECT * FROM `User`";
+	public static final String UPDATE_USERS = "UPDATE `User` set "
+												+ "userPass=SHA2(?, 256),"
+												+ "userName=?,"
+												+ "userNick=?,"
+												+ "userEmail=?,"
+												+ "userHP=?,"
+												+ "UserRole=?,"
+												+ "userGrade=?,"
+												+ "UserZip=?"
+												+ "userAddr1=?,"
+												+ "UserAddr2=?"
+												//+ "UserRegip=?"
+												+ "where `UserId`=?";
+	public static final String DELETE_USERS = "DELETE FROM `User` where `UserId`=?";
+	
+	//FILE
+	public static final String INSERT_FILE 	= "INSERT INTO `file` set "
+												+ "`ano`=?,"
+												+ "`fileOname`=?,"
+												+ "`fileSname`=?,"
+												+ "`fileDownload`=?,"
+												+ "`filerDate`=NOW()";
+	public static final String SELECT_FILE 	= "SELECT * FROM `file` where `fileNo` = ?";
+	public static final String SELECT_FILES = "SELECT * FROM `file`";
+	public static final String UPDATE_FILE 	= "UPDATE `file` set "
+												+ "`fileOname`=?,"
+												+ "`fileSname`=?,"
+												+ "`fileDownload`=0"
+												+ "where `fileNo`=?";
+	public static final String DELETE_FILE 	= "DELETE FROM `file` where `fileNo`=?";
+	
+	//ORDER
+	
+	public static final String INSERT_ORDER ="INSERT INTO `Order` set "
+												+ "`oderUid`=?,"
+												+ "`oderprodNO`=?,"
+												+ "`oderstock`=?,"
+												+ "`oderRdate`=NOW()";
+	// 특정 사용자의 주문내역을 조회
+	public static final String SELECT_ORDERS = "SELECT o.orderNo, o.orderprodNO, o.orderstock, o.orderRdate, " 
+												+"p.proimg1, p.proname, p.prosale, p.propoint, p.proprice, p.prodeliveryfee" 
+												+"FROM `order` AS o " 
+												+"JOIN `product` AS p ON o.orderprodNO = p.prono " 
+												+"JOIN `user` AS u ON o.orderUid = u.userUID " 
+												+"WHERE u.userUID = ?";  
+
+	public static final String UPDATE_ORDER = "UPDATE `order` SET"
+												+" orderstock = ?, "
+												+" orderRdate = NOW() " 
+												+" WHERE orderNo = ?";
+	public static final String DELETE_ORDER = "DELETE FROM `order` " 
+												+"WHERE orderNo = ?";
 }
 
 /*package com.jboard.util;
