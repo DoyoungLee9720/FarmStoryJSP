@@ -1,4 +1,4 @@
-/*package com.jboard.util;
+package com.farmstory.util;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ public class DBHelper {
 	
 	protected Connection getConnection() throws NamingException, SQLException {
 		Context ctx = (Context) new InitialContext().lookup("java:comp/env");
-		DataSource ds = (DataSource) ctx.lookup("jdbc/board");
+		DataSource ds = (DataSource) ctx.lookup("jdbc/farmstory");
 		return ds.getConnection();
 	}
 	
@@ -60,4 +60,3 @@ public class DBHelper {
 	}
 
 }
-*/
