@@ -48,8 +48,7 @@ public class UserDao extends DBHelper{
 		}
 		return count;
 	}
-	
-	
+
 	public int selectCountCheckUser(String type, String value) {
 		
 		StringBuilder sql = new StringBuilder(SQL.SELECT_USERS_COUNT);
@@ -82,8 +81,6 @@ public class UserDao extends DBHelper{
 	
 		return result;
 	}
-	
-	
 	
 	
 	public void insertUser(UserDto user) {
@@ -163,19 +160,6 @@ public class UserDao extends DBHelper{
 	public void deleteUser(String userId) {
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 	
 	
 }

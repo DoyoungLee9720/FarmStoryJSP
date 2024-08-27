@@ -15,6 +15,7 @@ import javax.mail.internet.MimeMessage;
 import com.farmstory.dao.UserDao;
 import com.farmstory.dto.UserDto;
 
+
 public enum UserService {
 	INSTANCE;
 	private UserDao dao = UserDao.getInstance();
@@ -34,6 +35,10 @@ public enum UserService {
 		int currentPage = 1;
 			if(pg != null) currentPage = Integer.parseInt(pg);
 		return currentPage;
+	}
+	
+	public int selectCountCheckUser(String type, String value) {
+		return dao.selectCountCheckUser(type, value);
 	}
 	
 	public int selectUserCount() { 
@@ -60,15 +65,7 @@ public enum UserService {
 	public void deleteUser(String userId) {
 		dao.deleteUser(userId);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public String sendEmailCode(String email) {
 		
 		
@@ -114,7 +111,4 @@ public enum UserService {
 		return ""+code; //string으로 받기 위해서
 	
 	}
-	
-	
-	
 }

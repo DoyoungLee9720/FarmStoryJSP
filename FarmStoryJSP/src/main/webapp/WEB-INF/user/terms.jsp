@@ -11,7 +11,7 @@
 			height: 600px;
 			width: auto;
 			
-			background-color: #EEEEEEE;
+			background-color: #EEEE;
 			position: relative;
 		}
 		

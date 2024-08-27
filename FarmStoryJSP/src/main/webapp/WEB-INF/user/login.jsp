@@ -11,7 +11,7 @@ main {
 	height: 400px;
 	width: 980px;
 	margin: 0 auto;
-	background-color: #EEEEEEE;
+	background-color: #EEE;
 	position: relative;
 }
 
