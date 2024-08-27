@@ -14,8 +14,8 @@ public class SQL{
 													+ "`proimg3`=?,"
 													+ "`proETC`=?,"
 													+ "proRdate=NOW()";
-	public static final String SELECT_PRODUCT 	= "SELECT * from `product`";
-	public static final String SELECT_PRODUCTS	= "SELECT * from `product` where `prono`=?";
+	public static final String SELECT_PRODUCT 	= "SELECT * from `product` where `prono`=?";
+	public static final String SELECT_PRODUCTS	= "SELECT * from `product` ";
 	public static final String UPDATE_PRODUCTS 	= "UPDATE `product` set "
 													+ "`proname`=?,"
 													+ "`protype`=?,"
