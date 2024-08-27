@@ -39,6 +39,40 @@ public class UserDao extends DBHelper{
 		return count;
 	}
 	
+	public int selectCountCheckUser(String type, String value) {
+		
+		StringBuilder sql = new StringBuilder(SQL.SELECT_USERS_COUNT);
+		if(type.equals("uid")) {
+			sql.append(SQL.WHERE_UID);
+		}else if(type.equals("nick")) {
+			sql.append(SQL.WHERE_NICK);
+		}else if(type.equals("email")) {
+			sql.append(SQL.WHERE_EMAIL);
+		}else if(type.equals("hp")) {
+			sql.append(SQL.WHERE_HP);
+		}
+		logger.debug(sql.toString());
+		
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql.toString());
+			psmt.setString(1, value);
+			logger.debug(psmt.toString());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+	
+		return result;
+	}
+	
+	
 	public void insertUser(UserDto user) {
 		
 	}
