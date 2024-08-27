@@ -87,21 +87,23 @@
 
 
   <main>
-    <div class="titleEvent"><img src="../images/sub_top_tit3.png" alt=""></div>
+    <div class="titleEvent"><img src="../images/sub_top_tit5.png" alt=""></div>
     <section class="mainSection">
       <aside class="mainAside">
-        <img src="../images/sub_aside_cate3_tit.png" alt="Event" class="eventList">
+        <img src="../images/sub_aside_cate5_tit.png" alt="Event" class="eventList">
         <ul class="asideList">
-          <li><a href="story.html"><img src="../images/sub_cate3_lnb1.png" alt=""></a></li>
-          <li><a href="decorate.html"><img src="../images/sub_cate3_lnb2_ov.png" alt=""></a></li>
-          <li><a href="school.html"><img src="../images/sub_cate3_lnb3.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=notice"><img src="../images/sub_cate5_lnb1.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=menu"><img src="../images/sub_cate5_lnb2_ov.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=chef"><img src="../images/sub_cate5_lnb3.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=faq"><img src="../images/sub_cate5_lnb4.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=qna"><img src="../images/sub_cate5_lnb5.png" alt=""></a></li>
         </ul>
       </aside>
 
       <article class="mainArticle">
         <nav class="articleNav">
-          <img src="../images/sub_nav_tit_cate3_tit2.png" alt="event">
-          <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 농작물이야기 > <strong>텃밭가꾸기</strong></p>
+          <img src="../images/sub_nav_tit_cate5_tit2.png" alt="event">
+          <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 커뮤니티 > <strong>오늘의식단</strong></p>
         </nav>
         <p>게시판 글목록/글쓰기/글보기/글수정 출력</p>
       </article>
@@ -111,6 +113,6 @@
 
   
   <!-- footer 시작 -->
-  <%@ include file="/css/_footer.jsp"%>
+<%@ include file="/css/_footer.jsp"%>
 </body>
 </html>

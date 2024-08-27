@@ -81,28 +81,27 @@
 </head>
 <body>
 <%@ include file="/css/_header.jsp"%>
+  
   <!-- header 끝-->
 
 
 
   <main>
-    <div class="titleEvent"><img src="../images/sub_top_tit5.png" alt=""></div>
+    <div class="titleEvent"><img src="../images/sub_top_tit3.png" alt=""></div>
     <section class="mainSection">
       <aside class="mainAside">
-        <img src="../images/sub_aside_cate5_tit.png" alt="Event" class="eventList">
+        <img src="../images/sub_aside_cate3_tit.png" alt="Event" class="eventList">
         <ul class="asideList">
-          <li><a href="notice.html"><img src="../images/sub_cate5_lnb1.png" alt=""></a></li>
-          <li><a href="todayMenu.html"><img src="../images/sub_cate5_lnb2.png" alt=""></a></li>
-          <li><a href="todayMenu.html"><img src="../images/sub_cate5_lnb3_ov.png" alt=""></a></li>
-          <li><a href="chat.html"><img src="../images/sub_cate5_lnb4.png" alt=""></a></li>
-          <li><a href="QnA.html"><img src="../images/sub_cate5_lnb5.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=story"><img src="../images/sub_cate3_lnb1.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow"><img src="../images/sub_cate3_lnb2_ov.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=school"><img src="../images/sub_cate3_lnb3.png" alt=""></a></li>
         </ul>
       </aside>
 
       <article class="mainArticle">
         <nav class="articleNav">
-          <img src="../images/sub_nav_tit_cate5_tit3.png" alt="event">
-          <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 커뮤니티 > <strong>나도요리사</strong></p>
+          <img src="../images/sub_nav_tit_cate3_tit2.png" alt="event">
+          <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 농작물이야기 > <strong>텃밭가꾸기</strong></p>
         </nav>
         <p>게시판 글목록/글쓰기/글보기/글수정 출력</p>
       </article>
@@ -112,6 +111,6 @@
 
   
   <!-- footer 시작 -->
-<%@ include file="/css/_footer.jsp"%>
+  <%@ include file="/css/_footer.jsp"%>
 </body>
 </html>

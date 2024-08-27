@@ -92,9 +92,9 @@
       <aside class="mainAside">
         <img src="../images/sub_aside_cate3_tit.png" alt="Event" class="eventList">
         <ul class="asideList">
-          <li><a href="story.html"><img src="../images/sub_cate3_lnb1.png" alt=""></a></li>
-          <li><a href="decorate.html"><img src="../images/sub_cate3_lnb2.png" alt=""></a></li>
-          <li><a href="school.html"><img src="../images/sub_cate3_lnb3_ov.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=story"><img src="../images/sub_cate3_lnb1.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow"><img src="../images/sub_cate3_lnb2.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=school"><img src="../images/sub_cate3_lnb3_ov.png" alt=""></a></li>
         </ul>
       </aside>
 

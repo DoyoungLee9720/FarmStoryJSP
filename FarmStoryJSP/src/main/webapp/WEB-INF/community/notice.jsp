@@ -96,11 +96,11 @@
       <aside class="mainAside">
         <img src="../images/sub_aside_cate5_tit.png" alt="Event" class="eventList">
         <ul class="asideList">
-          <li><a href="notice.html"><img src="../images/sub_cate5_lnb1_ov.png" alt=""></a></li>
-          <li><a href="todayMenu.html"><img src="../images/sub_cate5_lnb2.png" alt=""></a></li>
-          <li><a href="cooker.html"><img src="../images/sub_cate5_lnb3.png" alt=""></a></li>
-          <li><a href="chat.html"><img src="../images/sub_cate5_lnb4.png" alt=""></a></li>
-          <li><a href="QnA.html"><img src="../images/sub_cate5_lnb5.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=notice"><img src="../images/sub_cate5_lnb1_ov.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=menu"><img src="../images/sub_cate5_lnb2.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=chef"><img src="../images/sub_cate5_lnb3.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=faq"><img src="../images/sub_cate5_lnb4.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=qna"><img src="../images/sub_cate5_lnb5.png" alt=""></a></li>
         </ul>
       </aside>
 

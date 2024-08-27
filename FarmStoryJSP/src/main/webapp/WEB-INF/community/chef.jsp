@@ -91,18 +91,18 @@
       <aside class="mainAside">
         <img src="../images/sub_aside_cate5_tit.png" alt="Event" class="eventList">
         <ul class="asideList">
-          <li><a href="notice.html"><img src="../images/sub_cate5_lnb1.png" alt=""></a></li>
-          <li><a href="todayMenu.html"><img src="../images/sub_cate5_lnb2.png" alt=""></a></li>
-          <li><a href="cooker.html"><img src="../images/sub_cate5_lnb3.png" alt=""></a></li>
-          <li><a href="chat.html"><img src="../images/sub_cate5_lnb4_ov.png" alt=""></a></li>
-          <li><a href="QnA.html"><img src="../images/sub_cate5_lnb5.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=notice"><img src="../images/sub_cate5_lnb1.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=menu"><img src="../images/sub_cate5_lnb2.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=chef"><img src="../images/sub_cate5_lnb3_ov.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=faq"><img src="../images/sub_cate5_lnb4.png" alt=""></a></li>
+          <li><a href="/FarmStoryJSP/article/list.do?group=community&cate=qna"><img src="../images/sub_cate5_lnb5.png" alt=""></a></li>
         </ul>
       </aside>
 
       <article class="mainArticle">
         <nav class="articleNav">
-          <img src="../images/sub_nav_tit_cate5_tit4.png" alt="event">
-          <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 커뮤니티 > <strong>1:1고객문의</strong></p>
+          <img src="../images/sub_nav_tit_cate5_tit3.png" alt="event">
+          <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 커뮤니티 > <strong>나도요리사</strong></p>
         </nav>
         <p>게시판 글목록/글쓰기/글보기/글수정 출력</p>
       </article>
