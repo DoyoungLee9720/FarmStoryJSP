@@ -14,14 +14,16 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/market/view.do")
 public class ViewController extends HttpServlet{
 
-	private static final long serialVersionUID = 710299834384232258L;
+	private static final long serialVersionUID = 1L;
 	private ProductService productservice = ProductService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int no = Integer.parseInt(req.getParameter("no"));
-		ProductDto dto = productservice.selectProduct(no);
-		req.setAttribute("ProductDto", dto);
+		//int no = Integer.parseInt(req.getParameter("no"));
+		//ProductDto ProductDto = productservice.selectProduct(no);
+		//req.setAttribute("ProductDto", ProductDto);
+		ProductDto ProductDto = new ProductDto();
+		ProductDto.setProPrice(2000);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/market/view.jsp");
 		dispatcher.forward(req, resp);
 	}

@@ -155,7 +155,7 @@ public class SQL{
 	
 	//페이지 숫자 찾기용
 	public static final String SELECT_PAGED_USERS_BY_ROW_NUMBER = "WITH NumberedUsers AS ( "
-																	+ "SELECT *, ROW_NUMBER() OVER (ORDER BY `no` DESC) AS `row_num` "
+																	+ "SELECT *, ROW_NUMBER() OVER (ORDER BY `UserRegdate` DESC) AS `row_num` "
 																	+ "FROM `User`) "
 																	+ "SELECT * "
 																	+ "FROM `NumberedUsers` "
