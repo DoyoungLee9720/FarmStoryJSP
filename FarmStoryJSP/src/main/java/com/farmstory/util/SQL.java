@@ -111,7 +111,7 @@ public class SQL{
 												//+ "UserRegip=?"
 												+ "where `UserId`=?";
 	public static final String DELETE_USERS = "DELETE FROM `User` where `UserId`=?";
-	
+	public static final String SELECT_USERS_COUNT = "SELECT COUNT(*) FROM `User` ";
 	//FILE
 	public static final String INSERT_FILE 	= "INSERT INTO `file` set "
 												+ "`ano`=?,"
