@@ -41,9 +41,14 @@ public enum UserService {
 		return dao.selectCountCheckUser(type, value);
 	}
 	
-	public int selectUserCount() {
+	public int selectUserCount() { 
 		return dao.selectUserCount();
 	}
+	
+	public int selectCountCheckUser(String type, String value) {
+		return dao.selectCountCheckUser(type, value);
+	}
+	
 	
 	public void insertUser(UserDto user) {
 		dao.insertUser(user);
@@ -60,12 +65,8 @@ public enum UserService {
 	public void deleteUser(String userId) {
 		dao.deleteUser(userId);
 	}
-	
-	
-	
-	
-	
-public String sendEmailCode(String email) {
+
+	public String sendEmailCode(String email) {
 		
 		
 		//인증코드 생성
@@ -88,12 +89,11 @@ public String sendEmailCode(String email) {
 		
 		//gmail session 생성
 		Session gmailSession = Session.getInstance(props, new Authenticator(){
-
+			
 			@Override // sender, appPass 반환
 			protected javax.mail.PasswordAuthentication getPasswordAuthentication(){ //서버에 로그인시 사용자의 이메일 주소와 비밀번호를 제공하는 역할
 				return new PasswordAuthentication(sender, appPass);
 			}
-
 		});
 		
 		//메일발송
@@ -111,6 +111,4 @@ public String sendEmailCode(String email) {
 		return ""+code; //string으로 받기 위해서
 	
 	}
-	
-	
 }

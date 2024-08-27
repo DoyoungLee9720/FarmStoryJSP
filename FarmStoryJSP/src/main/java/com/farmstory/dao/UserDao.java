@@ -2,6 +2,16 @@ package com.farmstory.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +48,7 @@ public class UserDao extends DBHelper{
 		}
 		return count;
 	}
-	
+
 	public int selectCountCheckUser(String type, String value) {
 		
 		StringBuilder sql = new StringBuilder(SQL.SELECT_USERS_COUNT);

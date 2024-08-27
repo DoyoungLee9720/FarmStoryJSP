@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-
 function postcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -9,8 +8,9 @@ function postcode() {
 
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-             // 주소 변수
-            var addr = '';
+
+            var addr = ''; // 주소 변수
+
             var extraAddr = ''; // 참고항목 변수
 
             //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
@@ -80,8 +80,9 @@ window.onload = function(){
 	const resultEmail = document.getElementsByClassName('resultEmail')[0];
 	const auth = document.getElementsByClassName('auth')[0];
 	const resultHp = document.getElementsByClassName('resultHp')[0];
-	const zip = document.getElementById('zip');
-	const addr1 = document.getElementById('addr1');
+	const zip = document.getElementById('zip').value;
+	const addr1 = document.getElementById('addr1').value;
+
 	const addr2 = document.getElementById('addr2').value;
 	
 	
@@ -364,7 +365,7 @@ window.onload = function(){
     main {
       height : 600px;
       width: auto;
-      background-color: #EEEEEEE;
+      background-color: #EEE;
       position: relative;
     }
     main > p{
