@@ -78,6 +78,9 @@ public class ArticleDto {
 	public void setArtRdate(String artRdate) {
 		this.artRdate = artRdate;
 	}
+	public void setRdateSubString(String artRdate) {
+		this.artRdate = artRdate.substring(0, 10);
+	}
 	@Override
 	public String toString() {
 		return "ArticleDto [글 번호 =" + artNo + ", 글 그룹 =" + artGroup + ", 글 카테고리 =" + artCate + ", 글 제목 ="

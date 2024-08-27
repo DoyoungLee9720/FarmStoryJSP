@@ -22,20 +22,22 @@ public class ViewController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String no = req.getParameter("no");
+		String type = "view";
+		String group = (String) req.getAttribute("group");
+		String cate = (String) req.getAttribute("cate");
 		
 		// 데이터 조회
-		ArticleDto articleDto = service.selectArticle(no);
+		//ArticleDto articleDto = service.selectArticle(no);
 		
 		// 댓글 조회
 		//List<CommentDto> comments = commentService.selectComments(no);
 		
 		// 공유 참조
-		req.setAttribute("articleDto", articleDto);
-		//req.setAttribute("comments", comments);
+		//req.setAttribute("articleDto", articleDto);
+		req.setAttribute("type", type);
 		
 		// 포워드(화면출력)
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/article/view.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/" + group + "/" + cate + ".jsp");
 		dispatcher.forward(req, resp);
 	}
 	
