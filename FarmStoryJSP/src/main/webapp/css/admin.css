@@ -200,7 +200,7 @@ section>article:nth-child(2)>table {
 	margin-bottom: 0;
 }
 
-tbody>tr {
+.prodList tbody>tr {
 	height: 90px;
 }
 
@@ -208,7 +208,26 @@ section>article:nth-child(2)>table img {
 	width: 60px;
 	height: 60px;
 }
-
+.paging {
+	overflow: hidden;
+	height: auto;
+}
+.paging > p {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+}
+.paging > p > a[href]{
+	margin: 5px;
+}
+.paging > p > a.current{
+	font-weight: bolder;
+}
+.userList tbody>tr,
+.userList table td{
+	height: 43px;
+	box-sizing: border-box;
+}
 .userList section>article:nth-child(3)>h3 {
 	overflow: hidden;
 	height: 50px;
