@@ -215,24 +215,35 @@
             border-radius: 3px;
         }
     </style>
-    <script>
-        // 구매수량에 숫자만 입력되도록 제한하는 함수
-        function allowOnlyNumbers(input) {
-            input.value = input.value.replace(/[^0-9]/g, ''); // 숫자 이외의 문자 제거
-            updateTotal(); // 합계 업데이트
-        }
+<script>
+    window.onload = function () {
+        const countFruitInput = document.querySelector('input[name="countfruit"]');
+        countFruitInput.addEventListener('input', allowOnlyNumbers);
 
-        // 합계를 업데이트하는 함수
-        function updateTotal() {
-            const price = parseInt('${articleDto.proprice}', 10); // 판매가격을 가져옴
-            const quantity = parseInt(document.querySelector('input[name="countfruit"]').value, 10); // 구매수량을 가져옴
+        // 페이지 로드 시 초기 합계 업데이트
+        updateTotal();
+    };
 
-            if (!isNaN(price) && !isNaN(quantity)) {
-                const total = price * quantity;
-                document.querySelector('.colorRed').textContent = `${total.toLocaleString()}원`; // 합계를 업데이트
-            }
+    function allowOnlyNumbers(event) {
+        const input = event.target;
+        input.value = input.value.replace(/[^0-9]/g, '');
+        updateTotal();
+    }
+
+    function updateTotal() {
+        // ${ProductDto.proprice} 대신 기본값으로 2000원을 설정
+        const price = ${ProductDto.proprice};
+        const quantity = parseInt(document.querySelector('input[name="countfruit"]').value, 10);
+
+        if (!isNaN(price) && !isNaN(quantity)) {
+            const total = price * quantity;
+            document.querySelector('.colorRed').textContent = total+`원`;
+        } else {
+            // 가격이나 수량이 올바르지 않은 경우
+            document.querySelector('.colorRed').textContent = '0원';
         }
-    </script>
+    }
+</script>
 </head>
 
 <body>
@@ -256,25 +267,24 @@
                         </nav>
                         <p class="section-title">기본정보</p>
                         <div class="product-info">
-                            
                             <img src="../images/market_item_thumb.jpg" alt="상품 이미지">
                             <div class="product-details">
                                 <table>
                                     <tr>
                                         <th>상품명</th>
-                                        <td>${articleDto.proname}</td>
+                                        <td>${ProductDto.proname}</td>
                                     </tr>
                                     <tr>
                                         <th>상품코드</th>
-                                        <td>${articleDto.prono}</td>
+                                        <td>${ProductDto.prono}</td>
                                     </tr>
                                     <tr>
                                         <th>배송비</th>
-                                        <td>${articleDto.prodeliveryfee}원 <span>3만원이상 무료배송</span></td>
+                                        <td>${ProductDto.prodeliveryfee}원 <span>3만원이상 무료배송</span></td>
                                     </tr>
                                     <tr>
                                         <th>판매가격</th>
-                                        <td>${articleDto.proprice}원</td>
+                                        <td>${ProductDto.proprice}원</td>
                                     </tr>
                                     <tr>
                                         <th>구매수량</th>
