@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<link rel="stylesheet" href="/FarmStoryJSP/css/article.css">
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
   <title>Farmstory</title>
   <style>
@@ -104,7 +105,7 @@
           <img src="../images/sub_nav_tit_cate5_tit4.png" alt="event">
           <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 커뮤니티 > <strong>1:1고객문의</strong></p>
         </nav>
-        <p>게시판 글목록/글쓰기/글보기/글수정 출력</p>
+        <%@ include file="/css/_article.jsp"%>
       </article>
     </section>
   </main>
