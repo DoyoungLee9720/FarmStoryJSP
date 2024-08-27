@@ -114,7 +114,7 @@
         		<%@ include file="/css/_article.jsp"%>
         	</c:when>
         	<c:when test="${type eq 'view'}">
-        		<%@ include file="/css/_article.jsp"%>
+        		<%@ include file="/css/_article.jsp"%> 
         	</c:when>
         </c:choose>
         
