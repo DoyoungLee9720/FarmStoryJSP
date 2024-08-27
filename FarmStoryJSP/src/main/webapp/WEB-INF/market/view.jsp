@@ -215,6 +215,24 @@
             border-radius: 3px;
         }
     </style>
+    <script>
+        // 구매수량에 숫자만 입력되도록 제한하는 함수
+        function allowOnlyNumbers(input) {
+            input.value = input.value.replace(/[^0-9]/g, ''); // 숫자 이외의 문자 제거
+            updateTotal(); // 합계 업데이트
+        }
+
+        // 합계를 업데이트하는 함수
+        function updateTotal() {
+            const price = parseInt('${articleDto.proprice}', 10); // 판매가격을 가져옴
+            const quantity = parseInt(document.querySelector('input[name="countfruit"]').value, 10); // 구매수량을 가져옴
+
+            if (!isNaN(price) && !isNaN(quantity)) {
+                const total = price * quantity;
+                document.querySelector('.colorRed').textContent = `${total.toLocaleString()}원`; // 합계를 업데이트
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -244,19 +262,19 @@
                                 <table>
                                     <tr>
                                         <th>상품명</th>
-                                        <td>딸기 500g</td>
+                                        <td>${articleDto.proname}</td>
                                     </tr>
                                     <tr>
                                         <th>상품코드</th>
-                                        <td>01</td>
+                                        <td>${articleDto.prono}</td>
                                     </tr>
                                     <tr>
                                         <th>배송비</th>
-                                        <td>5,000원 <span>3만원이상 무료배송</span></td>
+                                        <td>${articleDto.prodeliveryfee}원 <span>3만원이상 무료배송</span></td>
                                     </tr>
                                     <tr>
                                         <th>판매가격</th>
-                                        <td>4,000원</td>
+                                        <td>${articleDto.proprice}원</td>
                                     </tr>
                                     <tr>
                                         <th>구매수량</th>

@@ -111,7 +111,10 @@ public class SQL{
 												//+ "UserRegip=?"
 												+ "where `UserId`=?";
 	public static final String DELETE_USERS = "DELETE FROM `User` where `UserId`=?";
+	
+	//유저 수 검색
 	public static final String SELECT_USERS_COUNT = "SELECT COUNT(*) FROM `User` ";
+	
 	//FILE
 	public static final String INSERT_FILE 	= "INSERT INTO `file` set "
 												+ "`ano`=?,"
@@ -157,6 +160,12 @@ public class SQL{
 																	+ "SELECT * "
 																	+ "FROM `NumberedUsers` "
 																	+ "WHERE `row_num` BETWEEN ? AND ?";
+	
+	//아이디,닉네임,이메일,휴대폰번호 중복 검사
+	public static final String WHERE_UID = "WHERE `UserId`=?";
+	public static final String WHERE_NICK = "WHERE `UserNick`=?";
+	public static final String WHERE_EMAIL = "WHERE `UserEmail`=?";
+	public static final String WHERE_HP = "WHERE `UserHp`=?";
 }
 
 /*package com.jboard.util;
