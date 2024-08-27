@@ -14,12 +14,19 @@ public class ProductDto {
 	private String proImg3;
 	private String proETC;
 	private String proRdate;
+	private int startNo;
 	@Override
 	public String toString() {
 		return "ProductDto [proNo=" + proNo + ", proName=" + proName + ", proType=" + proType + ", proPrice=" + proPrice
 				+ ", proPoint=" + proPoint + ", proSale=" + proSale + ", proDeliveryfee=" + proDeliveryfee
 				+ ", proStock=" + proStock + ", proImg1=" + proImg1 + ", proImg2=" + proImg2 + ", proImg3=" + proImg3
 				+ ", proETC=" + proETC + ", proRdate=" + proRdate + "]";
+	}
+	public int getStartNo() {
+		return startNo;
+	}
+	public void setStartNo(int startNo) {
+		this.startNo = startNo;
 	}
 	public int getProNo() {
 		return proNo;
