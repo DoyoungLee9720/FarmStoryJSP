@@ -4,6 +4,9 @@ package com.farmstory.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.farmstory.dto.ProductDto;
 import com.farmstory.util.DBHelper;
 import com.farmstory.util.SQL;
@@ -11,14 +14,15 @@ import com.farmstory.util.SQL;
 public class ProductDao extends DBHelper {
 
 	private static ProductDao instance = new ProductDao();
-
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	public static ProductDao getInstance() {
 		return instance;
 	}
 
 	private ProductDao() {
 	}
-
+	
+	
 	public int insertProduct(ProductDto dto) {
 		int proNo = 0;
 		try {
@@ -41,14 +45,14 @@ public class ProductDao extends DBHelper {
 			
 			
 			
-			/*rs = psmt.executeQuery(SQL.SELECT_MAX_NO);
+			rs = psmt.executeQuery(SQL.SELECT_MAX_NO);
 			if(rs.next()) {
 				proNo = rs.getInt(1);
 			}
 			conn.commit();
-			*/
+			
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			closeAll();
 		}
@@ -60,13 +64,13 @@ public class ProductDao extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(SQL.SELECT_COUNT_TOTAL);
+			rs = stmt.executeQuery(SQL.SELECT_COUNT_TOTALs);
 
 			if (rs.next()) {
 				total = rs.getInt(1);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			closeAll();
 		}
@@ -98,20 +102,19 @@ public class ProductDao extends DBHelper {
 				dto.setProRdate(rs.getString(13));
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			closeAll();
 		}
 		return dto;
 	}
 
-	public List<ProductDto> selectProducts(int proNo) {
+	public List<ProductDto> selectProducts(int start) {
 		List<ProductDto> products = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_ARTICLES);
-			psmt.setInt(1, proNo);
-
+			psmt = conn.prepareStatement(SQL.SELECT_PRODUCTs);
+			psmt.setInt(1, start);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				ProductDto dto = new ProductDto();
@@ -131,7 +134,7 @@ public class ProductDao extends DBHelper {
 				products.add(dto);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			closeAll();
 		}
