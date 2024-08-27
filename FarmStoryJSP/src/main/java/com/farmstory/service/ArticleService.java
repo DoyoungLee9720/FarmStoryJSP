@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.farmstory.dao.ArticleDao;
 import com.farmstory.dto.ArticleDto;
-import com.farmstory.dto.PageGroupDto;
+//import com.farmstory.dto.PageGroupDto;
+//import com.farmstory.util.SQL;
 
 public enum ArticleService {
 	
@@ -27,7 +28,6 @@ public enum ArticleService {
 	public int getStartNum(int currentpage) {
 		return (currentpage -1)*10;
 	}
-	
 	//현재 페이지번호 구하기
 	public int getCurrentPage(String pg) {
 		int currentPage =1;
@@ -36,7 +36,6 @@ public enum ArticleService {
 		}
 		return currentPage;
 	}
-	
 	//현재 페이지의 글번호 구하기
 	public int getCurrentNumber(int total, int currentPage) {
 		return (total - (currentPage-1)*10);
@@ -62,8 +61,8 @@ public enum ArticleService {
 		return dao.selectArticle(no);
 	}
 	
-	public List<ArticleDto> selectArticles(int start, String cate) {
-		return dao.selectArticles(start, cate);
+	public List<ArticleDto> selectArticles(int start) {
+		return dao.selectArticles(start);
 	}
 	
 	public void updateArticle(ArticleDto dto) {
@@ -72,27 +71,6 @@ public enum ArticleService {
 	
 	public int deleteArticle(String no) {
 		return dao.deleteArticle(no);
-	}
-
-	public int selectCountTotal(String group, String cate) {
-		return dao.selectCountTotal(group, cate);
-	}
-
-	public int getPageStartNum(int total, int currentPage) {
-		int start = (currentPage - 1) * 10;
-		return total - start;
-	}
-
-	public PageGroupDto getCurrentPageGroup(int currentPage, int lastPageNum) {
-		int currentPageGroup = (int) Math.ceil(currentPage / 10.0);
-		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
-		int pageGroupEnd = currentPageGroup * 10;
-		
-		if(pageGroupEnd > lastPageNum){
-			pageGroupEnd = lastPageNum;
-		}
-		
-		return new PageGroupDto(pageGroupStart, pageGroupEnd);
 	}	
 	
 	/*
