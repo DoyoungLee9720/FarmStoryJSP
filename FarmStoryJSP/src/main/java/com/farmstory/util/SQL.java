@@ -61,7 +61,7 @@ public class SQL{
 	//조회수 증가
 	public static final String UPDATE_HIT_COUNT = "update `ARTICLE` set `arthit` = `arthit` + 1 where `artNo`=?";
 	//그룹별 + 카테고리별 총 글 갯수
-	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `article` where `artGroup`=? AND `artCate`=?";
+	public static final String SELECT_ARTICLE_COUNT_TOTAL = "SELECT COUNT(*) FROM `article` where `artGroup`=? AND `artCate`=?";
 	
 	//COMMENT
 	public static final String INSERT_COMMENT 	= "INSERT INTO `COMMENT` set "
