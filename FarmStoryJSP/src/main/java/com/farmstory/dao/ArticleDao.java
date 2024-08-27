@@ -6,9 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.farmstory.dto.ArticleDto;
-//import com.farmstory.util.DBHelper;
+import com.farmstory.util.DBHelper;
 
-public class ArticleDao {
+
+public class ArticleDao extends DBHelper{
 	private static ArticleDao instance = new ArticleDao();
 	public static ArticleDao getInstance() {
 		return instance;
