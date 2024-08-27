@@ -11,28 +11,33 @@ public enum ProductService {
 	INSTANCE;
 
 	private ProductDao dao = ProductDao.getInstance();
-	
+
 	public int getLastPageNum(int total) {
 		int lastPageNum = 0;
-		if(total % 10 == 0) {
-			lastPageNum = total /10;
-		}else {
-			lastPageNum = total + 1;
+		if (total % 10 == 0) {
+			lastPageNum = total / 10;
+		} else {
+			lastPageNum = total / 10 + 1;
 		}
 		return lastPageNum;
 	}
+
+	// 페이지 시작번호(limit)
 	public int getStartNum(int currentPage) {
 		return (currentPage - 1) * 10;
+
 	}
+
 	public int getCurrentPage(String pg) {
 		int currentPage = 1;
-		
-		if(pg != null){
+
+		if (pg != null) {
 			currentPage = Integer.parseInt(pg);
 		}
 		return currentPage;
 	}
-	
+
+	// 현재 페이지 구룹 구하기
 	public PageGroupDto getCurrentPageGroup(int currentPage) {
 		int currentPageGroup = (int) Math.ceil(currentPage / 10.0);
 		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
@@ -59,8 +64,8 @@ public enum ProductService {
 		return dao.selectCountTotal();
 	}
 
-	public List<ProductDto> selectProducts(int proNo) {
-		return dao.selectProducts(proNo);
+	public List<ProductDto> selectProducts(int start) {
+		return dao.selectProducts(start);
 	}
 
 	public void updateProduct(ProductDto dto) {

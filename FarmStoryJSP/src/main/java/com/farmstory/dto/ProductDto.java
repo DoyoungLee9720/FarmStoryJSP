@@ -15,6 +15,9 @@ public class ProductDto {
 	private String proETC;
 	private String proRdate;
 	private int startNo;
+	private int salePrice;
+	
+	
 	@Override
 	public String toString() {
 		return "ProductDto [proNo=" + proNo + ", proName=" + proName + ", proType=" + proType + ", proPrice=" + proPrice
@@ -22,6 +25,13 @@ public class ProductDto {
 				+ ", proStock=" + proStock + ", proImg1=" + proImg1 + ", proImg2=" + proImg2 + ", proImg3=" + proImg3
 				+ ", proETC=" + proETC + ", proRdate=" + proRdate + "]";
 	}
+	  public int getsalePrice() {
+	        return salePrice;
+	    }
+
+	    public void setsalePrice(int salePrice) {
+	        this.salePrice = salePrice;
+	    }
 	public int getStartNo() {
 		return startNo;
 	}
