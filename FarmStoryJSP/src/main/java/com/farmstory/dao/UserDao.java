@@ -216,7 +216,32 @@ public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		return users;
 	}
 	
-	public void updateUser(UserDto user) {
+	public int updateUser(UserDto user) {
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_USERS);
+			psmt.setString(1, user.getUserPass());
+			psmt.setString(2, user.getUserName());
+			psmt.setString(3, user.getUserNick());
+			psmt.setString(4, user.getUserEmail());
+			psmt.setString(5, user.getUserHp());
+			psmt.setString(6, user.getUserZip());
+			psmt.setString(7, user.getUserAddr1());
+			psmt.setString(8, user.getUserAddr2());
+			psmt.setString(9, user.getUserId());
+			result = psmt.executeUpdate();
+
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		
+		} finally {
+			closeAll();
+		}
+		
+		return result;
 		
 	}
 	public void deleteUser(String userId) {
