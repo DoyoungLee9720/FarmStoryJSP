@@ -68,8 +68,9 @@ public class ProdRegController extends HttpServlet{
         if (files.size() > 1) dto.setProImg2(files.get(1));
         if (files.size() > 2) dto.setProImg3(files.get(2));
         dto.setProETC(etc);
-        productService.insertProduct(dto);
-		
+        int result = productService.insertProduct(dto);
+        logger.debug("result : "+result);
+		req.setAttribute("result", result);
 		resp.sendRedirect("/FarmStoryJSP/admin/product/list.do");
 	}
 }

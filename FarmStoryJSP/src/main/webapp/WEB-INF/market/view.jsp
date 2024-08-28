@@ -243,17 +243,15 @@
             document.querySelector('.colorRed').textContent = '0원';
         }
     }
-    /* function addToCart() {
-        //var proNo = "${ProductDto.proNo}";
+    function addToCart() {
         var quantity = document.getElementById('countfruit').value;
-        location.href = `FarmStoryJSP/market/cart.do?quantity=${quantity}&ProductDto=${ProductDto}`;
+        location.href = `FarmStoryJSP/market/cart.do?quantity=${quantity}&proNo=${ProductDto.proNo}`;
     }
 
     function buyNow() {
-    	//var proNo = "${ProductDto.proNo}";
         var quantity = document.getElementById('countfruit').value;
-        location.href = `FarmStoryJSP/market/order.do?quantity=${quantity}&ProductDto=${ProductDto}`;
-    } */
+        location.href = `FarmStoryJSP/market/order.do?quantity=${quantity}&proNo=${ProductDto.proNo}`;
+    }
 </script>
 </head>
 
@@ -279,7 +277,6 @@
                         <p class="section-title">기본정보</p>
                         <div class="product-info">
                             <img src="${ProductDto.proImg1}" alt="상품 이미지">
-                            <form id="actionForm" action="${pageContext.request.contextPath}/market/view.do" method="POST">
                             <div class="product-details">
                             
                                 <table>
@@ -310,13 +307,11 @@
                                 </table>
                                 <div class="button-container">
 		                             <!-- 장바구니 버튼 -->
-								    <button type="submit" name="action" value="addToCart">장바구니</button>
-								    
+								    <button type="submit" name="action" value="addToCart" class="cart-button">장바구니</button>
 								    <!-- 바로구매 버튼 -->
-								    <button type="submit" name="action" value="buyNow">바로구매</button>
+								    <button type="submit" name="action" value="buyNow" class="buy-button">바로구매</button>
                                 </div>
                             </div>
-                            </form>
                         </div>
                         
                         <div>

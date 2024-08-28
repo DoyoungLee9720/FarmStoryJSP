@@ -27,6 +27,11 @@ public class PageGroupDto {
 		this.start = start;
 		this.end = end;
 	}
+	public PageGroupDto(int start, int end,int group) {
+		this.start = start;
+		this.end = end;
+		this.group = group;
+	}
 	@Override
 	public String toString() {
 		return "PageGroupDto [group=" + group + ", start=" + start + ", end=" + end + "]";

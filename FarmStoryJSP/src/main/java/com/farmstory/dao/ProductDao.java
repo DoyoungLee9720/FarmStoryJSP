@@ -64,7 +64,7 @@ public class ProductDao extends DBHelper {
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(SQL.SELECT_COUNT_TOTALs);
+			rs = stmt.executeQuery(SQL.SELECT_COUNT_TOTALS);
 
 			if (rs.next()) {
 				total = rs.getInt(1);
@@ -113,7 +113,7 @@ public class ProductDao extends DBHelper {
 		List<ProductDto> products = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_PRODUCTs);
+			psmt = conn.prepareStatement(SQL.SELECT_PRODUCTS_LIMIT);
 			psmt.setInt(1, start);
 			rs = psmt.executeQuery();
 			while (rs.next()) {

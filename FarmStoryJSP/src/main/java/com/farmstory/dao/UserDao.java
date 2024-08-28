@@ -16,6 +16,7 @@ import javax.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.farmstory.dto.PageGroupDto;
 import com.farmstory.dto.UserDto;
 import com.farmstory.util.DBHelper;
 import com.farmstory.util.SQL;
@@ -81,8 +82,43 @@ public class UserDao extends DBHelper{
 	
 		return result;
 	}
-	
-	
+
+public List<UserDto> selectPagedUsers(PageGroupDto page) {
+		
+		List<UserDto> users = new ArrayList<>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_PAGED_USERS_BY_ROW_NUMBER);
+			psmt.setInt(1, page.getStart());
+			psmt.setInt(2, page.getEnd());
+			logger.debug("start : "+page.getStart());
+			logger.debug("end : "+page.getEnd());
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				UserDto user = new UserDto();
+				user.setUserId(rs.getString(1));
+				user.setUserPass(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserNick(rs.getString(4));
+				user.setUserEmail(rs.getString(5));
+				user.setUserHp(rs.getString(6));
+				user.setUserRole(rs.getString(7));
+				user.setUserGrade(rs.getString(8));
+				user.setUserZip(rs.getString(9));
+				user.setUserAddr1(rs.getString(10));
+				user.setUserAddr2(rs.getString(11));
+				user.setUserPoint(rs.getString(12));
+				user.setUserRegip(rs.getString(13));
+				user.setUserRegdate(rs.getString(14));
+				users.add(user);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return users;
+	}
 	public int insertUser(UserDto user) {
 		int result = 0;
 		
@@ -100,13 +136,13 @@ public class UserDao extends DBHelper{
 			psmt.setString(9, user.getUserAddr2());
 			psmt.setString(10, user.getUserRegip());
 			result = psmt.executeUpdate();
-			
-			
+      	
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}finally {
 			closeAll();
 		}
+      
 		return result;
 		
 	}
