@@ -1,6 +1,7 @@
 package com.farmstory.controller.mainIndex;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -22,8 +23,10 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/index.do")
 public class IndexController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
+	
 	private ProductService service = ProductService.INSTANCE;
 	private ArticleService articleService = ArticleService.INSTANCE;
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,32 +34,35 @@ public class IndexController extends HttpServlet{
 		String pg = req.getParameter("pg");
 		String cate = req.getParameter("cate");
 		
+		
+		if (cate == null || cate.trim().isEmpty()) {
+		    cate = "농산물이야기"; // 적절한 기본값으로 설정
+		}
+		
+		
 		// 현재 페이지 그룹 구하기
 		int currentPage = service.getCurrentPage(pg);
-		// 현재 페이지 그룹 구하기
-		PageGroupDto pageGroup = service.getCurrentPageGroup(currentPage);
+		int arCurrentPage = articleService.getCurrentPage(pg);
 		// 전체 계시물 겟수 구하기
 		int total = service.selectCountTotal();
-		// 마지막 페이지 번호 구하기
-		int lastPageNum = service.getLastPageNum(total);
+		int arTotal = articleService.selectCountTotal(pg, cate);
 		
 		// 페이지 시작번호 구하기
 		int start = service.getStartNum(currentPage);
+		int arStart = articleService.getStartNum(arCurrentPage);
 		
 		List<ProductDto> products = service.selectProducts(start);
-		List<ArticleDto> articles = articleService.selectArticles(start,cate);
+		List<ArticleDto> articles = articleService.selectArticles(arStart,cate);
+		
 		logger.info("Number of articles retrieved: " + articles.size());
-		for (ArticleDto article : articles) {
-		    logger.info("Article: " + article.toString());
-		}
 		
 		int limit = 6;
 		if(products.size() > limit) {
 			products = products.subList(0, limit);
 		}
-		int limi = 5;
-		if(articles.size() > limi) {
-			articles = articles.subList(0, limi);
+		int articleLimit = 5;
+		if(articles.size() > articleLimit) {
+			articles = articles.subList(0, articleLimit);
 		}
 		
 		
@@ -67,11 +73,14 @@ public class IndexController extends HttpServlet{
 			
 			int originalPrice = (int) product.getProPrice(); // 원래 가격
 			int discountPercent = (int) product.getProSale(); // 할인 비율
-
-			// 할인된 가격 계산
 			int discountPrice = (int) (originalPrice * (1 - discountPercent / 100.0));
 	        product.setsalePrice(discountPrice);
 		}
+		int arPageStartNo = arTotal - (currentPage - 1) * 10;
+		for(ArticleDto article : articles) {
+			
+		}
+		
 		
 		
 		req.setAttribute("products", products);

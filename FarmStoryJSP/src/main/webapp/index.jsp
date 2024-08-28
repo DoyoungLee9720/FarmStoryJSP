@@ -375,7 +375,7 @@ input, textarea {
 									</c:if>
 								</c:forEach>
 								<tr>
-									<td><a href="#" class="link">> 토마토! 건강하게 길러...</a></td>
+									<td><a href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow" class="link">> 토마토! 건강하게 길러...</a></td>
 									<td>20-12-22</td>
 								</tr>
 							</tbody>
