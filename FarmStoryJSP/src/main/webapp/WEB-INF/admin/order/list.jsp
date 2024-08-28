@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,7 +20,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th><input type="checkbox" name="all"></th>
+                                <th><input type="checkbox" name="selectall" onclick='selectAll(this)'></th>
                                 <th>주문번호</th>
                                 <th>상품명</th>
                                 <th>판매가격</th>
@@ -32,18 +33,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="order" items="${Orders}">
                             <tr>
-                                <td><input type="checkbox"></td>
-                                <td>1011</td>
-                                <td>사과500g</td>
-                                <td class="price">4,000</td>
-                                <td>2</td>
-                                <td class="price">3,000</td>
-                                <td class="price">11,000</td>
-                                <td>김유신</td>
-                                <td>2023-01-01<br>13:06:14</td>
+                                <td><input type="checkbox" name="select" onclick='checkSelectAll(this)'></td>
+                                <td>${order.orderno}</td>
+                                <td>${order.orderproname}</td>
+                                <td class="price">${order.orderproprice}</td>
+                                <td>${order.orderstock}</td>
+                                <td class="price">${order.orderprodeliveryfee}</td>
+                                <td class="price">${order.orderpayment}</td>
+                                <td>${order.orderusername}</td>
+                                <td>${order.orderdate}<br>${order.ordertime}</td>
                                 <td><a href="#">[상세확인]</a></td>
                             </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </article>
@@ -51,17 +54,23 @@
                     <h3>
                         <a href="#">선택삭제</a>
                     </h3>
-                    <p>
-                        <a href="#"> &lt; </a>
-                        <b>[1]</b>
-                        <a href="#">[2]</a>
-                        <a href="#">[3]</a>
-                        <a href="#">[4]</a>
-                        <a href="#">[5]</a>
-                        <a href="#"> &gt; </a>
-
-                    </p>
                 </article>
+                <article class="paging">
+						<p>
+							<c:if test="${PageGroup.start > 1}">
+								<a href="?page=${PageGroup.start-1}"> &lt; </a>
+							</c:if>
+							<c:forEach var="i" begin="${PageGroup.start}" end="${PageGroup.end}">
+							<c:if test="${i<=LastPage}">
+								<a href="?page=${i}" class="num ${i eq Current?'current':'off'}">[${i}]</a>
+							</c:if>
+							</c:forEach>
+							<c:if test="${PageGroup.end < LastPage}">
+								<a href="?page=${PageGroup.end+1}"> &gt; </a>
+							</c:if>
+
+						</p>
+					</article>
             </section>
         </section>
         </main>
@@ -73,6 +82,23 @@
         if (now) {
             now.classList.add("now");
         }
+        function checkSelectAll(checkbox)  {
+  		  const selectall 
+  		    = document.querySelector('input[name="selectall"]');
+  		  
+  		  if(checkbox.checked === false)  {
+  		    selectall.checked = false;
+  		  }
+  		}
+
+  		function selectAll(selectAll)  {
+  		  const checkboxes 
+  		     = document.getElementsByName('select');
+  		  
+  		  checkboxes.forEach((checkbox) => {
+  		    checkbox.checked = selectAll.checked
+  		  })
+  		}
 </script>
 </html>
 

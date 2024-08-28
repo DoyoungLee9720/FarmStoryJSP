@@ -20,7 +20,7 @@
 						<table>
 							<thead>
 								<tr>
-									<th><input type="checkbox" name="all"></th>
+									<th><input type="checkbox" name="selectall"></th>
 									<th>아이디</th>
 									<th>이름</th>
 									<th>별명</th>
@@ -34,17 +34,20 @@
 							<tbody>
 							<c:forEach var="user" items="${Users}">
 								<tr>
-									<td><input type="checkbox"></td>
+									<td><input type="checkbox" name="select"></td>
 									<td>${user.getUserId()}</td>
 									<td>${user.getUserName()}</td>
 									<td>${user.getUserNick()}</td>
 									<td>${user.getUserEmail()}</td>
 									<td>${user.getUserHp()}</td>
-									<td><select>
-											<option>1</option>
-											<option selected>2</option>
-											<option>3</option>
-									</select></td>
+									<td>
+							            <select class="usergrade" data-id="${user.getUserId()}">
+							                <option value="1" <c:if test="${user.getUserGrade() eq 1}">selected</c:if>>1</option>
+							                <option value="2" <c:if test="${user.getUserGrade() eq 2}">selected</c:if>>2</option>
+							                <option value="3" <c:if test="${user.getUserGrade() eq 3}">selected</c:if>>3</option>
+							                <option value="4" <c:if test="${user.getUserGrade() eq 4}">selected</c:if>>4</option>
+							            </select>
+							        </td>
 									<td>${user.getUserRegdate()}</td>
 									<td><a href="#">[상세확인]</a></td>
 								</tr>
@@ -80,6 +83,64 @@
 	if (now) {
 		now.classList.add("now");
 	}
+	
+	function checkSelectAll(checkbox)  {
+		  const selectall 
+		    = document.querySelector('input[name="selectall"]');
+		  
+		  if(checkbox.checked === false)  {
+		    selectall.checked = false;
+		  }
+		}
+
+		function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.getElementsByName('select');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  })
+		}
+	
+	function updateUserGrade(id, grade) {
+		console.log(`User ID: ${id}`);  // 디버깅 로그
+	    console.log(`New Grade: ${grade}`);  // 디버깅 로그
+	    	const formData = new FormData();
+	    	formData.append("id", id);
+	    	formData.append("grade", grade);
+	    	
+	        fetch('/FarmStoryJSP/admin/user/list.do', {
+	            method: 'POST',
+	            body: formData
+	        })
+	        	.then(resp=>resp.json())
+	        	.then(data=>{
+	        		console.log(data);
+	    	        if (data.result != 0) {
+	    	            alert('정보가 성공적으로 수정되었습니다.');
+	    	        } else {
+	    	            alert('정보 수정에 실패했습니다.');
+	    	        }
+	        	})
+	        	.catch(err => {
+		        console.error(err);
+		        alert('업데이트에 실패했습니다.');
+		    });
+	}
+	document.addEventListener('DOMContentLoaded', function() {
+	    // 모든 select 요소에 대해 이벤트 리스너 등록
+	    document.querySelectorAll('.usergrade').forEach(selectElement => {
+	        selectElement.addEventListener('input', async function() {
+	            const id = this.dataset.id;  // data-user-id에서 값 가져오기
+	            const grade = this.value;
+
+	    		console.log(`User ID: ${id}`);  // 디버깅 로그
+	    	    console.log(`New Grade: ${grade}`);  // 디버깅 로그
+	            // 사용자 등급 업데이트
+	            updateUserGrade(id, grade);
+	        });
+	    });
+	});
 </script>
 </html>
 

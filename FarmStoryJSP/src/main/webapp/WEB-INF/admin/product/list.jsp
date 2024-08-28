@@ -20,7 +20,7 @@
 						<table>
 							<thead>
 								<tr>
-									<th><input type="checkbox"></th>
+									<th><input type="checkbox" name="selectall" onclick='selectAll(this)'></th>
 									<th>사진</th>
 									<th>상품번호</th>
 									<th>상품명</th>
@@ -33,14 +33,14 @@
 							<tbody>
 							<c:forEach var="product" items="${Products}">
 								<tr>
-									<td><input type="checkbox"></td>
-									<td><img src="/FarmStoryJSP/thumbUploads/${product.proImg2}"></td>
-									<td>${product.proNo}</td>
-									<td>${product.proName}</td>
-									<td>${product.proType}</td>
-									<td class="price">${product.proPrice}</td>
-									<td>${product.proStock}</td>
-									<td>${product.proRdate}</td>
+									<td><input type="checkbox" name="select" onclick='checkSelectAll(this)'></td>
+									<td><img src="/FarmStoryJSP/thumbUploads/${product.proimg2}"></td>
+									<td>${product.prono}</td>
+									<td>${product.proname}</td>
+									<td>${product.protype}</td>
+									<td class="price">${product.proprice}</td>
+									<td>${product.prostock}</td>
+									<td>${product.prordate}</td>
 								</tr>
 							</c:forEach>
 							</tbody>
@@ -76,6 +76,25 @@
 <script>
 	const now = document.querySelector('a#prodlist[href]');
 	if (now) { now.classList.add("now"); }
+	
+	function checkSelectAll(checkbox)  {
+		  const selectall 
+		    = document.querySelector('input[name="selectall"]');
+		  
+		  if(checkbox.checked === false)  {
+		    selectall.checked = false;
+		  }
+		}
+
+		function selectAll(selectAll)  {
+		  const checkboxes 
+		     = document.getElementsByName('select');
+		  
+		  checkboxes.forEach((checkbox) => {
+		    checkbox.checked = selectAll.checked
+		  })
+		}
+	
 </script>
 </html>
 
