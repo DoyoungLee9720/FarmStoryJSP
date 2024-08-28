@@ -69,6 +69,8 @@ public class SQL{
 	public static final String SELECT_COUNT_TOTALS="SELECT COUNT(*) FROM `product`";
 	//가지고 오는 제품의 수 10개 제한
 	public static final String SELECT_PRODUCTS_LIMIT = "SELECT * FROM product LIMIT ?, 10";
+	
+	public static final String SELECT_MAX_NO_ARTICLE = "select MAX(`artNo`) from `article`";
 	//COMMENT
 	public static final String INSERT_COMMENT 	= "INSERT INTO `COMMENT` set "
 													+ "`comParent`=?,"
@@ -104,7 +106,7 @@ public class SQL{
 												+ "UserAddr2=?,"
 												+ "UserRegip=?,"
 												+ "userRegdate=?";
-	public static final String SELECT_USER 	= "SELECT * FROM `User` `UserId`=? and `userPass`=SHA2(?,256)";
+	public static final String SELECT_USER 	= "SELECT * FROM `User` where `UserId`=? and `userPass`=SHA2(?,256)";
 	public static final String SELECT_USERS = "SELECT * FROM `User`";
 	public static final String UPDATE_USERS = "UPDATE `User` set "
 												+ "userPass=SHA2(?, 256),"
