@@ -14,7 +14,7 @@
                         <c:forEach var="article" items="${articles}">
 	                        <tr>
 	                            <td>${pageStartNum}</td>
-	                            <td><a href="/FarmStoryJSP/article/view.do?artNo=${article.artNo}">${article.artTitle}</a>&nbsp;[${article.artComment}]</td>
+	                            <td><a href="/FarmStoryJSP/article/view.do?group=${group}&cate=${cate}&artNo=${article.artNo}">${article.artTitle}</a>&nbsp;[${article.artComment}]</td>
 	                            <td>${article.artWriter}</td>
 	                            <td>${article.artRdate}</td>
 	                            <td>${article.artHit}</td>
