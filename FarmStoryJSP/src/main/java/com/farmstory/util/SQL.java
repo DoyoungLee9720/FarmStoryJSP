@@ -63,7 +63,12 @@ public class SQL{
 	public static final String UPDATE_HIT_COUNT = "update `ARTICLE` set `arthit` = `arthit` + 1 where `artNo`=?";
 	//그룹별 + 카테고리별 총 글 갯수
 	public static final String SELECT_ARTICLE_COUNT_TOTAL = "SELECT COUNT(*) FROM `article` where `artGroup`=? AND `artCate`=?";
-	
+	//제품 페이지 최대수
+	public static final String SELECT_MAX_NO = "select MAX(`no`) from `product`";
+	//제품 총 수
+	public static final String SELECT_COUNT_TOTALS="SELECT COUNT(*) FROM `product`";
+	//가지고 오는 제품의 수 10개 제한
+	public static final String SELECT_PRODUCTS_LIMIT = "SELECT * FROM product LIMIT ?, 10";
 	//COMMENT
 	public static final String INSERT_COMMENT 	= "INSERT INTO `COMMENT` set "
 													+ "`comParent`=?,"
