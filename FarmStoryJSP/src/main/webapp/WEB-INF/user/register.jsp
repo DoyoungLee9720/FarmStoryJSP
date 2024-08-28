@@ -80,10 +80,7 @@ window.onload = function(){
 	const resultEmail = document.getElementsByClassName('resultEmail')[0];
 	const auth = document.getElementsByClassName('auth')[0];
 	const resultHp = document.getElementsByClassName('resultHp')[0];
-	const zip = document.getElementById('zip').value;
-	const addr1 = document.getElementById('addr1').value;
 
-	const addr2 = document.getElementById('addr2').value;
 	
 	
 	
@@ -301,40 +298,43 @@ window.onload = function(){
 	
 	
 	//최종 폼 전송 유효성 검사
-	registerForm.onsubmit = function(){
+	registerForm.onsubmit = function() {
+          const zip = document.getElementById('zip').value.trim();
+          const addr1 = document.getElementById('addr1').value.trim();
+          const addr2 = document.getElementById('addr2').value.trim();
 		
-		// 아이디 유효성 검사 완료 여부
+		//아이디
 			if(!isUidOk){
 				alert('아이디가 유효하지 않습니다.');
-				return false; //폼 전송 취소
+				return false;
 			}
-		// 비밀번호 유효성 검사 완료 여부
+		//비번
 			if(!isPassOk){
 				alert('비밀번호가 유효하지 않습니다.');
-				return false; //폼 전송 취소
+				return false;
 			}
 		
-		// 이름 유효성 검사 완료 여부
+		// 이름
 			if(!isNameOk){
 				alert('이름이 유효하지 않습니다.');
-				return false; //폼 전송 취소
+				return false;
 			}
-		// 닉네임 유효성 검사 완료 여부
+		// 닉넴
 			if(!isNickOk){
 				alert('닉네임이 유효하지 않습니다.');
-				return false; //폼 전송 취소
+				return false;
 			}
-		// 이메일 검사 완료 여부
+		// 이메일
 			if(!isEmailOk){
 				alert('이메일이 유효하지 않습니다.');
-				return false; //폼 전송 취소
+				return false;
 			}
-		// 휴대폰 유효성 검사 완료 여부
+		// 휴대폰
 			if(!isHpOk){
 				alert('휴대폰번호가 유효하지 않습니다.');
-				return false; //폼 전송 취소
+				return false;
 			}
-			
+		// 주소	
 			if(!zip){
 				alert('우편번호를 검색하세요.');
 				return false;
@@ -347,7 +347,7 @@ window.onload = function(){
 				alert('상세주소를 입력하세요.');
 				return false;
 			}
-		return true; //폼 전송
+		return true; // 다 되면 폼전송
 	
 	}
 
@@ -365,7 +365,7 @@ window.onload = function(){
     main {
       height : 600px;
       width: auto;
-      background-color: #EEE;
+      background-color: #white;
       position: relative;
     }
     main > p{
@@ -455,7 +455,7 @@ window.onload = function(){
   <main>
     <p>
     <section class="register">
-      <form action="/FarmStoryJSP/user/login.do" method="post">
+      <form action="/FarmStoryJSP/user/register.do" method="post">
         <table border="1">
           <caption>사이트 이용정보 입력</caption>
           <tr>

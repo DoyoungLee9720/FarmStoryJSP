@@ -6,6 +6,7 @@
             <p>
               <a href="/FarmStoryJSP/index.do">HOME |</a>  
               <a href="/FarmStoryJSP/user/login.do">로그인 |</a>
+              <a href="/FarmStoryJSP/user/logout.do" class="logout">로그아웃 |</a>
               <a href="/FarmStoryJSP/user/register.do">회원가입 |</a>
               <a href="/FarmStoryJSP/admin/index.do">관리자 |</a>
               <a href="/FarmStoryJSP/community/chat.do">고객센터</a>

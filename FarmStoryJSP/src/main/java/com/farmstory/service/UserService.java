@@ -62,16 +62,11 @@ public enum UserService {
 		return dao.selectUserCount();
 	}
 	
-	public int selectCountCheckUser(String type, String value) {
-		return dao.selectCountCheckUser(type, value);
+	public int insertUser(UserDto user) {
+		return dao.insertUser(user);
 	}
-	
-	
-	public void insertUser(UserDto user) {
-		dao.insertUser(user);
-	}
-	public UserDto selectUser(String userId) {
-		return dao.selectUser(userId);
+	public UserDto selectUser(String userId, String pass) {
+		return dao.selectUser(userId,pass);
 	}
 	public List<UserDto> selectUsers() {
 		return dao.selectUsers();
@@ -82,7 +77,9 @@ public enum UserService {
 	public void deleteUser(String userId) {
 		dao.deleteUser(userId);
 	}
-
+	public int selectCountCheckUser(String type, String value) {
+		return dao.selectCountCheckUser(type, value);
+	}
 	public String sendEmailCode(String email) {
 		
 		

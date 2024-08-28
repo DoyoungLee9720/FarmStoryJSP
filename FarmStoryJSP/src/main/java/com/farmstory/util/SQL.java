@@ -77,7 +77,10 @@ public class SQL{
 													+ "`comRegip`=?,"
 													+ "`comRdate`=NOW()";
 	public static final String SELECT_COMMENT 	= "SELECT * FROM `COMMENT` where `ComNo`=?";
-	public static final String SELECT_COMMENTS 	= "SELECT * FROM `COMMENT`";
+	public static final String SELECT_COMMENTS = "SELECT a.*, b.usernick from `comment` AS a "
+													+ "JOIN `user` AS b ON a.comwriter = b.userid "
+													+ "where `comparent`=? "
+													+ "order by comno";
 	public static final String UPDATE_COMMENT 	= "UPDATE `COMMENT` set "
 													+ "`comParent`=?,"
 													+ "`comContent`=?,"
@@ -172,6 +175,17 @@ public class SQL{
 	public static final String WHERE_NICK = "WHERE `UserNick`=?";
 	public static final String WHERE_EMAIL = "WHERE `UserEmail`=?";
 	public static final String WHERE_HP = "WHERE `UserHp`=?";
+	
+	//TERMS
+	public static final String SELECT_TERMS = "SELECT * FROM `terms`";
+	
+	//CART
+	public static final String SELECT_CARTS = "SELECT * FROM `cart` where `cartUid`=?";
+	public static final String INSERT_CART  = "INSERT into `cart` set "
+												+ "`cartUid`=?,"
+												+ "`cartProNo`=?,"
+												+ "`cartstock`=?";
+	public static final String DELETE_CART  = "DELETE FROM `cart` where cartNo=? and cartUid=?";
 }
 
 /*package com.jboard.util;
