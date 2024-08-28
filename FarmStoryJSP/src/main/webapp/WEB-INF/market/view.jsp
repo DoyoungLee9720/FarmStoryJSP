@@ -182,12 +182,12 @@
             
         }
 
-        .cart-button {
+        #cart-button {
             background-color: #769B0A;
             color: white;
         }
 
-        .buy-button {
+        #buy-button {
             background-color: #960D1A;
             color: white;
         }
@@ -222,8 +222,30 @@
 
         // 페이지 로드 시 초기 합계 업데이트
         updateTotal();
+        
     };
+    //이벤트 구현 패치함수 포스트 전송 사용 해야좋음 그렇기에 이방식은 좋은 방식이 아니다
+    function addToCart(prodNo) {
+        var quantity = document.querySelector('input[name="countfruit"]').value;
+        
+        if (quantity && quantity > 0) {
+            location.href = `/FarmStoryJSP/market/cart.do?quantity=\${quantity}&proNo=\${prodNo}&ordercheck=1`;
+        } else {
+            alert("수량을 올바르게 입력하세요.");
+        }
+    }
 
+    function buyNow(prodNo) {
+        var quantity = document.querySelector('input[name="countfruit"]').value;
+
+        if (quantity && quantity > 0) {
+        	location.href = `/FarmStoryJSP/market/order.do?quantity=\${quantity}&proNo=\${prodNo}&ordercheck=1`;
+        } else {
+            alert("수량을 올바르게 입력하세요.");
+        }
+    }
+
+    
     function allowOnlyNumbers(event) {
         const input = event.target;
         input.value = input.value.replace(/[^0-9]/g, '');
@@ -243,15 +265,7 @@
             document.querySelector('.colorRed').textContent = '0원';
         }
     }
-    function addToCart() {
-        var quantity = document.getElementById('countfruit').value;
-        location.href = `FarmStoryJSP/market/cart.do?quantity=${quantity}&proNo=${ProductDto.proNo}`;
-    }
-
-    function buyNow() {
-        var quantity = document.getElementById('countfruit').value;
-        location.href = `FarmStoryJSP/market/order.do?quantity=${quantity}&proNo=${ProductDto.proNo}`;
-    }
+    
 </script>
 </head>
 
@@ -307,9 +321,9 @@
                                 </table>
                                 <div class="button-container">
 		                             <!-- 장바구니 버튼 -->
-								    <button type="submit" name="action" value="addToCart" class="cart-button">장바구니</button>
+								    <button type="submit" name="action" value="addToCart" id="cart-button" onclick="addToCart(${ProductDto.proNo})">장바구니</button>
 								    <!-- 바로구매 버튼 -->
-								    <button type="submit" name="action" value="buyNow" class="buy-button">바로구매</button>
+								    <button type="submit" name="action" value="buyNow" id="buy-button" onclick="buyNow(${ProductDto.proNo})">바로구매</button>
                                 </div>
                             </div>
                         </div>

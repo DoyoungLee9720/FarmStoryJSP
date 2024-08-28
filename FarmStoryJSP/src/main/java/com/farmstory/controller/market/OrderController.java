@@ -1,6 +1,8 @@
 package com.farmstory.controller.market;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.farmstory.dto.ProductDto;
 import com.farmstory.service.ProductService;
@@ -31,12 +33,20 @@ public class OrderController extends HttpServlet{
 			String proNo = req.getParameter("proNo");
 			ProductDto prodto = productservice.selectProduct(Integer.parseInt(proNo));
 			req.setAttribute("prodto", prodto);
+			req.setAttribute("quantity", quantity);
 		}
 		//장바구니에서 구매 버튼을 눌렀을때만 동작
 		else if(ordercheck==2) {
 			String[] selectedItems = req.getParameterValues("selectedItems");  // 선택된 상품의 ID 리스트
+			List<ProductDto> products = new ArrayList<ProductDto>();
+			for(int i =0; i<selectedItems.length;i++) {
+				ProductDto product = productservice.selectProduct(i);
+				products.add(product);
+			}
 	        req.setAttribute("selectedItems", selectedItems);
+	        req.setAttribute("products", products);
 		}
+		req.setAttribute("uid", uid);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/market/order.jsp");
         dispatcher.forward(req, resp);
 		
