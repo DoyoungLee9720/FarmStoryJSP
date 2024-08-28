@@ -15,6 +15,7 @@ public class UserDto {
 	private int UserPoint;
 	private String UserRegip;
 	private String UserRegdate;
+	
 	public String getUserId() {
 		return UserId;
 	}
