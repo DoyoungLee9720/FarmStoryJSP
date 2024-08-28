@@ -19,6 +19,7 @@ import com.farmstory.dao.UserDao;
 import com.farmstory.dto.PageGroupDto;
 import com.farmstory.dto.UserDto;
 
+
 public enum UserService {
 	INSTANCE;
 	private UserDao dao = UserDao.getInstance();
@@ -56,7 +57,8 @@ public enum UserService {
 		return dao.selectPagedUsers(page);
 	}
 	
-	public int selectUserCount() {
+
+	public int selectUserCount() { 
 		return dao.selectUserCount();
 	}
 	
@@ -80,15 +82,7 @@ public enum UserService {
 	public void deleteUser(String userId) {
 		dao.deleteUser(userId);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public String sendEmailCode(String email) {
 		
 		
@@ -134,7 +128,4 @@ public enum UserService {
 		return ""+code; //string으로 받기 위해서
 	
 	}
-	
-	
-	
 }

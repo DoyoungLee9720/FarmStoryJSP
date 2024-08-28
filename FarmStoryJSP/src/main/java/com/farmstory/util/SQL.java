@@ -45,6 +45,7 @@ public class SQL{
 													+ "`artRdate`=NOW()";
 	public static final String SELECT_ARTICLE 	= "SELECT * FROM `ARTICLE` where `artNo`=?";
 	public static final String SELECT_ARTICLES 	= "SELECT * FROM `ARTICLE`";
+	public static final String SELECT_ARTICLES_CATE		= "SELECT * FROM `ARTICLE` WHERE `artcate` = ? ORDER BY `ARTNO` DESC LIMIT ?, 10";
 	public static final String UPDATE_ARTICLE 	= "UPDATE `ARTICLE` set "
 													+ "`artGroup`=?,"
 													+ "`artCate`=?,"

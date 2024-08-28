@@ -49,8 +49,7 @@ public class UserDao extends DBHelper{
 		}
 		return count;
 	}
-	
-	
+
 	public int selectCountCheckUser(String type, String value) {
 		
 		StringBuilder sql = new StringBuilder(SQL.SELECT_USERS_COUNT);
@@ -123,8 +122,6 @@ public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		
 		return users;
 	}
-	
-	
 	public void insertUser(UserDto user) {
 		
 	}
@@ -202,19 +199,6 @@ public List<UserDto> selectPagedUsers(PageGroupDto page) {
 	public void deleteUser(String userId) {
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
 	
 	
 }
