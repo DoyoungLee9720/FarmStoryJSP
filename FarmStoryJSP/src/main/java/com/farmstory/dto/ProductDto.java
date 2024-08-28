@@ -14,10 +14,8 @@ public class ProductDto {
 	private String proImg3;
 	private String proETC;
 	private String proRdate;
-	
 	private int startNo;
 	private int salePrice;
-	
 	
 	
 	@Override
@@ -25,26 +23,24 @@ public class ProductDto {
 		return "ProductDto [proNo=" + proNo + ", proName=" + proName + ", proType=" + proType + ", proPrice=" + proPrice
 				+ ", proPoint=" + proPoint + ", proSale=" + proSale + ", proDeliveryfee=" + proDeliveryfee
 				+ ", proStock=" + proStock + ", proImg1=" + proImg1 + ", proImg2=" + proImg2 + ", proImg3=" + proImg3
-				+ ", proETC=" + proETC + ", proRdate=" + proRdate + ", startNo=" + startNo + ", salePrice=" + salePrice
-				+ "]";
+				+ ", proETC=" + proETC + ", proRdate=" + proRdate + "]";
 	}
+	  public int getsalePrice() {
+	        return salePrice;
+	    }
 
+	    public void setsalePrice(int salePrice) {
+	        this.salePrice = salePrice;
+	    }
 	public int getStartNo() {
 		return startNo;
 	}
-
 	public void setStartNo(int startNo) {
 		this.startNo = startNo;
 	}
-
-	public int getSalePrice() {
-		return salePrice;
+	public void setStartNo(String startNo) {
+		this.startNo = Integer.parseInt(startNo);
 	}
-
-	public void setSalePrice(int salePrice) {
-		this.salePrice = salePrice;
-	}
-
 	public int getProNo() {
 		return proNo;
 	}
@@ -69,19 +65,11 @@ public class ProductDto {
 	public void setProPrice(int proPrice) {
 		this.proPrice = proPrice;
 	}
-	public void setProPrice(String proPrice) {
-		if(proPrice!=null) this.proPrice = Integer.parseInt(proPrice);
-		else this.proPrice = 0;
-	}
 	public int getProPoint() {
 		return proPoint;
 	}
 	public void setProPoint(int proPoint) {
 		this.proPoint = proPoint;
-	}
-	public void setProPoint(String proPoint) {
-		if(proPoint!=null) this.proPoint = Integer.parseInt(proPoint);
-		else this.proPoint = 0;
 	}
 	public int getProSale() {
 		return proSale;
@@ -89,29 +77,17 @@ public class ProductDto {
 	public void setProSale(int proSale) {
 		this.proSale = proSale;
 	}
-	public void setProSale(String proSale) {
-		if(proSale!=null) this.proSale = Integer.parseInt(proSale);
-		else this.proSale = 0;
-	}
 	public int getProDeliveryfee() {
 		return proDeliveryfee;
 	}
 	public void setProDeliveryfee(int proDeliveryfee) {
 		this.proDeliveryfee = proDeliveryfee;
 	}
-	public void setProDeliveryfee(String proDeliveryfee) {
-		if(proDeliveryfee!=null) this.proDeliveryfee = Integer.parseInt(proDeliveryfee);
-		else this.proDeliveryfee = 0;
-	}
 	public int getProStock() {
 		return proStock;
 	}
 	public void setProStock(int proStock) {
 		this.proStock = proStock;
-	}
-	public void setProStock(String proStock) {
-		if(proStock!=null) this.proStock = Integer.parseInt(proStock);
-		else this.proStock = 0;
 	}
 	public String getProImg1() {
 		return proImg1;
