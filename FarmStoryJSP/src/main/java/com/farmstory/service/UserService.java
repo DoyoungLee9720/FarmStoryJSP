@@ -77,7 +77,9 @@ public enum UserService {
 	public void deleteUser(String userId) {
 		dao.deleteUser(userId);
 	}
-
+	public int selectCountCheckUser(String type, String value) {
+		return dao.selectCountCheckUser(type, value);
+	}
 	public String sendEmailCode(String email) {
 		
 		
