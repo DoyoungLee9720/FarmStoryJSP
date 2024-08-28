@@ -37,7 +37,7 @@ public enum ProductService {
 		return currentPage;
 	}
 
-	// 현재 페이지 구룹 구하기
+	// 현재 페이지 그룹 구하기
 	public PageGroupDto getCurrentPageGroup(int currentPage) {
 		int currentPageGroup = (int) Math.ceil(currentPage / 10.0);
 		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
@@ -51,9 +51,9 @@ public enum ProductService {
 		return new PageGroupDto(pageGroupStart, pageGroupEnd, pageGroupGroup);
 	}
 
-	public void insertProduct(ProductDto dto) {
+	public int insertProduct(ProductDto dto) {
 
-		dao.insertProduct(dto);
+		return dao.insertProduct(dto);
 	}
 
 	public ProductDto selectProduct(int proNo) {
