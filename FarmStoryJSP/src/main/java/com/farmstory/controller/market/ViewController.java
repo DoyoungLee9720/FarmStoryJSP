@@ -12,6 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/market/view.do")
 public class ViewController extends HttpServlet{
@@ -21,12 +22,17 @@ public class ViewController extends HttpServlet{
 	private OrderService orderservice = OrderService.INSTANCE;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//int no = Integer.parseInt(req.getParameter("no"));
-		int no = 1;
+		//제품 번호를 전달 받아 어떤 제품의 번호인지 확인
+		int no = Integer.parseInt(req.getParameter("no"));
+		
+		String uid = req.getParameter("uid");
+		HttpSession session = req.getSession();
+		session.setAttribute("sessUser",uid);
+		
 		ProductDto ProductDto = productservice.selectProduct(no);
 		
-		req.getSession().setAttribute("ProductDto", ProductDto);
-		
+		req.setAttribute("ProductDto", ProductDto);
+		req.setAttribute("uid", uid);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/market/view.jsp");
 		dispatcher.forward(req, resp);
 	}

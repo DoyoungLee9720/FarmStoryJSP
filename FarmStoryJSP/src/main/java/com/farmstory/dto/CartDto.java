@@ -1,21 +1,63 @@
 package com.farmstory.dto;
 
 public class CartDto {
-	private int cartNo;
-	private String cartUid;
+	//카트정보
+	private int cartno;
+	private String cartuid;
 	private int cartprono;
 	private int cartstock;
-	public int getCartNo() {
-		return cartNo;
+	
+	//상품 정보
+	private String protype;
+	private String proname;
+	private int prosale;
+	private int propoint;
+	private int proprice;
+	//상품 정보
+	public String getProtype() {
+		return protype;
 	}
-	public void setCartNo(int cartNo) {
-		this.cartNo = cartNo;
+	public void setProtype(String protype) {
+		this.protype = protype;
 	}
-	public String getCartUid() {
-		return cartUid;
+	public String getProname() {
+		return proname;
 	}
-	public void setCartUid(String cartUid) {
-		this.cartUid = cartUid;
+	public void setProname(String proname) {
+		this.proname = proname;
+	}
+	public int getProsale() {
+		return prosale;
+	}
+	public void setProsale(int prosale) {
+		this.prosale = prosale;
+	}
+	public int getPropoint() {
+		return propoint;
+	}
+	public void setPropoint(int propoint) {
+		this.propoint = propoint;
+	}
+	public int getProprice() {
+		return proprice;
+	}
+	public void setProprice(int proprice) {
+		this.proprice = proprice;
+	}
+	
+	
+	//카트정보
+	public int getCartno() {
+		return cartno;
+	}
+	public void setCartno(int cartno) {
+		this.cartno = cartno;
+	}
+	public String getCartuid() {
+		return cartuid;
+	}
+	public void setCartuid(String cartuid) {
+		this.cartuid = cartuid;
 	}
 	public int getCartprono() {
 		return cartprono;
@@ -29,9 +71,14 @@ public class CartDto {
 	public void setCartstock(int cartstock) {
 		this.cartstock = cartstock;
 	}
+	
 	@Override
 	public String toString() {
-		return "CartDto [cartNo=" + cartNo + ", cartUid=" + cartUid + ", cartprono=" + cartprono + ", cartstock="
+		return "CartDto [cartno=" + cartno + ", cartuid=" + cartuid + ", cartprono=" + cartprono + ", cartstock="
 				+ cartstock + "]";
 	}
+	
+	
+	
+	
 }

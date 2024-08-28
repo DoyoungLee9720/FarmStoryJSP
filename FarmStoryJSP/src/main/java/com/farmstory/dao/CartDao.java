@@ -22,7 +22,7 @@ public class CartDao extends DBHelper{
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.INSERT_CART);
-			psmt.setString(1, dto.getCartUid());
+			psmt.setString(1, dto.getCartuid());
 			psmt.setInt(1, dto.getCartprono());
 			psmt.setInt(1, dto.getCartstock());
 			psmt.executeUpdate();
@@ -36,15 +36,17 @@ public class CartDao extends DBHelper{
 		List<CartDto> carts = new ArrayList<CartDto>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_CARTS);
+			psmt = conn.prepareStatement(SQL.GET_CARTS_PRODUCT);
 			psmt.setString(1, cartuid);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CartDto dto = new CartDto();
-				dto.setCartNo(rs.getInt(1));
-				dto.setCartUid(rs.getString(2));
-				dto.setCartprono(rs.getInt(3));
-				dto.setCartstock(rs.getInt(4));
+				dto.setProtype(rs.getString(1));
+				dto.setProname(rs.getString(2));
+				dto.setCartstock(rs.getInt(3));
+				dto.setProsale(rs.getInt(4));
+				dto.setPropoint(rs.getInt(5));
+				dto.setProprice(rs.getInt(6));
 				carts.add(dto);
 			}
 		} catch (Exception e) {
