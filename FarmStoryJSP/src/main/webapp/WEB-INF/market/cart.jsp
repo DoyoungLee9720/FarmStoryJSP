@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -294,75 +295,80 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="9" style="color: #8d8d8d;">장바구니에 상품이 없습니다.</td>
-                        </tr>
-                        <tr>
-                            <td id="dd"><input type="checkbox" name="selectedItems"></td>
-                            <td><a href="#"><img src="../images/market_item1.jpg" alt="사과"></a></td>
-                            <td id="dd">과일</td>
-                            <td><a href="#" style="font-weight: bold;">사과 500g</a></td>
-                            <td id="dd">1</td>
-                            <td id="dd">10%</td>
-                            <td id="dd">40p</td>
-                            <td id="dd">4,000원</td>
-                            <td id="dd"><span style="font-weight: bold;">3,600</span>원</td>
-                        </tr>
-                        <tr>
-                            <td id="dd"><input type="checkbox"></td>
-                            <td><a href="#"><img src="../images/market_item1.jpg" alt="사과2"></a></td>
-                            <td id="dd">과일</td>
-                            <td><a href="#" style="font-weight: bold;">사과 500g</a></td>
-                            <td id="dd">1</td>
-                            <td id="dd">10%</td>
-                            <td id="dd">40p</td>
-                            <td id="dd">4,000원</td>
-                            <td id="dd"><span style="font-weight: bold;">3,600</span>원</td>
-                        </tr>
-                        <tr>
-                            <td id="dd"><input type="checkbox"></td>
-                            <td><a href="#"><img src="../images/market_item1.jpg" alt="사과3"></a></td>
-                            <td id="dd">과일</td>
-                            <td><a href="#" style="font-weight: bold;">사과 500g</a></td>
-                            <td id="dd">1</td>
-                            <td id="dd">10%</td>
-                            <td id="dd">40p</td>
-                            <td id="dd">4,000원</td>
-                            <td id="dd"><span style="font-weight: bold;">3,600</span>원</td>
-                        </tr>
+                    	<!-- 장바구니가 비어있을 때 -->
+                        <c:if test="${empty cartDto}">
+				            <tr>
+				                <td colspan="9" style="color: #8d8d8d;">장바구니에 상품이 없습니다.</td>
+				            </tr>
+				        </c:if>
+                        <c:if test="${not empty cartDto}">
+				            <c:forEach var="cart" items="${cartDto}">
+				                <tr>
+				                    <!-- 체크박스 -->
+				                    <td id="dd">
+				                        <input type="checkbox" name="selectedItems" value="${cart.cartProNo}">
+				                    </td>
+				                    <!-- 상품 이미지 -->
+				                    <td>
+				                        <a href="#"><img src="../images/market_item1.jpg" alt="${cart.proName}"></a>
+				                    </td>
+				                    <!-- 상품 유형 -->
+				                    <td id="dd">${cart.proType}</td>
+				                    <!-- 상품 이름 -->
+				                    <td>
+				                        <a href="#" style="font-weight: bold;">${cart.proName}</a>
+				                    </td>
+				                    <!-- 수량 -->
+				                    <td id="dd">${cart.cartStock}</td>
+				                    <!-- 할인율 -->
+				                    <td id="dd">${cart.proSale}</td>
+				                    <!-- 포인트 -->
+				                    <td id="dd">${cart.proPoint}p</td>
+				                    <!-- 가격 -->
+				                    <td id="dd">${cart.proPrice}원</td>
+				                    <!-- 합계 -->
+				                    <td id="dd">
+				                        <span style="font-weight: bold;">
+				                            ${cart.cartStock * cart.proPrice - (cart.cartStock * cart.proPrice * cart.proSale / 100)}
+				                        </span>원
+				                    </td>
+				                </tr>
+				            </c:forEach>
+				        </c:if>
+                        
                     </tbody>
                 </table>
                 <a href=""><input type="button" value="선택삭제"></a>
                 <div class="total">
                     <table class="downtable">
-                        <caption>전체합계</caption>
-                        <tbody>
-                            <tr>
-                                <td>상품수</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>상품금액</td>
-                                <td>27,000원</td>
-                            </tr>
-                            <tr>
-                                <td>할인금액</td>
-                                <td>5,000원</td>
-                            </tr>
-                            <tr>
-                                <td>배송비</td>
-                                <td>5,000원</td>
-                            </tr>
-                            <tr>
-                                <td>포인트</td>
-                                <td>4,000원</td>
-                            </tr>
-                            <tr>
-                                <td>전체주문금액</td>
-                                <td>22,000</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        				<caption>전체합계</caption>
+				        <tbody>
+				            <tr>
+				                <td>상품수</td>
+				                <td id="total-item-count">0</td>
+				            </tr>
+				            <tr>
+				                <td>상품금액</td>
+				                <td id="total-product-price">0원</td>
+				            </tr>
+				            <tr>
+				                <td>할인금액</td>
+				                <td id="total-discount">0원</td>
+				            </tr>
+				            <tr>
+				                <td>배송비</td>
+				                <td id="total-delivery-fee">0원</td>
+				            </tr>
+				            <tr>
+				                <td>포인트</td>
+				                <td id="total-points">0원</td>
+				            </tr>
+				            <tr>
+				                <td>전체주문금액</td>
+				                <td id="total-order-amount">0원</td>
+				            </tr>
+				        </tbody>
+				    </table>
                     <a href=""><input type="button" value="주문하기"></a>
                 </div>
             </article>

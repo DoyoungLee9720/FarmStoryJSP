@@ -56,7 +56,6 @@ public enum UserService {
 	public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		return dao.selectPagedUsers(page);
 	}
-	
 
 	public int selectUserCount() { 
 		return dao.selectUserCount();
@@ -67,6 +66,9 @@ public enum UserService {
 	}
 	public UserDto selectUser(String userId, String pass) {
 		return dao.selectUser(userId,pass);
+	}
+	public UserDto selectUser(String userId) {
+		return dao.selectUser(userId);
 	}
 	public List<UserDto> selectUsers() {
 		return dao.selectUsers();

@@ -25,14 +25,16 @@ public class CartController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String uid = "p101";
+		String uid = req.getParameter("uid");
+		HttpSession session = req.getSession();
+		session.setAttribute("sessUser",uid);
 		int ordercheck = Integer.parseInt(req.getParameter("ordercheck"));
 		//view 에서 장바구니 버튼을 눌렀을때만 동작
 		if(ordercheck == 1) {
 			String quantity = req.getParameter("quantity");
 			String proNo = req.getParameter("proNo");
 			CartDto dto = new CartDto();
-			dto.setCartUid(uid);
+			dto.setCartuid(uid);
 			dto.setCartprono(Integer.parseInt(proNo));
 			dto.setCartstock(Integer.parseInt(quantity));
 			cartservice.intsertCart(dto);
@@ -44,7 +46,8 @@ public class CartController extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String uid = "p101";
+		String uid = req.getParameter("uid");
+
 		int ordercheck = 2;
 	    String[] selectedItems = req.getParameterValues("selectedItems");
 
@@ -52,13 +55,14 @@ public class CartController extends HttpServlet{
 	        // 세션에 데이터 저장
 	        HttpSession session = req.getSession();
 	        session.setAttribute("uid", uid);
-	        
+	        session.setAttribute("ordercheck", ordercheck);
 	        session.setAttribute("selectedItems", selectedItems);
 
 	        // 리다이렉트
-	        resp.sendRedirect("/WEB-INF/market/order.do?ordercheck=2");
+	        resp.sendRedirect("/WEB-INF/market/order.do");
 	    } else {
-	        resp.sendRedirect("/WEB-INF/market/cart.do");  // 선택된 항목이 없을 경우
+	    	// 선택된 항목이 없을 경우
+	        resp.sendRedirect("/WEB-INF/market/cart.do");  
 	    }
 	}
 }

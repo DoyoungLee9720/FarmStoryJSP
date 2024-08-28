@@ -107,6 +107,7 @@ public class SQL{
 												+ "UserRegip=?,"
 												+ "userRegdate=?";
 	public static final String SELECT_USER 	= "SELECT * FROM `User` where `UserId`=? and `userPass`=SHA2(?,256)";
+	public static final String SELECT_USER_WITHOUTPASS = "SELECT * FROM `User` where `UserId`=?";
 	public static final String SELECT_USERS = "SELECT * FROM `User`";
 	public static final String UPDATE_USERS = "UPDATE `User` set "
 												+ "userPass=SHA2(?, 256),"
@@ -188,6 +189,19 @@ public class SQL{
 												+ "`cartProNo`=?,"
 												+ "`cartstock`=?";
 	public static final String DELETE_CART  = "DELETE FROM `cart` where cartNo=? and cartUid=?";
+	//사용자 번호와 같을경우 
+	public static final String GET_CARTS_PRODUCT = "SELECT "
+													+ "p.protype,"
+													+ "p.proname,"
+													+ "c.cartstock,"
+													+ "p.prosale,"
+													+ "p.propoint,"
+													+ "p.proprice"
+													+ "FROM Cart c"
+													+ "JOIN Product p ON c.cartProNo = p.prono "
+													+ "WHERE c.cartUid = ?";
+													
+	
 	
 	// 총 주문 수 
 	public static final String SELECT_ORDERS_COUNT = "SELECT COUNT(*) FROM `order`";

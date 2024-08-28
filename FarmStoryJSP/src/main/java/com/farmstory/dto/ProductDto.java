@@ -17,7 +17,15 @@ public class ProductDto {
 	private int startNo;
 	private int salePrice;
 	
+	private int cartstock;
 	
+	
+	public int getCartstock() {
+		return cartstock;
+	}
+	public void setCartstock(int cartstock) {
+		this.cartstock = cartstock;
+	}
 	@Override
 	public String toString() {
 		return "ProductDto [proNo=" + proNo + ", proName=" + proName + ", proType=" + proType + ", proPrice=" + proPrice
