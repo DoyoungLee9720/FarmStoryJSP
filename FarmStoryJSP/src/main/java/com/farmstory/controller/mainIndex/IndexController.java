@@ -63,6 +63,7 @@ public class IndexController extends HttpServlet{
 		int articleLimit = 5;
 		if(articles.size() > articleLimit) {
 			articles = articles.subList(0, articleLimit);
+			
 		}
 		
 		
@@ -77,9 +78,6 @@ public class IndexController extends HttpServlet{
 	        product.setsalePrice(discountPrice);
 		}
 		int arPageStartNo = arTotal - (currentPage - 1) * 10;
-		for(ArticleDto article : articles) {
-			
-		}
 		
 		
 		
