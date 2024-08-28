@@ -43,12 +43,12 @@ public enum ProductService {
 		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
 		int pageGroupEnd = currentPageGroup * 10;
 		int total = selectCountTotal();
-		int pageGroupTotal = (int) Math.ceil(total / 10.0);
+		int pageGroupGroup = (int) Math.ceil(total / 10.0);
 
-		if (pageGroupEnd > pageGroupTotal) {
-			pageGroupEnd = pageGroupTotal;
+		if (pageGroupEnd > pageGroupGroup) {
+			pageGroupEnd = pageGroupGroup;
 		}
-		return new PageGroupDto(pageGroupStart, pageGroupEnd, pageGroupTotal);
+		return new PageGroupDto(pageGroupStart, pageGroupEnd, pageGroupGroup);
 	}
 
 	public void insertProduct(ProductDto dto) {
