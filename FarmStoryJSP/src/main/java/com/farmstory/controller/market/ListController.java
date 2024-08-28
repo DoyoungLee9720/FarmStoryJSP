@@ -54,7 +54,7 @@ public class ListController extends HttpServlet{
 
 			// 할인된 가격 계산
 			int discountPrice = (int) (originalPrice * (1 - discountPercent / 100.0));
-	        product.setSalePrice(discountPrice);
+	        product.setsalePrice(discountPrice);
 		}
 		
 		

@@ -188,6 +188,26 @@ public class SQL{
 												+ "`cartProNo`=?,"
 												+ "`cartstock`=?";
 	public static final String DELETE_CART  = "DELETE FROM `cart` where cartNo=? and cartUid=?";
+	
+	// 총 주문 수 
+	public static final String SELECT_ORDERS_COUNT = "SELECT COUNT(*) FROM `order`";
+	// 관리자 주문 페이지 불러오기
+	public static final String SELECT_ORDERS_PAGED = "SELECT "
+													+ "	o.`orderNo`, "
+													+ "	p.`proName`, "
+													+ "	p.`proprice`, "
+													+ "	o.`orderstock`, "
+													+ "	p.`prodeliveryfee`, "
+													+ "	p.`proprice`*o.`orderstock`+p.`prodeliveryfee`, "
+													+ "	u.`userName`, "
+													+ "	o.`orderRdate` "
+													+ "FROM `order` o "
+													+ "LEFT JOIN `product` p ON o.orderProNo=p.proNo "
+													+ "LEFT JOIN `user` u ON o.orderUid=u.UserId "
+													+ "LIMIT ?, 10 ";
+
+	// 유저 등급 변경
+	public static final String UPDATE_USER_GRADE = "UPDATE `User` SET `userGrade` = ? WHERE `userId` = ?";
 }
 
 /*package com.jboard.util;

@@ -71,8 +71,8 @@ public enum UserService {
 	public List<UserDto> selectUsers() {
 		return dao.selectUsers();
 	}
-	public void updateUser(UserDto user) {
-		dao.updateUser(user);
+	public int updateUser(UserDto user) {
+		return dao.updateUser(user);
 	}
 	public void deleteUser(String userId) {
 		dao.deleteUser(userId);
@@ -80,6 +80,7 @@ public enum UserService {
 	public int selectCountCheckUser(String type, String value) {
 		return dao.selectCountCheckUser(type, value);
 	}
+
 	public String sendEmailCode(String email) {
 		
 		
