@@ -37,7 +37,17 @@ public enum ProductService {
 		return currentPage;
 	}
 
+	public int getProuctNO(String proNo) {
+		int getProuctNO = 1;
+		
+		if (proNo != null) {
+			getProuctNO = Integer.parseInt(proNo);
+		}
+		return getProuctNO;
+	}
+
 	// 현재 페이지 그룹 구하기
+
 	public PageGroupDto getCurrentPageGroup(int currentPage) {
 		int currentPageGroup = (int) Math.ceil(currentPage / 10.0);
 		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;

@@ -97,6 +97,7 @@ public class ProductDao extends DBHelper {
 		}
 		return dto;
 	}
+	
 
 	public List<ProductDto> selectProducts(int start) {
 		List<ProductDto> products = new ArrayList<>();
