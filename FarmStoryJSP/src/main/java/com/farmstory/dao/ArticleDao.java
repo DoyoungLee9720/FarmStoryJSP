@@ -25,7 +25,34 @@ public class ArticleDao extends DBHelper{
 	}
 	
 	public ArticleDto selectArticle(String artNo) {
-		return null;
+		
+		ArticleDto dto = null;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_ARTICLE);
+			psmt.setString(1, artNo);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new ArticleDto();
+				dto.setArtNo(rs.getInt(1));
+				dto.setArtGroup(rs.getString(2));
+				dto.setArtCate(rs.getString(3));
+				dto.setArtTitle(rs.getString(4));
+				dto.setArtContent(rs.getString(5));
+				dto.setArtFile(rs.getInt(6));
+				dto.setArtHit(rs.getInt(7));
+				dto.setArtComment(rs.getInt(8));
+				dto.setArtWriter(rs.getString(9));
+				dto.setArtRegip(rs.getString(10));
+				dto.setRdateSubString(rs.getString(11));
+			}
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return dto;
 	}
 	public List<ArticleDto> selectArticles(int start, String cate){
 		

@@ -1,5 +1,7 @@
 package com.farmstory.dto;
 
+import java.util.List;
+
 public class ArticleDto {
 	private int artNo;
 	private String artGroup;
@@ -12,6 +14,12 @@ public class ArticleDto {
 	private String artWriter;
 	private String artRegip;
 	private String artRdate;
+	
+	//외부 필드
+	private String nick;
+	private List<FileDto> artFiles;
+	
+	
 	public int getArtNo() {
 		return artNo;
 	}
