@@ -86,7 +86,7 @@
 	                            </tbody>
 	                        </table>
 	                        <h3>
-	                            <a href="./list.do">취소</a> &nbsp;
+	                            <a href="./list.do" class="btn">취소</a> &nbsp;
 	                            <input type="submit" value="상품등록"></input>
 	                        </h3>
 	                    </form>
