@@ -21,7 +21,17 @@ public class WriteController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/article/write.jsp");
+		
+		String type = "write";
+		String group = req.getParameter("group");
+		String cate = req.getParameter("cate");
+		
+		req.setAttribute("type", type);
+		req.setAttribute("group", group);
+		req.setAttribute("cate", cate);
+		
+		
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/" + group + "/" + cate + ".jsp");
 		dispatcher.forward(req, resp);
 	}
 	
@@ -62,6 +72,6 @@ public class WriteController extends HttpServlet {
 		}
 		*/
 		
-		resp.sendRedirect("/Farmstory/article/list.do");
+		resp.sendRedirect("/FarmStoryJSP/article/list.do?group=" + artGroup + "&cate=" + artCate);
 	}
 }

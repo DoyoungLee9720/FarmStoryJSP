@@ -39,5 +39,5 @@
                 </div>
 
                 <!-- 글쓰기 버튼 -->
-                <a href="/FarmStory/article/write.do" class="btnWrite">글쓰기</a>
+                <a href="/FarmStoryJSP/article/write.do?group=${group}&cate=${cate}" class="btnWrite">글쓰기</a>
             </section>
