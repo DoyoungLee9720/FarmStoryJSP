@@ -63,7 +63,12 @@ public class SQL{
 	public static final String UPDATE_HIT_COUNT = "update `ARTICLE` set `arthit` = `arthit` + 1 where `artNo`=?";
 	//그룹별 + 카테고리별 총 글 갯수
 	public static final String SELECT_ARTICLE_COUNT_TOTAL = "SELECT COUNT(*) FROM `article` where `artGroup`=? AND `artCate`=?";
-	
+	//제품 페이지 최대수
+	public static final String SELECT_MAX_NO = "select MAX(`no`) from `product`";
+	//제품 총 수
+	public static final String SELECT_COUNT_TOTALS="SELECT COUNT(*) FROM `product`";
+	//가지고 오는 제품의 수 10개 제한
+	public static final String SELECT_PRODUCTS_LIMIT = "SELECT * FROM product LIMIT ?, 10";
 	//COMMENT
 	public static final String INSERT_COMMENT 	= "INSERT INTO `COMMENT` set "
 													+ "`comParent`=?,"
@@ -72,7 +77,10 @@ public class SQL{
 													+ "`comRegip`=?,"
 													+ "`comRdate`=NOW()";
 	public static final String SELECT_COMMENT 	= "SELECT * FROM `COMMENT` where `ComNo`=?";
-	public static final String SELECT_COMMENTS 	= "SELECT * FROM `COMMENT`";
+	public static final String SELECT_COMMENTS = "SELECT a.*, b.usernick from `comment` AS a "
+													+ "JOIN `user` AS b ON a.comwriter = b.userid "
+													+ "where `comparent`=? "
+													+ "order by comno";
 	public static final String UPDATE_COMMENT 	= "UPDATE `COMMENT` set "
 													+ "`comParent`=?,"
 													+ "`comContent`=?,"
@@ -167,6 +175,17 @@ public class SQL{
 	public static final String WHERE_NICK = "WHERE `UserNick`=?";
 	public static final String WHERE_EMAIL = "WHERE `UserEmail`=?";
 	public static final String WHERE_HP = "WHERE `UserHp`=?";
+	
+	//TERMS
+	public static final String SELECT_TERMS = "SELECT * FROM `terms`";
+	
+	//CART
+	public static final String SELECT_CARTS = "SELECT * FROM `cart` where `cartUid`=?";
+	public static final String INSERT_CART  = "INSERT into `cart` set "
+												+ "`cartUid`=?,"
+												+ "`cartProNo`=?,"
+												+ "`cartstock`=?";
+	public static final String DELETE_CART  = "DELETE FROM `cart` where cartNo=? and cartUid=?";
 }
 
 /*package com.jboard.util;

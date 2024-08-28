@@ -328,9 +328,9 @@ input, textarea {
 				<img src="/FarmStoryJSP/images/main_market_tit.png" alt="베스트 상품">
 			</div>
 			<div>
-				<a href="#">
+				<a href="/FarmStoryJSP/market/view.do?no${product.proNo}">
 					<article>
-						<c:forEach var="product" items="${products}">
+						 <c:forEach var="product" items="${products}">
 							<img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과">
 							<h1>${product.proType}</h1>
 							<p>${product.proName}</p>

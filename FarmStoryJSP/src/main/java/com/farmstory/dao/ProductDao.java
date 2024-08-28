@@ -102,7 +102,7 @@ public class ProductDao extends DBHelper {
 		List<ProductDto> products = new ArrayList<>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_PRODUCT);
+			psmt = conn.prepareStatement(SQL.SELECT_PRODUCTS_LIMIT);
 			psmt.setInt(1, start);
 			rs = psmt.executeQuery();
 			while (rs.next()) {

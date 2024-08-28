@@ -2,6 +2,9 @@ package com.farmstory.controller.user;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.farmstory.dto.UserDto;
 import com.farmstory.service.UserService;
 
@@ -14,7 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/user/register.do")
 public class RegisterController extends HttpServlet{
-
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	private UserService service = UserService.INSTANCE;
 	private static final long serialVersionUID = 1L;
 	
@@ -50,9 +54,10 @@ public class RegisterController extends HttpServlet{
 		dto.setUserAddr2(addr2);
 		dto.setUserRegip(regip);
 		
-		service.insertUser(dto);
+		int result = service.insertUser(dto);
+		logger.debug("result : " +result);
 		
-		resp.sendRedirect("/jboards/user/login.do");
+		resp.sendRedirect("/FarmStoryJSP/user/login.do?success=300");
 	}
 
 }

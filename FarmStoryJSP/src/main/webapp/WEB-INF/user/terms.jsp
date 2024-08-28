@@ -1,4 +1,24 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script>
+
+window.onload = function(){
+	const btnNext = document.getElementsByClassName('btnNext')[0];
+
+	
+		btnNext.addEventListener('click', function(e){
+			
+			const chk1 = document.getElementById('chk1').checked;
+			const chk2 = document.getElementById('chk2').checked;
+			
+			if(!(chk1 && chk2)){
+				alert('모두 동의하셔야 합니다.');
+				e.preventDefault();
+			};	
+		
+	});
+}
+
+</script>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,7 +31,7 @@
 			height: 600px;
 			width: auto;
 			
-			background-color: #EEEE;
+			background-color: #white;
 			position: relative;
 		}
 		
@@ -86,9 +106,9 @@
         <caption>사이트 이용약관</caption>
         <tr>
           <td>
-            <textarea readonly></textarea>
+            <textarea readonly>${TermsDto.terms}</textarea>
             <p>
-              <label><input type="checkbox" name="chk1" />동의합니다.</label>
+              <label><input type="checkbox" id="chk1" name="chk1" />동의합니다.</label>
             </p>
           </td>
         </tr>
@@ -97,9 +117,9 @@
         <caption>개인정보 취급방침</caption>
         <tr>
           <td>
-            <textarea readonly></textarea>
+            <textarea readonly>${TermsDto.privacy}</textarea>
             <p>
-              <label><input type="checkbox" name="chk2" />동의합니다.</label>
+              <label><input type="checkbox" id="chk2" name="chk2" />동의합니다.</label>
             </p>
           </td>
         </tr>
