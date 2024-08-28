@@ -75,7 +75,7 @@
     .mainArticle {
       margin: 0 0;
       width: 802px;
-      height : 650px;
+      height : auto;
       box-sizing: border-box;
       
     }

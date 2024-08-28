@@ -2,6 +2,9 @@ package com.farmstory.controller.article;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.farmstory.dto.ArticleDto;
 import com.farmstory.service.ArticleService;
 
@@ -17,14 +20,16 @@ public class ViewController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ArticleService service = ArticleService.INSTANCE;
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	//private CommentService commentService = CommentService.INSTANCE;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String type = "view";
-		String group = (String) req.getAttribute("group");
-		String cate = (String) req.getAttribute("cate");
+		String group = req.getParameter("group");
+		String cate = req.getParameter("cate");
+		//logger.debug(group+":"+cate);
 		
 		// 데이터 조회
 		//ArticleDto articleDto = service.selectArticle(no);
