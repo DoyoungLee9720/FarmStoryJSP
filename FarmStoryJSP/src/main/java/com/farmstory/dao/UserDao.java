@@ -83,15 +83,41 @@ public class UserDao extends DBHelper{
 	}
 	
 	
-	public void insertUser(UserDto user) {
+	public int insertUser(UserDto user) {
+		int result = 0;
+		
+		try {	
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.INSERT_USERS);
+			psmt.setString(1, user.getUserId());
+			psmt.setString(2, user.getUserPass());
+			psmt.setString(3, user.getUserName());
+			psmt.setString(4, user.getUserNick());
+			psmt.setString(5, user.getUserEmail());
+			psmt.setString(6, user.getUserHp());
+			psmt.setString(7, user.getUserZip());
+			psmt.setString(8, user.getUserAddr1());
+			psmt.setString(9, user.getUserAddr2());
+			psmt.setString(10, user.getUserRegip());
+			result = psmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return result;
 		
 	}
-	public UserDto selectUser(String userId) {
+	public UserDto selectUser(String userId, String pass) {
 		UserDto user = null;
 		try {
 			conn = getConnection();
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery(SQL.SELECT_USERS);
+			psmt = conn.prepareStatement(SQL.SELECT_USER);
+			psmt.setString(1, userId);
+			psmt.setString(2, pass);
+			rs = psmt.executeQuery();
 			if(rs.next()) {
 				user = new UserDto();
 				user.setUserId(rs.getString(1));

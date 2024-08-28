@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,7 +12,7 @@ main {
 	height: 400px;
 	width: 980px;
 	margin: 0 auto;
-	background-color: #EEE;
+	background-color: #white;
 	position: relative;
 }
 
