@@ -21,7 +21,39 @@ public class ArticleDao extends DBHelper{
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	public int insertArticle(ArticleDto dto) {
-		return 0;
+		int no = 0;
+		try {
+			conn = getConnection();
+			conn.setAutoCommit(false);
+			
+			stmt = conn.createStatement();
+			psmt = conn.prepareStatement(SQL.INSERT_ARTICLE);
+			psmt.setString(1, dto.getArtGroup());
+			psmt.setString(2, dto.getArtCate());
+			psmt.setString(3, dto.getArtTitle());
+			psmt.setString(4, dto.getArtContent());
+			psmt.setInt(5, dto.getArtFile());
+			psmt.setInt(6, dto.getArtHit());
+			psmt.setInt(7, dto.getArtComment());
+			psmt.setString(8, dto.getArtWriter());
+			psmt.setString(9, dto.getArtRegip());
+			psmt.executeUpdate();
+			
+			/*
+			rs = stmt.executeQuery(SQL.SELECT_MAX_NO_ARTICLE);
+			if(rs.next()) {
+				no = rs.getInt(1);
+			}
+			*/
+			conn.commit();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		
+		return no;
 	}
 	
 	public ArticleDto selectArticle(String artNo) {
@@ -88,7 +120,25 @@ public class ArticleDao extends DBHelper{
 		return articles;
 	}
 	public void updateArticle(ArticleDto dto) {
-		
+		try {
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+	}
+	public void updateArticleHit(String artNo) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_HIT_COUNT);
+			psmt.setString(1, artNo);
+			psmt.executeUpdate();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
 	}
 	public int deleteArticle(String artNo) {
 		return 0;

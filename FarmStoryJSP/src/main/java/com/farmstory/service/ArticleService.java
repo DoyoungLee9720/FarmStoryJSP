@@ -70,6 +70,10 @@ public enum ArticleService {
 		dao.updateArticle(dto);
 	}	
 	
+	public void updateArticleHit(String artNo) {
+		dao.updateArticleHit(artNo);
+	}	
+	
 	public int deleteArticle(String no) {
 		return dao.deleteArticle(no);
 	}
