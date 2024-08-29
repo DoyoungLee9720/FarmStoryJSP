@@ -56,7 +56,9 @@ public enum UserService {
 	public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		return dao.selectPagedUsers(page);
 	}
-
+	public int updateUserGrade(String id, String grade) {
+		return dao.updateUserGrade(id, grade);
+	}
 	public int selectUserCount() { 
 		return dao.selectUserCount();
 	}
