@@ -353,7 +353,6 @@ input, textarea {
 	width: 100%;
 }
 
-/* 각 열 스타일 */
 .table-cell {
 	width: 140px;
 	white-space: nowrap;

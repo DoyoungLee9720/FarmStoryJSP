@@ -164,7 +164,6 @@ td del:nth-child(3) {
 	color: #000; /* 현재 페이지 텍스트 색상 */
 }
 
-/* 비활성화된 링크 스타일 */
 .pagination a.num.off {
 	color: #aaa; /* 비활성 링크 색상 */
 }
