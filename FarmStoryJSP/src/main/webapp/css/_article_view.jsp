@@ -28,8 +28,11 @@
                     </tr>
                 </table>
                 <div>
-                    <a href="#" class="btnDelete">삭제</a>
-                    <a href="#" class="btnModify">수정</a>
+                	<c:if test="${(sessUser.userId eq articleDto.artWriter) || (sessUser.userRole eq 'admin')}">
+	                	<a href="/FarmStoryJSP/article/delete.do?group=${group}&cate=${cate}&artNo=${articleDto.artNo}" class="btnDelete">삭제</a>
+	                    <a href="#" class="btnModify">수정</a>
+                	</c:if>
+                    
                     <a href="/FarmStoryJSP/article/list.do?group=${group}&cate=${cate}" class="btnList">목록</a>
                 </div>  
                 
@@ -64,7 +67,7 @@
                     <h3>댓글쓰기</h3>
                     <form action="/FarmStoryJSP/comment/write.do" method="post" name="commentForm">
                     	<input type="hidden" name="parent" value="${articleDto.artNo}"/>
-                    	<input type="hidden" name="writer" value="${sessUser.uid}"/>
+                    	<input type="hidden" name="writer" value="${sessUser.userId}"/>
                         <textarea name="comment"></textarea>
                         <div>
                             <a href="#" class="btnCancel">취소</a>

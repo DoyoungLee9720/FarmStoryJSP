@@ -106,7 +106,7 @@
           <img src="../images/sub_nav_tit_cate5_tit3.png" alt="event">
           <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 커뮤니티 > <strong>나도요리사</strong></p>
         </nav>
-        
+        <c:set var="adminonly" value="false"/>
         <c:choose>
         	<c:when test="${type eq 'list'}">
         		<%@ include file="/css/_article.jsp"%>
