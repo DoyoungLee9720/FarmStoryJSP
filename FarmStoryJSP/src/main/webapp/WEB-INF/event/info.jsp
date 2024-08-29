@@ -103,7 +103,7 @@
           <img src="../images/sub_nav_tit_cate4_tit1.png" alt="event">
           <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 이벤트 > <strong>이벤트</strong></p>
         </nav>
-        
+        <c:set var="adminonly" value="true"/>
         <c:choose>
         	<c:when test="${type eq 'list'}">
         		<%@ include file="/css/_article.jsp"%>

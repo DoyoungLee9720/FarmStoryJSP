@@ -9,8 +9,8 @@
                 		 - 톰캣 context.xml > Context 태그에 allowCasualMultipartParsing="true" 설정
 						 - 톰캣 server.xml > Connector 태그에 maxPostSize="10485760" (1024 x 1024 x 10 = 10MB) 설정                		
                 	-->
-                    <form action="/FarmStoryJSP/article/write.do?group=${group}&cate=${cate}" method="post"><!--  enctype="multipart/form-data" -->
-                    	<input type="hidden" name="writer" value="${sessUser.uid}">
+                    <form action="/FarmStoryJSP/article/write.do?group=${group}&cate=${cate}" method="post" enctype="multipart/form-data"><!--   -->
+                    	<input type="hidden" name="artWriter" value="${sessUser.userId}">
                     	<input type="hidden" name="artGroup" value="${group}">
                     	<input type="hidden" name="artCate" value="${cate}">
                         <table>

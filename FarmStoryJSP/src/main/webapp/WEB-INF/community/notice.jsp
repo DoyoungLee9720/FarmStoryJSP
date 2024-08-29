@@ -109,6 +109,7 @@
           <img src="../images/sub_nav_tit_cate5_tit1.png" alt="event">
           <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 커뮤니티 > <strong>공지사항</strong></p>
         </nav>
+        <c:set var="adminonly" value="true"/>
         <c:choose>
         	<c:when test="${type eq 'list'}">
         		<%@ include file="/css/_article.jsp"%>

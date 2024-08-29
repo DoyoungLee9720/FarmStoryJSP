@@ -105,7 +105,7 @@
           <img src="../images/sub_nav_tit_cate3_tit3.png" alt="event">
           <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 농작물이야기 > <strong>귀농학교</strong></p>
         </nav>
-        
+        <c:set var="adminonly" value="false"/>
         <c:choose>
         	<c:when test="${type eq 'list'}">
         		<%@ include file="/css/_article.jsp"%>

@@ -1,9 +1,12 @@
 package com.farmstory.controller.article;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.farmstory.dto.ArticleDto;
+import com.farmstory.dto.FileDto;
 import com.farmstory.service.ArticleService;
+import com.farmstory.service.FileService;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -17,7 +20,7 @@ public class WriteController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ArticleService articleService = ArticleService.INSTANCE;
-	//private FileService fileService = FileService.INSTANCE;
+	private FileService fileService = FileService.INSTANCE;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -47,7 +50,7 @@ public class WriteController extends HttpServlet {
 		String artRegip = req.getRemoteAddr();
 		
 		// 파일 업로드
-		//List<FileDto> files = fileService.fileUpload(req);
+		List<FileDto> files = fileService.fileUpload(req);
 		
 		// 글 등록을 위한 DTO 생성
 		ArticleDto dto = new ArticleDto();
@@ -55,22 +58,22 @@ public class WriteController extends HttpServlet {
 		dto.setArtCate(artCate);
 		dto.setArtTitle(artTitle);
 		dto.setArtContent(artContent);
-		dto.setArtRegip(artWriter);
+		dto.setArtFile(files.size());
+		dto.setArtWriter(artWriter);
 		dto.setArtRegip(artRegip);
-		//dto.setFile(files.size());
+		
 		
 		
 		// 글 등록
-		//int no = articleService.insertArticle(dto);
 		int no = articleService.insertArticle(dto);
 		
-		/*
+		
 		// 파일 등록
 		for(FileDto fileDto : files) {
 			fileDto.setAno(no);
 			fileService.insertFile(fileDto);
 		}
-		*/
+		
 		
 		resp.sendRedirect("/FarmStoryJSP/article/list.do?group=" + artGroup + "&cate=" + artCate);
 	}
