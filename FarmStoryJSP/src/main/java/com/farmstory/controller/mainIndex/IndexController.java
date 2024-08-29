@@ -1,16 +1,13 @@
 package com.farmstory.controller.mainIndex;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.farmstory.dto.ArticleDto;
-import com.farmstory.dto.PageGroupDto;
 import com.farmstory.dto.ProductDto;
 import com.farmstory.service.ArticleService;
 import com.farmstory.service.ProductService;

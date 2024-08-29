@@ -148,27 +148,26 @@ td del:nth-child(3) {
 	font-size: 12px;
 }
 
-
 .pagination {
-    text-align: center; /* 중앙 정렬 */
-    margin: 10px 0; /* 위아래 여백 추가 */
+	text-align: center; /* 중앙 정렬 */
+	margin: 10px 0; /* 위아래 여백 추가 */
 }
 
 .pagination a.num {
-            text-decoration: none;
-            margin: 0 2px;
-        }
+	text-decoration: none;
+	margin: 0 2px;
+}
 
-        /* 현재 페이지 강조 스타일 */
-        .pagination a.num.current {
-            font-weight: bold; /* 현재 페이지는 굵게 표시 */
-            color: #000; /* 현재 페이지 텍스트 색상 */
-        }
+/* 현재 페이지 강조 스타일 */
+.pagination a.num.current {
+	font-weight: bold; /* 현재 페이지는 굵게 표시 */
+	color: #000; /* 현재 페이지 텍스트 색상 */
+}
 
-        /* 비활성화된 링크 스타일 */
-        .pagination a.num.off {
-            color: #aaa; /* 비활성 링크 색상 */
-        }
+/* 비활성화된 링크 스타일 */
+.pagination a.num.off {
+	color: #aaa; /* 비활성 링크 색상 */
+}
 </style>
 <script>
 	window.onload = function() {
@@ -187,84 +186,83 @@ td del:nth-child(3) {
 		});
 	}
 </script>
-	<%@ include file="/css/_header.jsp"%>
-	<main>
-		<div class="titleEvent">
-			<img src="../images/sub_top_tit2.png" alt="">
-		</div>
-		<section class="mainSection">
-			<aside class="mainAside">
-				<img src="../images/sub_aside_cate2_tit.png" alt="Event"
-					class="eventList">
-				<ul class="asideList">
-					<li><a href="#"><img src="../images/sub_cate2_lnb1_ov.png"
-							alt=""></a></li>
-				</ul>
-			</aside>
-			<div class="container">
-				<section>
-					<article class="mainArticle">
-						<nav class="articleNav">
-							<img src="../images/sub_nav_tit_cate2_tit1.png" alt="event">
-							<p>
-								<img src="../images/sub_page_nav_ico.gif" alt="navIcon">
-								HOME > 장보기 > <strong>장보기</strong>
-							</p>
-						</nav>
-						<p>전체(10) | 과일 | 야채 | 곡류</p>
+<%@ include file="/css/_header.jsp"%>
+<main>
+	<div class="titleEvent">
+		<img src="../images/sub_top_tit2.png" alt="">
+	</div>
+	<section class="mainSection">
+		<aside class="mainAside">
+			<img src="../images/sub_aside_cate2_tit.png" alt="Event"
+				class="eventList">
+			<ul class="asideList">
+				<li><a href="#"><img src="../images/sub_cate2_lnb1_ov.png"
+						alt=""></a></li>
+			</ul>
+		</aside>
+		<div class="container">
+			<section>
+				<article class="mainArticle">
+					<nav class="articleNav">
+						<img src="../images/sub_nav_tit_cate2_tit1.png" alt="event">
+						<p>
+							<img src="../images/sub_page_nav_ico.gif" alt="navIcon">
+							HOME > 장보기 > <strong>장보기</strong>
+						</p>
+					</nav>
+					<p>전체(10) | 과일 | 야채 | 곡류</p>
 
-						<table>
-							<thead>
+					<table>
+						<thead>
+							<tr>
+								<th>이미지</th>
+								<th>종류</th>
+								<th>상품명</th>
+								<th>할인</th>
+								<th>포인트</th>
+								<th>판매가격</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="product" items="${products}">
 								<tr>
-									<th>이미지</th>
-									<th>종류</th>
-									<th>상품명</th>
-									<th>할인</th>
-									<th>포인트</th>
-									<th>판매가격</th>
+									<td><img src="../images/main_latest3_img.jpg"></td>
+									<td>${product.proName}</td>
+									<td><a href="/FarmStoryJSP/view.do?no=${product.proNo}">${product.proType}</a></td>
+									<td>${product.proSale}</td>
+									<td>${product.proPoint}p</td>
+									<td><strong>${product.salePrice}</strong> <del>${product.proPrice}<br>
+										</del> <del>원</del></td>
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="product" items="${products}">
-									<tr>
-										<td><img src="../images/main_latest3_img.jpg"></td>
-										<td>${product.proName}</td>
-										<td><a href="/FarmStoryJSP/view.do?no=${product.proNo}">${product.proType}</a></td>
-										<td>${product.proSale}</td>
-										<td>${product.proPoint}p</td>
-										<td><strong>${product.salePrice}</strong>
-											<del>${product.proPrice}<br>
-											</del> <del>원</del></td>
-									</tr>
-								</c:forEach>
-								</tr>
-							</tbody>
-						</table>
-						<c:if test="${pageGroup.start > 1 }">
-							<a href="/FarmStoryJSP/market/list.do?pg=${pageGroup.start - 1}"
-								class="prev"><</a>
-						</c:if>
-						<div class="pagination">
-							<c:forEach var="i" begin="${pageGroup.start}"
-								end="${pageGroup.end}">
-								<a href="/FarmStoryJSP/market/list.do?pg=${i}"
-									class="num ${currentPage == i ? 'current':'off'}">[${i}]</a>
 							</c:forEach>
-						</div>
-						<c:if test="${pageGroup.end < pageGroup.group}">
-							<a href="/FarmStoryJSP/market/list.do?pg=${pageGroup.end - 1}"
-								class="next">></a>
-						</c:if>
+							</tr>
+						</tbody>
+					</table>
+					<c:if test="${pageGroup.start > 1 }">
+						<a href="/FarmStoryJSP/market/list.do?pg=${pageGroup.start - 1}"
+							class="prev"><</a>
+					</c:if>
+					<div class="pagination">
+						<c:forEach var="i" begin="${pageGroup.start}"
+							end="${pageGroup.end}">
+							<a href="/FarmStoryJSP/market/list.do?pg=${i}"
+								class="num ${currentPage == i ? 'current':'off'}">[${i}]</a>
+						</c:forEach>
+					</div>
+					<c:if test="${pageGroup.end < pageGroup.group}">
+						<a href="/FarmStoryJSP/market/list.do?pg=${pageGroup.end - 1}"
+							class="next">></a>
+					</c:if>
 
-					</article>
+				</article>
 
-				</section>
+			</section>
 
-			</div>
+		</div>
 
-		</section>
+	</section>
 
-	</main>
-	<%@ include file="/css/_footer.jsp"%>
+</main>
+<%@ include file="/css/_footer.jsp"%>
 </body>
 </html>

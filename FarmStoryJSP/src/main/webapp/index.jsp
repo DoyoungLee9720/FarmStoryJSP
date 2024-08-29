@@ -24,17 +24,18 @@ ul, ol {
 	width: 100%;
 	height: 100%;
 }
+
 table {
-  border-collapse: collapse; /* 테두리 간격을 제거합니다. */
+	border-collapse: collapse; /* 테두리 간격을 제거합니다. */
 }
 
 td {
-  padding: 0; /* 셀의 내부 여백을 없애거나 조절합니다. */
-  margin: 0; /* 셀의 외부 여백을 제거합니다. */
+	padding: 0; /* 셀의 내부 여백을 없애거나 조절합니다. */
+	margin: 0; /* 셀의 외부 여백을 제거합니다. */
 }
 
 tr {
-  margin: 0; /* 행의 외부 여백을 제거합니다. */
+	margin: 0; /* 행의 외부 여백을 제거합니다. */
 }
 
 main .Farmstory {
@@ -300,7 +301,6 @@ input, textarea {
 	position: relative;
 }
 
-
 .ment>.mt {
 	position: relative;
 }
@@ -311,8 +311,9 @@ input, textarea {
 	line-height: 1.2; /* 텍스트 줄 높이 설정 */
 	margin-bottom: 10px; /* 하단 여백 설정 */
 }
+
 .datament td {
-  	height: 16px !important;
+	height: 16px !important;
 }
 
 .ment>table {
@@ -323,20 +324,20 @@ input, textarea {
 }
 
 .data {
-	  position: sticky;
-    right: 0;
-    background-color: #fff;
-    z-index: 1;
-    text-align: right; /* 오른쪽 정렬 */
-    
+	position: sticky;
+	right: 0;
+	background-color: #fff;
+	z-index: 1;
+	text-align: right; /* 오른쪽 정렬 */
 }
+
 .datament a {
-  display: inline-block; 
-  width: 215px; 
-  overflow: hidden;
-  white-space: nowrap; 
-  text-overflow: ellipsis;
-  text-decoration: none; 
+	display: inline-block;
+	width: 215px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	text-decoration: none;
 }
 
 .intable {
@@ -513,17 +514,14 @@ a.link:hover {
 							</td>
 						</tr>
 						<tr>
-							<td colspan="3">
-								<a href="/FarmStoryJSP/article/list.do?group=community&cate=faq">
+							<td colspan="3"><a
+								href="/FarmStoryJSP/article/list.do?group=community&cate=faq">
 									<img src="/FarmStoryJSP/images/main_sub2_cs_bt1.png">
-								</a> 
-								<a href="/FarmStoryJSP/article/list.do?group=community&cate=qna">
+							</a> <a href="/FarmStoryJSP/article/list.do?group=community&cate=qna">
 									<img src="/FarmStoryJSP/images/main_sub2_cs_bt2.png">
-								</a>
-								<a href="/FarmStoryJSP/article/list.do?group=community&cate=qna">
+							</a> <a href="/FarmStoryJSP/article/list.do?group=community&cate=qna">
 									<img src="/FarmStoryJSP/images/main_sub2_cs_bt3.png">
-								</a>
-							</td>
+							</a></td>
 						</tr>
 					</table>
 
