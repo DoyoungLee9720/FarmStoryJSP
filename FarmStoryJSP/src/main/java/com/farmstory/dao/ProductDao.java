@@ -66,12 +66,12 @@ public class ProductDao extends DBHelper {
 		return total;
 	}
 
-	public ProductDto selectProduct(String proNo) {
+	public ProductDto selectProduct(String prono) {
 		ProductDto dto = null;
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_PRODUCT);
-			psmt.setString(1, proNo);
+			psmt.setString(1, prono);
 
 			rs = psmt.executeQuery();
 			if (rs.next()) {
@@ -135,12 +135,12 @@ public class ProductDao extends DBHelper {
 
 	}
 
-	public int deleteProduct(String proNo) {
+	public int deleteProduct(String prono) {
 		int result = 0;
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.DELETE_PRODUCT);
-			psmt.setString(1, proNo);
+			psmt.setString(1, prono);
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

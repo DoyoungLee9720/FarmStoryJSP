@@ -402,17 +402,17 @@ a.link:hover {
 			</div>
 			<div>
 				<c:forEach var="product" items="${products}">
-					<a href="/FarmStoryJSP/market/view.do?no=${product.proNo}">
+					<a href="/FarmStoryJSP/market/view.do?no=${product.prono}">
 					
 						<article>
 							<img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과">
-							<h1>${product.proType}</h1>
-							<p>${product.proName}</p>
+							<h1>${product.protype}</h1>
+							<p>${product.proname}</p>
 							<div class="pricediscount">
-								<span class="price">${product.proPrice}</span> <span
-									class="discount">${product.proSale}</span>
+								<span class="price">${product.proprice}</span> <span
+									class="discount">${product.prosale}</span>
 							</div>
-							<h3>${product.salePrice}</h3>
+							<h3>${product.saleprice}</h3>
 						</article>
 					</a>
 				</c:forEach>
