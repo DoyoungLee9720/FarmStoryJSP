@@ -71,12 +71,12 @@ public class IndexController extends HttpServlet{
         
 	    int PageStartNo = total - (currentPage - 1) * 10;
 	    for (ProductDto product : products) {
-	        product.setStartNo(PageStartNo--);
+	        product.setStartno(PageStartNo--);
 
-	        int originalPrice = (int) product.getProPrice();
-	        int discountPercent = (int) product.getProSale();
+	        int originalPrice = (int) product.getProprice();
+	        int discountPercent = (int) product.getProsale();
 	        int discountPrice = (int) (originalPrice * (1 - discountPercent / 100.0));
-	        product.setsalePrice(discountPrice);
+	        product.setSaleprice(discountPrice);
 	    }
 
 	    req.setAttribute("products", products);
