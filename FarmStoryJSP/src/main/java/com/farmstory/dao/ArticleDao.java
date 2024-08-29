@@ -191,5 +191,17 @@ public class ArticleDao extends DBHelper{
 
 		return total;
 	}
+	public void updateComment(String artNo) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement("update `ARTICLE` set `artcomment` = `artcomment` + 1 where `artNo`=?");
+			psmt.setString(1, artNo);
+			psmt.executeUpdate();
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+	}
 
 }
