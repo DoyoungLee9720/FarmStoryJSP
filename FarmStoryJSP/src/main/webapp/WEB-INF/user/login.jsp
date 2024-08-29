@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -11,9 +10,9 @@
 main {
 	height: 400px;
 	width: 980px;
-	margin: 0 auto;
+	margin : 0 auto;
 	background-color: #white;
-	position: relative;
+
 }
 
 main>p {
@@ -75,6 +74,7 @@ main>p {
     }
     .login>div>a {
       float: right;
+	  margin-left : 7px;
     }
 </style>
 </head>
@@ -105,7 +105,9 @@ main>p {
         <p>
           아직 회원이 아니시면 회원으로 가입하세요.
         </p>
-        <a href="/FarmStoryJSP/user/terms.do">회원가입</a>
+        <a href="/FarmStoryJSP/user/findpass.do">비밀번호 찾기</a>
+        <a href="/FarmStoryJSP/user/findid.do">아이디 찾기</a>
+        <a href="/FarmStoryJSP/user/register.do">회원가입</a>
       </div>
     </section>
   </main>

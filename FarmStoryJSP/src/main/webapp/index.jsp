@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,6 +26,7 @@ ul, ol {
 main .Farmstory {
 	width: 100%;
 	height: auto;
+	margin : 0 auto;
 }
 
 main .Farmstory>.benner1 {

@@ -59,12 +59,12 @@ const reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z
 const reHp = /^01[0-9]-\d{4}-\d{4}$/;
 
 //유효성 검사에 사용할 상태변수
-let isUidOk   = false;
+let isUidOk   = true;
 let isPassOk  = false;
-let isNameOk  = false;
-let isNickOk  = false;
-let isEmailOk = false;
-let isHpOk    = false;
+let isNameOk  = true;
+let isNickOk  = true;
+let isEmailOk = true;
+let isHpOk    = true;
 
 
 window.onload = function(){
@@ -78,7 +78,7 @@ window.onload = function(){
 	const resultEmail = document.getElementsByClassName('resultEmail')[0];
 	const auth = document.getElementsByClassName('auth')[0];
 	const resultHp = document.getElementsByClassName('resultHp')[0];
-
+	const userOut = document.getElementById('userOut');
 	
 	
 	
@@ -105,10 +105,10 @@ window.onload = function(){
 		
 	}); // pass 검사 끝
 	
+
 	myinfoForm.name.addEventListener('focusout' , function(){
 		
-		const name = myinfoForm.name.value;
-		
+
 		if(!name.match(reName)){
 			resultName.innerText = '유효하지 않은 이름입니다.';
 			resultName.style.color = 'red';
@@ -121,16 +121,12 @@ window.onload = function(){
 	}); // 이름 검사 끝
 	
 	
-	const orinick = myinfoForm.nick.value;
+
 	
 	myinfoForm.nick.addEventListener('focusout' , function(){
 		
 		const nick = myinfoForm.nick.value;
 		
-		if(nick === orinick){
-	        isNickOk = true;
-	        return;
-		};
 		
 		if(!nick.match(reNick)){
 			resultNick.innerText = '유효하지 않은 닉네임입니다.';
@@ -159,12 +155,17 @@ window.onload = function(){
 		
 	}); // 닉네임 검사 끝
 	
+
 	
 	//이메일 검사
 	let preventdblClick = false;
 	
 	btnSendEmail.onclick = function(){
 		const email = myinfoForm.email.value;
+		
+		if(email !== ""){
+			isEmailOk = true;
+		}
 		
 		
 		if(preventdblClick){ //이중클릭방지
@@ -237,10 +238,17 @@ window.onload = function(){
 	
 	}; //인증번호 끝
 	
+	
+
 	//휴대폰검사
 	myinfoForm.hp.addEventListener('focusout' , function(){
 		
 		const hp = myinfoForm.hp.value;
+		
+		if(hp !== ""){
+			isHpOk = true;
+		}
+		
 		if(!hp.match(reHp)){
 			resultHp.innerText = '유효하지 않은 핸드폰번호입니다.';
 			resultHp.style.color = 'red';
@@ -302,14 +310,63 @@ window.onload = function(){
 				alert('휴대폰번호가 유효하지 않습니다.');
 				return false;
 			}
-		// 주소	
-			if(!addr2){
+		// 주소
+			if(addr2 !== ""){
+				return true;
+			}else if (!addr2){
 				alert('상세주소를 입력하세요.');
 				return false;
 			}
-		return true; // 다 되면 폼전송
+		
+		return true;
+		alert('수정되었습니다.');
+		// 다 되면 폼전송
 	
 	}
+
+	userOut.addEventListener('click', function(){
+		
+		const pass1 = myinfoForm.pass1.value;
+		const pass2 = myinfoForm.pass2.value;
+		
+		
+        if (pass1 === '') {
+            alert('비밀번호를 입력하세요.');
+            return;
+        }
+		
+		if(pass1 === pass2){
+		const result = confirm('정말 탈퇴하시겠습니까?');
+		console.log("Confirm result:", result); // confirm 결과 확인
+		const sess = '${sessUser.getUserId()}';
+		
+			if(result){
+				fetch('/FarmStoryJSP/user/delete.do' , {
+					method : 'POST',
+					body : JSON.stringify({"userId" : sess })
+				})
+				.then(resp => resp.json())
+				.then(data => {
+					console.log(data);
+					 if(data.result > 0){
+						 alert('탈퇴가 완료 되었습니다.');
+						 window.location.href = '/FarmStoryJSP/';
+					 }else {
+						 alert('오류발생.');
+					 }
+				})
+				.catch(err => {
+					console.log(err);
+				})
+				
+			}else {
+				alert('취소되었습니다.');
+			}
+		}else {
+			alert('비밀번호를 먼저 확인하세요');
+		}
+		
+	})
 
 } //onload 끝
 </script>
@@ -510,7 +567,7 @@ window.onload = function(){
           <tr>
             <td class="col1">회원탈퇴</td>
             <td class="col2">
-              <input id="userOut" type="button"  value="탈퇴하기" onclick="" >
+              <input id="userOut" type="button" value="탈퇴하기">
             </td>
           </tr>
         </table>
