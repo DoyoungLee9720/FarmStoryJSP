@@ -19,8 +19,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/user/checkUser.do")
-public class CheckUserController extends HttpServlet {
+@WebServlet("/user/checkfindUser.do")
+public class CheckFindController extends HttpServlet {
 	
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -38,7 +38,8 @@ public class CheckUserController extends HttpServlet {
 		
 		int result = service.selectCountCheckUser(type, value);
 		
-		if(type.equals("email")&& result == 0) {
+		// session에 code 번호 저장해야됨 / 고유 번호이기 때문에
+		if(type.equals("email")&& result == 1) {
 			String code = service.sendEmailCode(value);
 			HttpSession session = req.getSession();
 			session.setAttribute("code", code);

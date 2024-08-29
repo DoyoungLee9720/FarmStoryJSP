@@ -66,7 +66,7 @@ public class MyinfoController extends HttpServlet{
 		
 		resp.sendRedirect("/FarmStoryJSP/");
 	    } else {
-	        // UserDto가 없을 경우의 처리 (예: 로그인 페이지로 리다이렉트)
+	        // UserDto가 없을 경우의 처리 로그인 페이지로 리다이렉트)
 	        resp.sendRedirect("/FarmStoryJSP/user/login.do");
 	    }
 	}
