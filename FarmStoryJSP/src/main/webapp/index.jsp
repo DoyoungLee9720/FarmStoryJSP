@@ -402,7 +402,8 @@ a.link:hover {
 			</div>
 			<div>
 				<c:forEach var="product" items="${products}">
-					<a href="/FarmStoryJSP/market/view.do?no${product.proNo}">
+					<a href="/FarmStoryJSP/market/view.do?no=${product.proNo}">
+					
 						<article>
 							<img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과">
 							<h1>${product.proType}</h1>
