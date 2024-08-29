@@ -148,23 +148,45 @@ td del:nth-child(3) {
 	font-size: 12px;
 }
 
-.listnumber {
-	text-align: center;
-}
+
 .pagination {
     text-align: center; /* 중앙 정렬 */
     margin: 10px 0; /* 위아래 여백 추가 */
 }
 
-.listnumber :hover {
-	opacity: 0.9;
-	text-decoration: underline;
-}
+.pagination a.num {
+            text-decoration: none;
+            margin: 0 2px;
+        }
 
+        /* 현재 페이지 강조 스타일 */
+        .pagination a.num.current {
+            font-weight: bold; /* 현재 페이지는 굵게 표시 */
+            color: #000; /* 현재 페이지 텍스트 색상 */
+        }
+
+        /* 비활성화된 링크 스타일 */
+        .pagination a.num.off {
+            color: #aaa; /* 비활성 링크 색상 */
+        }
 </style>
-</head>
-
-<body>
+<script>
+	window.onload = function() {
+		document.addEventListener('DOMContentLoaded', function() {
+		    // .pagination 안의 모든 a.num 링크 선택
+		    const pageLinks = document.querySelectorAll('.pagination a.num');
+		    
+		    pageLinks.forEach(link => {
+		        link.addEventListener('click', function(event) {
+		            event.preventDefault(); // 기본 링크 동작 방지
+		            const href = this.getAttribute('href');
+		            // 여기에서 href로 페이지를 로드하거나 AJAX 요청을 할 수 있음
+		            console.log('링크 클릭됨:', href);
+		        });
+		    });
+		});
+	}
+</script>
 	<%@ include file="/css/_header.jsp"%>
 	<main>
 		<div class="titleEvent">
@@ -205,7 +227,7 @@ td del:nth-child(3) {
 							<tbody>
 								<c:forEach var="product" items="${products}">
 									<tr>
-										<td><img src="${product.proImg1}"></td>
+										<td><img src="../images/main_latest3_img.jpg"></td>
 										<td>${product.proName}</td>
 										<td><a href="/FarmStoryJSP/view.do?no=${product.proNo}">${product.proType}</a></td>
 										<td>${product.proSale}</td>
