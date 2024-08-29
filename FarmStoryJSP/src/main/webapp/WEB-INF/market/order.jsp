@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -6,249 +7,12 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
-	<style>
-		main {
-			height: auto;
-			width: 980px;
-			margin: 0 auto;
-		}
-		
-		strong {
-			font-weight: bold;
-		}
-		
-		del {
-			color: #777;
-			font-size: 9px;
-		}
-		
-		.titleEvent {
-			width: 980px;
-			height: 184px;
-			background-image: url("../images/sub_top_bg.jpg");
-			position: relative;
-		}
-		
-		.titleEvent img {
-			position: absolute;
-			left: 10px;
-			bottom: 10px;
-		}
-		
-		.mainSection {
-			display: flex;
-		}
-		
-		.mainAside {
-			width: 176px;
-			height: 650px;
-			box-sizing: border-box;
-			background-image: url("../images/sub_aside_bg_line.png");
-			background-repeat: no-repeat;
-			background-position: 169px;
-		}
-		
-		.mainAside>.eventList {
-			margin: 16px 16px;
-		}
-		
-		.asideList {
-			width: 175px;
-			height: 233px;
-			background-image: url("../images/sub_aside_bg_lnb.png");
-			position: relative;
-		}
-		
-		.asideList>li:nth-child(1) {
-			display: inline-block;
-			margin-top: 30px;
-		}
-		
-		.articleNav {
-			width: 762px;
-			height: 72px;
-			margin-left: 0;
-			border-bottom: 1px solid #c2c2c2;
-			position: relative;
-		}
-		
-		.articleNav>img {
-			position: absolute;
-			bottom: 5px;
-		}
-		
-		.articleNav>p {
-			position: absolute;
-			bottom: 5px;
-			right: 0px;
-		}
-		
-		.articleNav>p>strong {
-			color: rgb(124, 165, 64)
-		}
-		
-		.mainArticle>p {
-			margin-top: 20px;
-			margin-bottom: 10px;
-		}
-		
-		.mainArticle {
-			margin: 0 0;
-			width: 762px;
-			height: auto;
-			box-sizing: border-box;
-		}
-		
-		.market_ListSet img {
-			width: 60px;
-			height: 60px;
-		}
-		/* container 스타일 */
-		.container {
-			display: flex;
-			margin: 20px;
-		}
-		
-		/* table 스타일 */
-		table {
-			width: 100%;
-			border-collapse: collapse;
-			background-color: #fff;
-			text-align: center;
-		}
-		
-		thead {
-			padding: 10px;
-			background-color: #EEE;
-			border-top: 1px solid #111;
-		}
-		
-		tbody tr:last-child {
-			border-bottom: 1px solid #111;
-		}
-		
-		tr {
-			border-bottom: 1px solid #EEEEEE;
-		}
-		
-		tr td:nth-child(2) {
-			color: #777;
-		}
-		
-		tr td:nth-child(3) {
-			text-align: left;
-		}
-		
-		tr td:nth-child(5) {
-			font-size: 9px;
-		}
-		
-		th, td {
-			padding: 10px;
-			text-align: center;
-		}
-		
-		td del:nth-child(3) {
-			font-size: 12px;
-		}
-		
-		.listnumber {
-			text-align: center;
-		}
-		
-		.listnumber :hover {
-			opacity: 0.9;
-			text-decoration: underline;
-		}
-		
-		.tableContainer {
-			display: flex;
-			justify-content: space-between; /* 테이블 사이의 공간을 균등하게 분배 */
-			margin-top: 20px; /* 필요에 따라 여백 추가 */
-		}
-		
-		.orderInformation {
-			width: 448px;
-			height: 440px;
-			margin-right: 10px; /* 오른쪽 테이블과의 간격 */
-		}
-		
-		.orderInformation caption {
-			text-align: left;
-			padding-left: 10px;
-			padding-bottom: 10px;
-		}
-		
-		.orderInformation tr td:first-child {
-			background-color: #F7F7F7;
-		}
-		
-		.orderInformation tr {
-			border-bottom: 1px solid #D7D7D7;
-		}
-		
-		.orderInformation tr:first-child {
-			border-top: 1px solid #BE0808;
-		}
-		
-		.downtable {
-			width: 305px;
-			height: 209px;
-			border: 1px solid #D7D7D7;
-			box-sizing: border-box;
-			border-collapse: collapse;
-		}
-		
-		.downtable thead {
-			padding: 10px;
-			background-color: #EEE;
-			border: none;
-			border-bottom: 1px solid #111;
-		}
-		
-		.downtable tr {
-			border: none; /* 다른 모든 경계선을 없앰 */
-			background-color: #fff;
-		}
-		
-		.orderInformation td {
-			text-align: left; /* 왼쪽 정렬 */
-		}
-		
-		.downtable td {
-			text-align: left; /* 왼쪽 정렬 */
-			padding: 8px;
-		}
-		
-		.redbutton {
-			background-color: #960D1A;
-			color: white;
-			border: none;
-			padding: 10px 20px;
-			cursor: pointer;
-			width: 100%;
-			box-sizing: border-box;
-		}
-		
-		.full-width {
-			width: 100%;
-			box-sizing: border-box;
-		}
-		
-		.total-amount {
-			color: red;
-		}
-		
-		.orderInformation input[type="text"] {
-			margin-bottom: 3px; /* 입력 필드 간의 여백 추가 */
-		}
-	</style>
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 </head>
 
 <body>
-	<div id="wrapper"></div>
 	<%@ include file="/css/_header.jsp"%>
+	<div class="marketOrder">
 	<main>
 		<div class="titleEvent">
 			<img src="/FarmStoryJSP/images/sub_top_tit2.png" alt="">
@@ -270,7 +34,7 @@
 								HOME > 장보기 > <strong>장보기</strong>
 							</p>
 						</nav>
-						<p>전체(10) | 과일 | 야채 | 곡류</p>
+						<p>전체(${products.size()}) | 과일 | 야채 | 곡류</p>
 
 						<table>
 							<thead>
@@ -286,37 +50,18 @@
 								</tr>
 							</thead>
 							<tbody class="market_ListSet">
-								<tr>
-									<td><img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과 500g"></td>
-									<td>과일</td>
-									<td><a href="#">사과 500g</a></td>
-									<td>1</td>
-									<td>10%</td>
-									<td>40p</td>
-									<td>4,000</td>
-									<td>3,600원</td>
-								</tr>
-								<tr>
-									<td><img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과 500g"></td>
-									<td>과일</td>
-									<td><a href="#">사과 500g</a></td>
-									<td>1</td>
-									<td>10%</td>
-									<td>40p</td>
-									<td>4,000</td>
-									<td>3,600원</td>
-								</tr>
-								<tr>
-									<td><img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과 500g"></td>
-									<td>과일</td>
-									<td><a href="#">사과 500g</a></td>
-									<td>1</td>
-									<td>10%</td>
-									<td>40p</td>
-									<td>4,000</td>
-									<td>3,600원</td>
-								</tr>
-
+								<c:forEach var="product" items="${products}">
+									<tr>
+										<td><img src="${product.proimg1}" alt="${product.proname}"></td>
+										<td>${product.protype}</td>
+										<td><a href="/FarmStoryJSP/market/view?no=${product.prono}">${product.proname}</a></td>
+										<td>${product.cartstock}</td>
+										<td>${product.prosale}%</td>
+										<td>${product.propoint}p</td>
+										<td>${product.proprice}</td>
+										<td>${product.proprice*(100-product.prosale)/100*product.cartstock}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						<div class="tableContainer">
@@ -325,27 +70,27 @@
 								<caption>주문정보 입력</caption>
 								<tr>
 									<td>주문자</td>
-									<td><input type="text"></td>
+									<td><input type="text" value="${sessUser.getUserName()}"></td>
 								</tr>
 								<tr>
 									<td>휴대폰</td>
-									<td><input type="text"></td>
+									<td><input type="text" value="${sessUser.getUserHp()}"></td>
 								</tr>
 								<tr>
 									<td>포인트사용</td>
 									<td>
-										<input type="text" placeholder="포인트 입력">
+										<input type="number" max="${sessUser.getUserPoint()}" placeholder="포인트 입력">
 										<input type="button" value="사용하기"><br>
-										<span>사용가능 2,000</span>
+										<span>사용가능 ${sessUser.getUserPoint()}P</span>
 									</td>
 								</tr>
 								<tr>
 									<td>배송주소</td>
 									<td>
-										<input type="text" placeholder="주소 입력">
+										<input type="text" placeholder="주소 입력"  value="${sessUser.getUserZip()}">
 										<img src="/FarmStoryJSP/images/btn_post_search.gif"><br>
-										<input type="text" placeholder="기본주소 검색" class="full-width"><br>
-										<input type="text" placeholder="상세주소 검색" class="full-width">
+										<input type="text" placeholder="기본주소 검색" class="full-width" value="${sessUser.getUserAddr1()}"><br>
+										<input type="text" placeholder="상세주소 검색" class="full-width" value="${sessUser.getUserAddr2()}">
 									</td>
 								</tr>
 								<tr>
@@ -374,7 +119,7 @@
 									<tbody>
 										<tr>
 											<td>상품수</td>
-											<td>1</td>
+											<td>${products.size()}</td>
 										</tr>
 										<tr>
 											<td>상품금액</td>
@@ -418,6 +163,7 @@
 		</section>
 
 	</main>
+	</div>
 	<%@ include file="/css/_footer.jsp"%>
 </body>
 

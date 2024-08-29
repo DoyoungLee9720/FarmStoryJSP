@@ -83,7 +83,7 @@ public class UserDao extends DBHelper{
 		return result;
 	}
 
-public List<UserDto> selectPagedUsers(PageGroupDto page) {
+	public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		
 		List<UserDto> users = new ArrayList<>();
 		try {
@@ -180,6 +180,38 @@ public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		}
 		return user;
 	}
+	public UserDto selectUser(String userId) {
+		UserDto user = null;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_USER_WITHOUTPASS);
+			psmt.setString(1, userId);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				user = new UserDto();
+				user.setUserId(rs.getString(1));
+				user.setUserPass(rs.getString(2));
+				user.setUserName(rs.getString(3));
+				user.setUserNick(rs.getString(4));
+				user.setUserEmail(rs.getString(5));
+				user.setUserHp(rs.getString(6));
+				user.setUserRole(rs.getString(7));
+				user.setUserGrade(rs.getString(8));
+				user.setUserZip(rs.getString(9));
+				user.setUserAddr1(rs.getString(10));
+				user.setUserAddr2(rs.getString(11));
+				user.setUserPoint(rs.getString(12));
+				user.setUserRegip(rs.getString(13));
+				user.setUserRegdate(rs.getString(14));
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return user;
+	}
+	
 	public List<UserDto> selectUsers() {
 		List<UserDto> users = new ArrayList<>();
 		try {
@@ -244,26 +276,39 @@ public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		return result;
 		
 	}
-	public int deleteUser(String userId) {
+
+	public int updateUserGrade(String id, String grade) {
 		int result = 0;
-		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.DELETE_USERS);
-			psmt.setString(1, userId);
+      psmt = conn.prepareStatement(SQL.UPDATE_USER_GRADE);
+      psmt.setString(1, grade);
+      psmt.setString(2, id);
 			result = psmt.executeUpdate();
-			
 		}catch (Exception e) {
 			logger.debug(e.getMessage());
 		}finally {
 			closeAll();
 		}
-		
+
+		return result;
+
+	}
+		public void deleteUser(String userId) {
+      int result = 0;
+      try {
+        conn = getConnection();
+			  psmt = conn.prepareStatement(SQL.DELETE_USERS);
+			  psmt.setString(1, userId);
+        result = psmt.executeUpdate();
+      } catch (Exception e) {
+        logger.error(e.getMessage());
+      } finally {
+        closeAll();
+      }
 		
 		return result;
-		
 	}
-	
 	
 	public UserDto selectFindId(String name, String email) {
 		UserDto dto = null;

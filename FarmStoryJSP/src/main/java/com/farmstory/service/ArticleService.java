@@ -70,8 +70,12 @@ public enum ArticleService {
 		dao.updateArticle(dto);
 	}	
 	
-	public int deleteArticle(String no) {
-		return dao.deleteArticle(no);
+	public void updateArticleHit(String artNo) {
+		dao.updateArticleHit(artNo);
+	}	
+	
+	public void deleteArticle(String no) {
+		dao.deleteArticle(no);
 	}
 
 	public int selectCountTotal(String group, String cate) {

@@ -104,4 +104,17 @@ public class CommentDao extends DBHelper{
 	public int deleteComment(String no) {
 		return 0;
 	}
+	public void deleteComments(String comParent) {
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement("DELETE from `comment` where `comparent`=?");
+			psmt.setString(1, comParent);
+			
+			psmt.executeUpdate();
+		}catch(Exception e){
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+	}
 }

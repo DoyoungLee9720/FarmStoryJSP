@@ -37,7 +37,17 @@ public enum ProductService {
 		return currentPage;
 	}
 
-	// 현재 페이지 구룹 구하기
+	public int getProuctNO(String proNo) {
+		int getProuctNO = 1;
+		
+		if (proNo != null) {
+			getProuctNO = Integer.parseInt(proNo);
+		}
+		return getProuctNO;
+	}
+
+	// 현재 페이지 그룹 구하기
+
 	public PageGroupDto getCurrentPageGroup(int currentPage) {
 		int currentPageGroup = (int) Math.ceil(currentPage / 10.0);
 		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
@@ -51,12 +61,12 @@ public enum ProductService {
 		return new PageGroupDto(pageGroupStart, pageGroupEnd, pageGroupGroup);
 	}
 
-	public void insertProduct(ProductDto dto) {
+	public int insertProduct(ProductDto dto) {
 
-		dao.insertProduct(dto);
+		return dao.insertProduct(dto);
 	}
 
-	public ProductDto selectProduct(int proNo) {
+	public ProductDto selectProduct(String proNo) {
 		return dao.selectProduct(proNo);
 	}
 
@@ -72,7 +82,7 @@ public enum ProductService {
 		dao.updateProduct(dto);
 	}
 
-	public void deleteProduct(int proNo) {
-		dao.deleteProduct(proNo);
+	public int deleteProduct(String proNo) {
+		return dao.deleteProduct(proNo);
 	}
 }

@@ -24,6 +24,9 @@ public enum CommentService {
 	public int deleteComment(String no) {
 		return dao.deleteComment(no);
 	}
+	public void deleteComments(String comParent) {
+		dao.deleteComments(comParent);
+	}
 	
 	
 }
