@@ -309,7 +309,7 @@ input, textarea {
 	display: flex; /* 플렉스 레이아웃을 사용 */
 	flex-direction: column; /* 세로로 정렬 */
 	line-height: 1.2; /* 텍스트 줄 높이 설정 */
-	margin-bottom: 10px; /* 하단 여백 설정 */
+	margin-bottom: 10px; 
 }
 
 .datament td {

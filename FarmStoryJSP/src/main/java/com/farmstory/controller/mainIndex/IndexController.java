@@ -50,7 +50,7 @@ public class IndexController extends HttpServlet{
 	    if (products.size() > limit) {
 	        products = products.subList(0, limit);
 	    }
-	    
+	    //각 artCate 의 카테괴리를 불러와서 리스트에 넣는 코드 
 	    List<ArticleDto> storiArticles = articleService.selectArticles(arStart, "story");
 	    List<ArticleDto> growArticles = articleService.selectArticles(arStart, "grow");
 	    List<ArticleDto> SchoolArticles = articleService.selectArticles(arStart, "school");
