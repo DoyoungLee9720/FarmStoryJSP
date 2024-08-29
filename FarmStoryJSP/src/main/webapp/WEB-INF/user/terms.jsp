@@ -27,24 +27,25 @@ window.onload = function(){
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 	<title>Farmstory</title>
 	<style>
-		main {
-			height: 600px;
-			width: auto;
-			
-			background-color: #white;
-			position: relative;
-		}
-		
-		main>p {
-			position: absolute;
-			float: left;
-			left: 50%;
-			margin-left: -69px;
-			top: 50%;
-		}
+main {
+	height: auto;
+	width: 980px;
+	margin: 0 auto;
+	background-color: #white;
+	position: relative;
+}
+
+main>p {
+	position: absolute;
+	float: left;
+	left: 50%;
+	margin-left: -69px;
+	top: 50%;
+}
 	.terms {
+	  position: relative;
       width: 600px;
-      height: auto;
+      height: 600px;
       margin: 0 auto;
       box-sizing: border-box;
     }
