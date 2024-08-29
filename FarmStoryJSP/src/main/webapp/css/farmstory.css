@@ -40,17 +40,17 @@ header > div > .top {
   height: 92px;
 }
 
-.top > p {
+header .top > p {
   float: right;
 }
 
-.top > .headerLogo {
+header .top > .headerLogo {
   position: absolute;
   left: 50%;
   top: 20px;
   margin-left: -95px;
 }
-.top > .headerTxt {
+header .top > .headerTxt {
   position: absolute;
   right: 0px;
   bottom: 20px;
@@ -76,30 +76,30 @@ header div>nav>ul>li>a {
   box-sizing: border-box;
   position: relative;
 }
-.nav >li>a > img {
+header .nav >li>a > img {
   padding-top: 5px;
   width: auto;
   height: 100%;
   box-sizing: border-box;
 }
 
-.navInfo > img:hover {
+header .navInfo > img:hover {
   content : url("../images/head_menu1_ov.png")
 }
-.navShop > img:nth-child(1):hover{
+header .navShop > img:nth-child(1):hover{
   content : url("../images/head_menu2_ov.png")
 }
-.navFarm > img:hover {
+header .navFarm > img:hover {
   content : url("../images/head_menu3_ov.png")
 }
-.navEven > img:hover{
+header .navEven > img:hover{
   content : url("../images/head_menu4_ov.png")
 }
-.navComm > img:hover {
+header .navComm > img:hover {
   content : url("../images/head_menu5_ov.png")
 }
 
-.navShop > img:nth-child(2) {
+header .navShop > img:nth-child(2) {
   position: absolute;
   left : 95px;
   top : -25px;
