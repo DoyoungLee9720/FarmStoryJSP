@@ -278,7 +278,7 @@ public List<UserDto> selectPagedUsers(PageGroupDto page) {
 				dto = new UserDto();
 				dto.setUserId(rs.getString(1));
 				dto.setUserName(rs.getString(2));
-				dto.setUserNick(rs.getString(3));
+				dto.setUserEmail(rs.getString(3));
 				dto.setUserRegdate(rs.getString(4));
 			}
 		} catch (Exception e) {
