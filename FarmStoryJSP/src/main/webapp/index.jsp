@@ -556,7 +556,7 @@ a.link:hover {
 					<table>
 						<c:forEach var="article" items="${noticeArticles}">
 							<tr class="datament">
-								<td><span>· </span> <a href="#">${article.artTitle}</a></td>
+								<td><span>· </span> <a href="/FarmStoryJSP/article/view.do?group=community&cate=notice&artNo=${article.artNo}">${article.artTitle}</a></td>
 								<td class="data">${article.artRdate}</td>
 							</tr>
 						</c:forEach>
