@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.farmstory.dto.ArticleDto;
 import com.farmstory.dto.ProductDto;
