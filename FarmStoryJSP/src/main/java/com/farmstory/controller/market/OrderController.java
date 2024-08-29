@@ -30,21 +30,22 @@ public class OrderController extends HttpServlet{
 	CartService cartservice = CartService.INSTANCE;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//세션에서 아이디 정보 받아오기
-		String uid = req.getParameter("uid");
+		
 		HttpSession session = req.getSession();
-		session.setAttribute("sessUser",uid);
+		
+		String uid = ((UserDto)session.getAttribute("sessUser")).getUserId();
+		// 선택된 상품 정보를 저장할 리스트
+		List<ProductDto> products = new ArrayList<>();
 		
 		//어떤 주문 인지 확인 하기 위한 정보 가져오기
 		String ordercheck = req.getParameter("ordercheck");
-		
 		//view 에서 바로구매 버튼을 눌렀을때 동작
 		if(ordercheck.equals("1")) {
-			String quantity = req.getParameter("quantity");
-			String proNo = req.getParameter("proNo");
-			ProductDto dto = productservice.selectProduct(Integer.parseInt(proNo));
-			dto.setCartstock(Integer.parseInt(quantity));
-			req.setAttribute("dto", dto);
+			String stock = req.getParameter("stock");
+			String proNo = req.getParameter("no");
+			ProductDto product = productservice.selectProduct(proNo);
+			product.setCartstock(stock);
+			products.add(product);
 		}
 		
 		//장바구니에서 구매 버튼을 눌렀을때만 동작
@@ -61,8 +62,6 @@ public class OrderController extends HttpServlet{
 		        selectedProductIds.add(Integer.parseInt(id));
 		    }
 		    
-		    // 선택된 상품 정보를 저장할 리스트
-		    List<ProductDto> dto = new ArrayList<>();
 		    
 		    // 장바구니 리스트에서 선택된 상품의 정보만 필터링
 		    for (CartDto cart : cartList) {
@@ -73,11 +72,13 @@ public class OrderController extends HttpServlet{
 		            product.setProsale(cart.getProsale());
 		            product.setPropoint(cart.getPropoint());
 		            product.setProprice(cart.getProprice());
-		            dto.add(product);
+		            products.add(product);
 		        }
 		    }
-	        req.setAttribute("dto", dto);
 		}
+		req.setAttribute("products", products);
+		
+		
 		//아이디만을 활용해서 유저 정보를 가져오기
 		UserDto userdto = userservice.selectUser(uid);
 		req.setAttribute("userdto", userdto);

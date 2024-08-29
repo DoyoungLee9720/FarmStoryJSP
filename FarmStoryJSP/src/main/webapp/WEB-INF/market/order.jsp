@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -33,7 +34,7 @@
 								HOME > 장보기 > <strong>장보기</strong>
 							</p>
 						</nav>
-						<p>전체(10) | 과일 | 야채 | 곡류</p>
+						<p>전체(${products.size()}) | 과일 | 야채 | 곡류</p>
 
 						<table>
 							<thead>
@@ -49,37 +50,18 @@
 								</tr>
 							</thead>
 							<tbody class="market_ListSet">
-								<tr>
-									<td><img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과 500g"></td>
-									<td>과일</td>
-									<td><a href="#">사과 500g</a></td>
-									<td>1</td>
-									<td>10%</td>
-									<td>40p</td>
-									<td>4,000</td>
-									<td>3,600원</td>
-								</tr>
-								<tr>
-									<td><img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과 500g"></td>
-									<td>과일</td>
-									<td><a href="#">사과 500g</a></td>
-									<td>1</td>
-									<td>10%</td>
-									<td>40p</td>
-									<td>4,000</td>
-									<td>3,600원</td>
-								</tr>
-								<tr>
-									<td><img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과 500g"></td>
-									<td>과일</td>
-									<td><a href="#">사과 500g</a></td>
-									<td>1</td>
-									<td>10%</td>
-									<td>40p</td>
-									<td>4,000</td>
-									<td>3,600원</td>
-								</tr>
-
+								<c:forEach var="product" items="${products}">
+									<tr>
+										<td><img src="${product.proimg1}" alt="${product.proname}"></td>
+										<td>${product.protype}</td>
+										<td><a href="/FarmStoryJSP/market/view?no=${product.prono}">${product.proname}</a></td>
+										<td>${product.cartstock}</td>
+										<td>${product.prosale}%</td>
+										<td>${product.propoint}p</td>
+										<td>${product.proprice}</td>
+										<td>${product.proprice*(100-product.prosale)/100*product.cartstock}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						<div class="tableContainer">
@@ -88,27 +70,27 @@
 								<caption>주문정보 입력</caption>
 								<tr>
 									<td>주문자</td>
-									<td><input type="text"></td>
+									<td><input type="text" value="${sessUser.getUserName()}"></td>
 								</tr>
 								<tr>
 									<td>휴대폰</td>
-									<td><input type="text"></td>
+									<td><input type="text" value="${sessUser.getUserHp()}"></td>
 								</tr>
 								<tr>
 									<td>포인트사용</td>
 									<td>
-										<input type="text" placeholder="포인트 입력">
+										<input type="number" max="${sessUser.getUserPoint()}" placeholder="포인트 입력">
 										<input type="button" value="사용하기"><br>
-										<span>사용가능 2,000</span>
+										<span>사용가능 ${sessUser.getUserPoint()}P</span>
 									</td>
 								</tr>
 								<tr>
 									<td>배송주소</td>
 									<td>
-										<input type="text" placeholder="주소 입력">
+										<input type="text" placeholder="주소 입력"  value="${sessUser.getUserZip()}">
 										<img src="/FarmStoryJSP/images/btn_post_search.gif"><br>
-										<input type="text" placeholder="기본주소 검색" class="full-width"><br>
-										<input type="text" placeholder="상세주소 검색" class="full-width">
+										<input type="text" placeholder="기본주소 검색" class="full-width" value="${sessUser.getUserAddr1()}"><br>
+										<input type="text" placeholder="상세주소 검색" class="full-width" value="${sessUser.getUserAddr2()}">
 									</td>
 								</tr>
 								<tr>
@@ -137,7 +119,7 @@
 									<tbody>
 										<tr>
 											<td>상품수</td>
-											<td>1</td>
+											<td>${products.size()}</td>
 										</tr>
 										<tr>
 											<td>상품금액</td>

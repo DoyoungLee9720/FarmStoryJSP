@@ -9,48 +9,76 @@
     <title>상품상세보기</title>
 	<script>
 	    window.onload = function () {
-	        const countFruitInput = document.querySelector('input[name="countfruit"]');
+	    	/* const countFruitInput = document.querySelector('input[class="stock"]');
 	        countFruitInput.addEventListener('input', allowOnlyNumbers);
-	
+
+	        const price = ${ProductDto.proprice} || 0; // 서버에서 전달된 값을 가져옵니다.
+
 	        // 페이지 로드 시 초기 합계 업데이트
-	        updateTotal();
+	        updateTotal(); */
 	        
-	    //이벤트 구현 패치함수 포스트 전송 사용 해야좋음 그렇기에 이방식은 좋은 방식이 아니다
-	    function addToCart(prodNo) {
-	        var quantity = document.querySelector('input[name="countfruit"]').value;
+	        document.addEventListener('click', function(e) {
+	        	const pronoElement = document.getElementsByClassName('prono')[0];
+	            const prono = pronoElement.innerText;
+	            
+	            const stockInput = document.querySelector('input[class="stock"]');
+	            const stock = stockInput.value;
+	        	
+	        	if(e.target.classList.contains('cart')){
+	        		e.preventDefault();
+	        		
+	        		const data = {
+	        		        prono: prono,
+	        		        stock: stock
+	        		    };
+
+	        		    fetch('/FarmStoryJSP/market/view.do', {
+	        		        method: 'POST',
+	        		        headers: {
+	        		            'Content-Type': 'application/json'
+	        		        },
+	        		        body: JSON.stringify(data)
+	        		    })
+			            .then(resp => resp.json())
+			            .then(data => {
+			            	console.log(data);
+			            	if(data.result != 0){
+			            		if(confirm('장바구니에 상품을 담았습니다.\n 장바구니로 이동하시겠습니까?')){
+			            			location.href = "/FarmStoryJSP/market/cart.do";
+			            		}else{
+			            			updateTotal();
+			            		}
+			            	}else{
+			            		alert('장바구니에 상품을 담지 못했습니다.');
+			            	}
+			            })
+			            .catch(err => {
+			            	alert('오류가 발생했습니다. 관리자에게 문의하세요.');
+			            	console.log(err);
+			            });
+	        	} // 장바구니 END
+	        	// 바로주문 버튼 클릭
+	        	if(e.target.classList.contains('order')){
+					e.preventDefault();
+					location.href = "/FarmStoryJSP/market/order.do?no="+prono+"&stock="+stock+"&ordercheck=1";
+	        	}// 바로주문 END
+	        	
+	        	
+	        });// EventListener END
 	        
-	        if (quantity && quantity > 0) {
-	            location.href = `/FarmStoryJSP/market/cart.do?quantity=\${quantity}&proNo=\${prodno}&ordercheck=1`;
-	        } else {
-	            alert("수량을 올바르게 입력하세요.");
-	        }
-	    }
-	
-	    function buyNow(prodNo) {
-	        var quantity = document.querySelector('input[name="countfruit"]').value;
-	
-	        if (quantity && quantity > 0) {
-	        	location.href = `/FarmStoryJSP/market/order.do?quantity=\${quantity}&proNo=\${prodNo}&ordercheck=1`;
-	        } else {
-	            alert("수량을 올바르게 입력하세요.");
-	        }
-	    }
-	
-	    
-	
-	    function updateTotal() {
-	        const price = ${ProductDto.proprice};
-	        const quantity = parseInt(document.querySelector('input[name="countfruit"]').value, 10);
-	
-	        if (!isNaN(price) && !isNaN(quantity)) {
-	            const total = price * quantity;
-	            document.querySelector('.colorRed').textContent = total+`원`;
-	        } else {
-	            // 가격이나 수량이 올바르지 않은 경우
-	            document.querySelector('.colorRed').textContent = '0원';
-	        }
-	    }
-	    };
+		    function updateTotal() {
+		        const price = ${ProductDto.proprice};
+		        const quantity = parseInt(document.querySelector('input[class="stock"]').value, 10);
+		
+		        if (!isNaN(price) && !isNaN(quantity)) {
+		            const total = price * quantity;
+		            document.querySelector('.colorRed').textContent = total+`원`;
+		        } else {
+		            // 가격이나 수량이 올바르지 않은 경우
+		            document.querySelector('.colorRed').textContent = '0원';
+		        }
+		    }
+	    } //onload END
 	    
 	</script>
 </head>
@@ -82,26 +110,23 @@
 	                                <table>
 	                                    <tr>
 	                                        <th>상품명</th>
-	                                        <td><input type="text" value="${ProductDto.proname}" disabled readonly></td>
+	                                        <td>${ProductDto.proname}</td>
 	                                    </tr>
 	                                    <tr>
 	                                        <th>상품코드</th>
-	                                        <td><input type="text" value="${ProductDto.prono}" disabled readonly>
-	                                        </td>
+	                                        <td class="prono">${ProductDto.prono}</td>
 	                                    </tr>
 	                                    <tr> 
 	                                        <th>배송비</th>
-	                                        <td><input type="text" value="${ProductDto.prodeliveryfee}" disabled readonly>
-	                                        <span>3만원이상 무료배송</span></td>
+	                                        <td>${ProductDto.prodeliveryfee}원 <span>3만원이상 무료배송</span></td>
 	                                    </tr>
 	                                    <tr>
 	                                        <th>판매가격</th>
-	                                        <td><input type="text" value="${ProductDto.proprice}" disabled readonly>
-	                                        </td>
+	                                        <td>${ProductDto.proprice}원</td>
 	                                    </tr>
 	                                    <tr>
 	                                        <th>구매수량</th>
-	                                        <td><input type="number" size="5" max="${ProductDto.prostock}" class="countfruitDesign" name="countfruit" value="1"></td>
+	                                        <td><input type="number" size="5" max="${ProductDto.prostock}" class="stock" value="1"></td>
 	                                    </tr>
 	                                    <tr>
 	                                        <th>합계</th>
@@ -110,9 +135,9 @@
 	                                </table>
 	                                <div class="button-container">
 			                             <!-- 장바구니 버튼 -->
-									    <button class="cart" id="cart-button" data-no="${ProductDto.prono}">장바구니</button>
+									    <button type="button" class="cart" id="cart-button">장바구니</button>
 									    <!-- 바로구매 버튼 -->
-									    <button class="order" id="buy-button" data-no="">바로구매</button>
+									    <button type="button" class="order" id="buy-button">바로구매</button>
 	                                </div>
                             	</form>
                             </div>

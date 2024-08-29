@@ -100,7 +100,7 @@
 						<table>
 							<thead>
 								<tr>
-									<th><input type="checkbox" class="selectall" value="${product.prono}"></th>
+									<th><input type="checkbox" class="selectall"></th>
 									<th>사진</th>
 									<th>상품번호</th>
 									<th>상품명</th>

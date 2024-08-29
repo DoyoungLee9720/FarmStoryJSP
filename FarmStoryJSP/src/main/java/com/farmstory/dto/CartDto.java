@@ -75,7 +75,7 @@ public class CartDto {
 	}
 	public void setCartno(String cartno) {
 		if(cartno==null) this.cartno = 0;
-		this.cartno = Integer.parseInt(cartno);
+		else this.cartno = Integer.parseInt(cartno);
 	}
 	public String getCartuid() {
 		return cartuid;
@@ -91,7 +91,7 @@ public class CartDto {
 	}
 	public void setCartprono(String cartprono) {
 		if(cartprono==null) this.cartprono = 0;
-		this.cartprono = Integer.parseInt(cartprono);
+		else this.cartprono = Integer.parseInt(cartprono);
 	}
 	public int getCartstock() {
 		return cartstock;
@@ -101,7 +101,7 @@ public class CartDto {
 	}
 	public void setCartstock(String cartstock) {
 		if(cartstock==null) this.cartstock = 0;
-		this.cartstock = Integer.parseInt(cartstock);
+		else this.cartstock = Integer.parseInt(cartstock);
 	}
 	
 	@Override

@@ -7,6 +7,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
+	<script>
+		window.onload = function(){
+			
+			document.addEventListener('click', function(e) {
+		        const selectall = document.querySelector('.selectall');
+		        const checkboxes = document.querySelectorAll('.select');
+	
+		        // 전체 선택 체크박스 클릭 시
+		        if (e.target.classList.contains('selectall')) {
+		            selectAll(e.target);
+		        }
+	
+		        // 개별 체크박스 클릭 시
+		        if (e.target.classList.contains('select')) {
+		            updateSelectAllCheckbox();
+		        }
+	
+		        function selectAll(selectAllCheckbox) {
+		            checkboxes.forEach(checkbox => {
+		                checkbox.checked = selectAllCheckbox.checked;
+		            });
+		        }
+	
+		        function updateSelectAllCheckbox() {
+		            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+		            selectall.checked = allChecked;
+		        }
+	
+		        // 삭제 버튼 클릭 시
+		        if (e.target.classList.contains('del')) {
+		            e.preventDefault();
+	
+		            const selectedCheckboxes = document.querySelectorAll('.select:checked');
+		            let selectedIds = [];
+	
+		            for (let checkbox of selectedCheckboxes) {
+		                const row = checkbox.closest('tr');
+		                const productNo = row.querySelector('.no').textContent.trim();
+		                selectedIds.push(productNo);
+		            }
+	
+		            if (selectedIds.length === 0) {
+		                alert('삭제하려는 상품을 선택하세요.');
+		                return;
+		            }
+	
+		            if (!confirm('선택한 상품을 정말 삭제하시겠습니까?')) {
+		                return;
+		            }
+	
+	
+		            fetch('/FarmStoryJSP/market/cart.do', {
+		                method: 'POST',
+		                headers: {
+		                    'Content-Type': 'application/json'
+		                  },
+		                  body: JSON.stringify(selectedIds)
+		            })
+		            .then(resp => resp.json())
+		            .then(data => {
+		                if (data.success) {
+		                    alert('삭제되었습니다.');
+		                    location.reload();
+		                } else {
+		                    alert('삭제에 실패했습니다.');
+		                }
+		            })
+		            .catch(err => {
+		                console.error('Error:', err);
+		                alert('삭제 중 오류가 발생했습니다.');
+		            });
+		        }
+		    }); // EventListener END
+		};
+	
+	</script>
 </head>
 <body>
 <%@ include file="/css/_header.jsp"%>
@@ -27,11 +103,11 @@
                     <img src="../images/sub_nav_tit_cate2_tit1.png" alt="장보기">
                     <p><img src="../images/sub_page_nav_ico.gif" alt="navIcon"> HOME > 장보기 > <strong>장보기</strong></p>
                 </nav>
-                <div class="all"><a href="#">장바구니 전체(10)</a></div>
+                <div class="all"><a href="#">장바구니 전체(${cartDto.size()})</a></div>
                 <table class="cart">
                     <thead>
                         <tr>
-                            <th id="tt"><input type="checkbox"></th>
+                            <th id="tt"><input type="checkbox" class="selectall"></th>
                             <th>이미지</th>
                             <th id="tt">종류</th>
                             <th>상품명</th>
@@ -54,30 +130,31 @@
 				                <tr>
 				                    <!-- 체크박스 -->
 				                    <td id="dd">
-				                        <input type="checkbox" name="selectedItems" value="${cart.cartProNo}">
+				                        <input type="checkbox" class="select">
 				                    </td>
 				                    <!-- 상품 이미지 -->
 				                    <td>
-				                        <a href="#"><img src="../images/market_item1.jpg" alt="${cart.proName}"></a>
+				                        <a href="#"><img src="${cart.proimg}" alt="${cart.proname}"></a>
 				                    </td>
 				                    <!-- 상품 유형 -->
-				                    <td id="dd">${cart.proType}</td>
+				                    <td id="dd">${cart.protype}</td>
 				                    <!-- 상품 이름 -->
 				                    <td>
-				                        <a href="#" style="font-weight: bold;">${cart.proName}</a>
+				                        <a href="/FarmStoryJSP/market/view?no=" style="font-weight: bold;">${cart.proname}</a>
+				                        <input type="hidden" class="no" value="${cart.cartprono}">
 				                    </td>
 				                    <!-- 수량 -->
-				                    <td id="dd">${cart.cartStock}</td>
+				                    <td id="dd">${cart.cartstock}</td>
 				                    <!-- 할인율 -->
-				                    <td id="dd">${cart.proSale}</td>
+				                    <td id="dd">${cart.prosale}%</td>
 				                    <!-- 포인트 -->
-				                    <td id="dd">${cart.proPoint}p</td>
+				                    <td id="dd">${cart.propoint}p</td>
 				                    <!-- 가격 -->
-				                    <td id="dd">${cart.proPrice}원</td>
+				                    <td id="dd">${cart.proprice}원</td>
 				                    <!-- 합계 -->
 				                    <td id="dd">
 				                        <span style="font-weight: bold;">
-				                            ${cart.cartStock * cart.proPrice - (cart.cartStock * cart.proPrice * cart.proSale / 100)}
+				                            ${cart.cartstock * cart.proprice - (cart.cartstock * cart.proprice * cart.prosale / 100)}
 				                        </span>원
 				                    </td>
 				                </tr>
@@ -86,7 +163,7 @@
                         
                     </tbody>
                 </table>
-                <a href=""><input type="button" value="선택삭제"></a>
+                <a href=""><input class="del" type="button" value="선택삭제"></a>
                 <div class="total">
                     <table class="downtable">
         				<caption>전체합계</caption>
