@@ -13,7 +13,7 @@
                         </c:when>
                         <c:otherwise>
                             <a href="/FarmStoryJSP/user/logout.do" class="logout">로그아웃 |</a>
-                            <a href="/FarmStoryJSP/user/myinfo.do" class="myinfo">나의설정 |</a>
+                            <a href="/FarmStoryJSP/user/myinfo.do" class="myinfos">나의설정 |</a>
                         </c:otherwise>
                     </c:choose>
               
