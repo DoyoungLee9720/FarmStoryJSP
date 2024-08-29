@@ -99,13 +99,10 @@ public class SQL{
 												+ "userNick=?,"
 												+ "userEmail=?,"
 												+ "userHP=?,"
-												+ "UserRole=?,"
-												+ "userGrade=?,"
-												+ "UserZip=?"
+												+ "UserZip=?,"
 												+ "userAddr1=?,"
 												+ "UserAddr2=?,"
-												+ "UserRegip=?,"
-												+ "userRegdate=?";
+												+ "UserRegip=?";
 	public static final String SELECT_USER 	= "SELECT * FROM `User` where `UserId`=? and `userPass`=SHA2(?,256)";
 	public static final String SELECT_USER_WITHOUTPASS = "SELECT * FROM `User` where `UserId`=?";
 	public static final String SELECT_USERS = "SELECT * FROM `User`";
