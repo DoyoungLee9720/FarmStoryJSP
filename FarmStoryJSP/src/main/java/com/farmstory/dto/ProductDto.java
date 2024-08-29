@@ -15,6 +15,7 @@ public class ProductDto {
 	private String proetc;
 	private String prordate;
 	
+	private String prorday;
 	private int startno;
 	private int saleprice;
 	private int cartstock;
@@ -155,6 +156,11 @@ public class ProductDto {
 	}
 	public void setPrordate(String proRdate) {
 		this.prordate = proRdate;
+		prorday = proRdate.substring(0, 10);
+	}
+
+	public String getProrday() {
+		return prorday;
 	}
 
 	

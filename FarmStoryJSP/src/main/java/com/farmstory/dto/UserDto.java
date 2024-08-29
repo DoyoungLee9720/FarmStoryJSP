@@ -18,7 +18,7 @@ public class UserDto {
 	
 	// 추가필드
 	private int UserCart;
-	
+	private String UserRegday;
 	
 	public int getUserCart() {
 		return UserCart;
@@ -123,6 +123,11 @@ public class UserDto {
 	}
 	public void setUserRegdate(String userRegdate) {
 		UserRegdate = userRegdate;
+		UserRegday = userRegdate.substring(0, 10);
+	}
+
+	public String getUserRegday() {
+		return UserRegday;
 	}
 	@Override
 	public String toString() {
