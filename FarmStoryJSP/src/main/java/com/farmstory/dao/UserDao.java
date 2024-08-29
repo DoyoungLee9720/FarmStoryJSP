@@ -244,9 +244,48 @@ public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		return result;
 		
 	}
-	public void deleteUser(String userId) {
+	public int deleteUser(String userId) {
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_USERS);
+			psmt.setString(1, userId);
+			result = psmt.executeUpdate();
+			
+		}catch (Exception e) {
+			logger.debug(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		
+		
+		return result;
 		
 	}
 	
+	
+	public UserDto selectFindId(String name, String email) {
+		UserDto dto = null;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_FIND_ID);
+			psmt.setString(1, name);
+			psmt.setString(2, email);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto = new UserDto();
+				dto.setUserId(rs.getString(1));
+				dto.setUserName(rs.getString(2));
+				dto.setUserNick(rs.getString(3));
+				dto.setUserRegdate(rs.getString(4));
+			}
+		} catch (Exception e) {
+
+		}
+		
+		return dto;
+	}
 	
 }
