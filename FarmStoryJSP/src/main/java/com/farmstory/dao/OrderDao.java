@@ -1,5 +1,6 @@
 package com.farmstory.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -8,14 +9,32 @@ import org.slf4j.LoggerFactory;
 import com.farmstory.dto.OrderDto;
 import com.farmstory.dto.ProductDto;
 import com.farmstory.util.DBHelper;
+import com.farmstory.util.SQL;
 
 public class OrderDao extends DBHelper{
 	private static OrderDao instance = new OrderDao();
-	Logger loger = LoggerFactory.getLogger(getClass());
+	private Logger logger = LoggerFactory.getLogger(getClass());
 	public static OrderDao getInstance() {
 		return instance;
 	}
 	private OrderDao() {}
+	
+	public int countTotal() {
+		int total = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_ORDERS_COUNT);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return total;
+	}
 	public void insertOrder(ProductDto productDto, int quantity) {
 		
 	}
@@ -54,7 +73,18 @@ public class OrderDao extends DBHelper{
 	public void updateOrder(OrderDto order) {
 		
 	}
-	public void deleteOrder(String orderno) {
-		
+	public int deleteOrder(String orderno) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_ORDER);
+			psmt.setString(1, orderno);
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return result;
 	}
 }

@@ -14,6 +14,9 @@ public enum CartService {
 	public List<CartDto> selectCarts(String cartuid){
 		return dao.selectCarts(cartuid);
 	}
+	public List<CartDto> selectCartForPay(String uid){
+		return dao.selectCartForPay(uid);
+	}
 	public int deleteCart(String cartno,String cartuid) {
 		return dao.deleteCart(cartno, cartuid);
 	}
