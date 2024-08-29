@@ -69,7 +69,7 @@ public enum OrderService {
 	public void updateOrder(OrderDto order) {
 		dao.updateOrder(order);
 	}
-	public void deleteOrder(String orderno) {
-		dao.deleteOrder(orderno);
+	public int deleteOrder(String orderno) {
+		return dao.deleteOrder(orderno);
 	}
 }

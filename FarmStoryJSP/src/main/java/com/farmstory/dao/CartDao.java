@@ -72,5 +72,30 @@ public class CartDao extends DBHelper{
 		}
 		return result;
 	}
+	public List<CartDto> selectCartForPay(String uid){
+		List<CartDto> cart = new ArrayList<CartDto>();
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_USER_CART_PAY);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CartDto dto = new CartDto();
+				dto.setProimg(rs.getString(1));
+				dto.setProtype(rs.getString(2));
+				dto.setProname(rs.getString(3));
+				dto.setCartstock(rs.getInt(4));
+				dto.setProsale(rs.getInt(5));
+				dto.setPropoint(rs.getInt(6));
+				dto.setProprice(rs.getInt(7));
+				cart.add(dto);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return cart;
+	}
 	
 }

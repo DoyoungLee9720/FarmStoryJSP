@@ -7,6 +7,87 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrator</title>
 	<link rel="stylesheet" href="/FarmStoryJSP/css/admin.css">
+<script>
+	window.onload = function(){
+        const now = document.querySelector('a#orderlist[href]');
+        if (now) {
+            now.classList.add("now");
+        }
+        document.addEventListener('click', function(e) {
+	        const selectall = document.querySelector('.selectall');
+	        const checkboxes = document.querySelectorAll('.select');
+
+	        // 전체 선택 체크박스 클릭 시
+	        if (e.target.classList.contains('selectall')) {
+	            selectAll(e.target);
+	        }
+
+	        // 개별 체크박스 클릭 시
+	        if (e.target.classList.contains('select')) {
+	            updateSelectAllCheckbox();
+	        }
+
+
+	        // 삭제 버튼 클릭 시
+	        if (e.target.classList.contains('del')) {
+	            e.preventDefault();
+
+	            const selectedCheckboxes = document.querySelectorAll('.select:checked');
+	            let selectedIds = [];
+
+	            for (let checkbox of selectedCheckboxes) {
+	                const row = checkbox.closest('tr');
+	                const orderNo = row.querySelector('.no').textContent.trim();
+	                selectedIds.push(orderNo);
+	            }
+
+	            if (selectedIds.length === 0) {
+	                alert('삭제하려는 주문을 선택하세요.');
+	                return;
+	            }
+
+	            if (!confirm('선택한 주문을 정말 삭제하시겠습니까?')) {
+	                return;
+	            }
+
+
+	            fetch('/FarmStoryJSP/admin/order/list.do', {
+	                method: 'DELETE',
+	                headers: {
+	                    'Content-Type': 'application/json'
+	                  },
+	                  body: JSON.stringify(selectedIds)
+	            })
+	            .then(resp => resp.json())
+	            .then(data => {
+	                if (data.success) {
+	                    alert('삭제되었습니다.');
+	                    location.reload();
+	                } else {
+	                    alert('삭제에 실패했습니다.');
+	                }
+	            })
+	            .catch(err => {
+	                console.error('Error:', err);
+	                alert('삭제 중 오류가 발생했습니다.');
+	            });
+	        }// delete END
+	        
+
+	        function selectAll(selectAllCheckbox) {
+	            checkboxes.forEach(checkbox => {
+	                checkbox.checked = selectAllCheckbox.checked;
+	            });
+	        }
+
+	        function updateSelectAllCheckbox() {
+	            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+	            selectall.checked = allChecked;
+	        }
+	        
+	    }); // EventListener END
+	}//onload END
+</script>
 </head>
 <body>
     <div id="wrap">
@@ -20,7 +101,7 @@
                     <table>
                         <thead>
                             <tr>
-                                <th><input type="checkbox" name="selectall" onclick='selectAll(this)'></th>
+                                <th><input type="checkbox" class="selectall" onclick='selectAll(this)'></th>
                                 <th>주문번호</th>
                                 <th>상품명</th>
                                 <th>판매가격</th>
@@ -35,8 +116,8 @@
                         <tbody>
                         <c:forEach var="order" items="${Orders}">
                             <tr>
-                                <td><input type="checkbox" name="select" onclick='checkSelectAll(this)'></td>
-                                <td>${order.orderno}</td>
+                                <td><input type="checkbox" class="select" onclick='checkSelectAll(this)'></td>
+                                <td class="no">${order.orderno}</td>
                                 <td>${order.orderproname}</td>
                                 <td class="price">${order.orderproprice}</td>
                                 <td>${order.orderstock}</td>
@@ -52,7 +133,7 @@
                 </article>
                 <article>
                     <h3>
-                        <a href="#">선택삭제</a>
+                        <a href="#" class="del">선택삭제</a>
                     </h3>
                 </article>
                 <article class="paging">
@@ -77,29 +158,6 @@
     </div>
     <%@ include file="../_footer.jsp"%>
 </body>
-<script>
-        const now = document.querySelector('a#orderlist[href]');
-        if (now) {
-            now.classList.add("now");
-        }
-        function checkSelectAll(checkbox)  {
-  		  const selectall 
-  		    = document.querySelector('input[name="selectall"]');
-  		  
-  		  if(checkbox.checked === false)  {
-  		    selectall.checked = false;
-  		  }
-  		}
-
-  		function selectAll(selectAll)  {
-  		  const checkboxes 
-  		     = document.getElementsByName('select');
-  		  
-  		  checkboxes.forEach((checkbox) => {
-  		    checkbox.checked = selectAll.checked
-  		  })
-  		}
-</script>
 </html>
 
 

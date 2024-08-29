@@ -3,6 +3,9 @@ package com.farmstory.controller.market;
 import java.io.IOException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.farmstory.dto.CartDto;
 import com.farmstory.dto.ProductDto;
 import com.farmstory.service.CartService;
@@ -19,27 +22,34 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet("/market/cart.do")
 public class CartController extends HttpServlet{
 
-	private static final long serialVersionUID = 1329079888171038798L;
-	private CartService cartservice = CartService.INSTANCE;
-	private ProductService productservice = ProductService.INSTANCE;
+	private static final long serialVersionUID = 1L;
+	
+	private CartService cartService = CartService.INSTANCE;
+	private ProductService productService = ProductService.INSTANCE;
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		String uid = req.getParameter("uid");
+		
 		HttpSession session = req.getSession();
 		session.setAttribute("sessUser",uid);
-		int ordercheck = Integer.parseInt(req.getParameter("ordercheck"));
+		
+		String ordercheck = req.getParameter("ordercheck");
+		
 		//view 에서 장바구니 버튼을 눌렀을때만 동작
-		if(ordercheck == 1) {
+		if(ordercheck!=null&&ordercheck.equals("1")) {
 			String quantity = req.getParameter("quantity");
 			String proNo = req.getParameter("proNo");
 			CartDto dto = new CartDto();
 			dto.setCartuid(uid);
-			dto.setCartprono(Integer.parseInt(proNo));
-			dto.setCartstock(Integer.parseInt(quantity));
-			cartservice.intsertCart(dto);
+			dto.setCartprono(proNo);
+			dto.setCartstock(quantity);
+			cartService.intsertCart(dto);
 		}
-		List<CartDto> cartDto = cartservice.selectCarts(uid);
+		
+		List<CartDto> cartDto = cartService.selectCarts(uid);
 		req.setAttribute("cartDto", cartDto);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/market/cart.jsp");
 		dispatcher.forward(req, resp);

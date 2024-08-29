@@ -68,11 +68,11 @@ public class OrderController extends HttpServlet{
 		    for (CartDto cart : cartList) {
 		        if (selectedProductIds.contains(cart.getCartprono())) {
 		            ProductDto product = new ProductDto();
-		            product.setProNo(cart.getCartprono());
+		            product.setProno(cart.getCartprono());
 		            product.setCartstock(cart.getCartstock());
-		            product.setProSale(cart.getProsale());
-		            product.setProPoint(cart.getPropoint());
-		            product.setProPrice(cart.getProprice());
+		            product.setProsale(cart.getProsale());
+		            product.setPropoint(cart.getPropoint());
+		            product.setProprice(cart.getProprice());
 		            dto.add(product);
 		        }
 		    }

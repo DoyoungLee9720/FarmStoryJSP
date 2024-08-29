@@ -82,7 +82,7 @@ public enum ProductService {
 		dao.updateProduct(dto);
 	}
 
-	public void deleteProduct(int proNo) {
-		dao.deleteProduct(proNo);
+	public int deleteProduct(String proNo) {
+		return dao.deleteProduct(proNo);
 	}
 }
