@@ -25,7 +25,7 @@ public class IndexController extends HttpServlet{
 	
 	private ProductService service = ProductService.INSTANCE;
 	private ArticleService articleService = ArticleService.INSTANCE;
-	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	    String pg = req.getParameter("pg");
