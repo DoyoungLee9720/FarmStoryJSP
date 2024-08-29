@@ -170,6 +170,7 @@ public class UserDao extends DBHelper{
 				user.setUserPoint(rs.getString(12));
 				user.setUserRegip(rs.getString(13));
 				user.setUserRegdate(rs.getString(14));
+				user.setUserCart(rs.getString(15));
 			}
 			
 			
