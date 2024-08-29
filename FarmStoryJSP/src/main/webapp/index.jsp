@@ -443,7 +443,7 @@ a.link:hover {
 								<c:forEach var="article" items="${growArticles}">
 									<tr>
 										<td class="table-cell"><a
-											href="/FarmStoryJSP/article/list.do?group=croptalk&cate=grow"
+											href="/FarmStoryJSP/article/view.do?group=croptalk&cate=grow&artNo=${article.artNo}"
 											class="link">>${article.artTitle}</a></td>
 										<td class="table-date">${article.artRdate}</td>
 									</tr>
@@ -462,7 +462,7 @@ a.link:hover {
 								<c:forEach var="article" items="${SchoolArticles}">
 									<tr>
 										<td class="table-cell"><a
-											href="/FarmStoryJSP/article/list.do?group=croptalk&cate=school"
+											href="/FarmStoryJSP/article/view.do?group=croptalk&cate=school&artNo=${artcile.artNo}"
 											class="link">>${article.artTitle}</a></td>
 										<td class="table-date">${article.artRdate}</td>
 									</tr>
@@ -481,7 +481,7 @@ a.link:hover {
 								<c:forEach var="article" items="${storiArticles}">
 									<tr>
 										<td class="table-cell"><a
-											href="/FarmStoryJSP/article/list.do?group=croptalk&cate=story&artNo=?"
+											href="/FarmStoryJSP/article/view.do?group=croptalk&cate=story&artNo=${article.artNo}"
 											class="link">>${article.artTitle}</a></td>
 										<td class="table-date">${article.artRdate}</td>
 									</tr>
