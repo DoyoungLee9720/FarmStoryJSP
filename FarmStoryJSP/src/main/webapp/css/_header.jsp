@@ -5,7 +5,7 @@
           <article class="top">
             <img src="/FarmStoryJSP/images/head_top_line.png" alt="">
             <p>
-              <a href="/FarmStoryJSP/">HOME |</a>  
+              <a href="/FarmStoryJSP/index.do">HOME |</a>  
                     <c:choose>
                         <c:when test="${sessUser == null}">
                             <a href="/FarmStoryJSP/user/login.do">로그인 |</a>
