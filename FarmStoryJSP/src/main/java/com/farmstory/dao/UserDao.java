@@ -83,7 +83,7 @@ public class UserDao extends DBHelper{
 		return result;
 	}
 
-public List<UserDto> selectPagedUsers(PageGroupDto page) {
+	public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		
 		List<UserDto> users = new ArrayList<>();
 		try {
@@ -275,6 +275,23 @@ public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		
 		return result;
 		
+	}
+	public int updateUserGrade(String id, String grade) {
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.UPDATE_USER_GRADE);
+			psmt.setString(1, grade);
+			psmt.setString(2, id);
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		} finally {
+			closeAll();
+		}
+		
+		return result;
 	}
 	public void deleteUser(String userId) {
 		
