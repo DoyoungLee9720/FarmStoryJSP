@@ -63,6 +63,10 @@ public enum UserService {
 		return dao.selectUserCount();
 	}
 	
+	public int selectCountCheckUser(String type, String value) {
+		return dao.selectCountCheckUser(type, value);
+	}
+	
 	public int insertUser(UserDto user) {
 		return dao.insertUser(user);
 	}
@@ -78,19 +82,25 @@ public enum UserService {
 	public int updateUser(UserDto user) {
 		return dao.updateUser(user);
 	}
-	public void deleteUser(String userId) {
-		dao.deleteUser(userId);
+	
+	public int deleteUser(String userId) {
+		return dao.deleteUser(userId);
 	}
+
+	public UserDto selectFindId(String name, String email) {
+		return dao.selectFindId(name,email);
+	}
+	
 	public int selectCountCheckUser(String type, String value) {
 		return dao.selectCountCheckUser(type, value);
 	}
 
+
+  
+  
 	public String sendEmailCode(String email) {
-		
-		
 		//인증코드 생성
 		int code =ThreadLocalRandom.current().nextInt(100000, 1000000);
-		
 		
 		//이메일 기본정보
 		String title = "FarmStory 이메일 인증코드입니다.";

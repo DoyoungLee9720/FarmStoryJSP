@@ -276,26 +276,61 @@ public class UserDao extends DBHelper{
 		return result;
 		
 	}
+
 	public int updateUserGrade(String id, String grade) {
 		int result = 0;
-		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.UPDATE_USER_GRADE);
-			psmt.setString(1, grade);
-			psmt.setString(2, id);
+      psmt = conn.prepareStatement(SQL.UPDATE_USER_GRADE);
+      psmt.setString(1, grade);
+      psmt.setString(2, id);
 			result = psmt.executeUpdate();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		} finally {
+		}catch (Exception e) {
+			logger.debug(e.getMessage());
+		}finally {
 			closeAll();
 		}
+
+		return result;
+
+	}
+		public void deleteUser(String userId) {
+      int result = 0;
+      try {
+        conn = getConnection();
+			  psmt = conn.prepareStatement(SQL.DELETE_USERS);
+			  psmt.setString(1, userId);
+        result = psmt.executeUpdate();
+      } catch (Exception e) {
+        logger.error(e.getMessage());
+      } finally {
+        closeAll();
+      }
 		
 		return result;
 	}
-	public void deleteUser(String userId) {
-		
-	}
 	
+	public UserDto selectFindId(String name, String email) {
+		UserDto dto = null;
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_FIND_ID);
+			psmt.setString(1, name);
+			psmt.setString(2, email);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto = new UserDto();
+				dto.setUserId(rs.getString(1));
+				dto.setUserName(rs.getString(2));
+				dto.setUserNick(rs.getString(3));
+				dto.setUserRegdate(rs.getString(4));
+			}
+		} catch (Exception e) {
+
+		}
+		
+		return dto;
+	}
 	
 }
