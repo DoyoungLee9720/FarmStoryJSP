@@ -66,12 +66,12 @@ public class ProductDao extends DBHelper {
 		return total;
 	}
 
-	public ProductDto selectProduct(int proNo) {
+	public ProductDto selectProduct(String proNo) {
 		ProductDto dto = null;
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_PRODUCT);
-			psmt.setInt(1, proNo);
+			psmt.setString(1, proNo);
 
 			rs = psmt.executeQuery();
 			if (rs.next()) {

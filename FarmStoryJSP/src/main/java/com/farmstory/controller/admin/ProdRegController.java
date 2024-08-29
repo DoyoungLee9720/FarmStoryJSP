@@ -42,16 +42,6 @@ public class ProdRegController extends HttpServlet{
 		String fee = req.getParameter("fee");
 		String stock = req.getParameter("stock");
 		String etc = req.getParameter("etc");
-		logger.debug("name : " +name);
-		logger.debug("type : " +type);
-		logger.debug("price : " +price);
-		logger.debug("point : " +point);
-		logger.debug("sale : " +sale);
-		logger.debug("fee : " +fee);
-		logger.debug("stock : " +stock);
-		logger.debug("etc : " +etc);
-		
-		
 		
 		List<String> files = imageService.imageUpload(req);
 		logger.debug("files : " +files);

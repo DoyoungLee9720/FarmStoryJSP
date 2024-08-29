@@ -18,19 +18,21 @@ public class CartDao extends DBHelper{
 	}
 
 	private CartDao() {	}
-	public void intsertCart(CartDto dto) {
+	public int intsertCart(CartDto dto) {
+		int result = 0;
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.INSERT_CART);
 			psmt.setString(1, dto.getCartuid());
-			psmt.setInt(1, dto.getCartprono());
-			psmt.setInt(1, dto.getCartstock());
-			psmt.executeUpdate();
+			psmt.setInt(2, dto.getCartprono());
+			psmt.setInt(3, dto.getCartstock());
+			result = psmt.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}finally {
 			closeAll();
 		}
+		return result;
 	}
 	public List<CartDto> selectCarts(String cartuid){
 		List<CartDto> carts = new ArrayList<CartDto>();
@@ -88,6 +90,7 @@ public class CartDao extends DBHelper{
 				dto.setProsale(rs.getInt(5));
 				dto.setPropoint(rs.getInt(6));
 				dto.setProprice(rs.getInt(7));
+				dto.setCartprono(rs.getInt(8));
 				cart.add(dto);
 			}
 		} catch (Exception e) {

@@ -8,8 +8,8 @@ import com.farmstory.dto.CartDto;
 public enum CartService {
 	INSTANCE;
 	private CartDao dao = CartDao.getInstance();
-	public void intsertCart(CartDto dto) {
-		dao.intsertCart(dto);
+	public int intsertCart(CartDto dto) {
+		return dao.intsertCart(dto);
 	}
 	public List<CartDto> selectCarts(String cartuid){
 		return dao.selectCarts(cartuid);

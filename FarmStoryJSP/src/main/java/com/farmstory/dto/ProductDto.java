@@ -27,6 +27,10 @@ public class ProductDto {
 	public void setCartstock(int cartstock) {
 		this.cartstock = cartstock;
 	}
+	public void setCartstock(String cartstock) {
+		if(cartstock==null) this.cartstock = 0;
+		else this.cartstock = Integer.parseInt(cartstock);
+	}
 
 	
 	@Override
