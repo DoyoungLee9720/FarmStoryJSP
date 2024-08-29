@@ -16,6 +16,20 @@ public class UserDto {
 	private String UserRegip;
 	private String UserRegdate;
 	
+	// 추가필드
+	private int UserCart;
+	
+	
+	public int getUserCart() {
+		return UserCart;
+	}
+	public void setUserCart(int userCart) {
+		UserCart = userCart;
+	}
+	public void setUserCart(String userCart) {
+		if(userCart != null) UserCart = Integer.parseInt(userCart);
+		else this.UserCart = 0;
+	}
 	public String getUserId() {
 		return UserId;
 	}

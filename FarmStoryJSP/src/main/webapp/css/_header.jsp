@@ -14,10 +14,17 @@
                         <c:otherwise>
                             <a href="/FarmStoryJSP/user/logout.do" class="logout">로그아웃 |</a>
                             <a href="/FarmStoryJSP/user/myinfo.do" class="myinfos">나의설정 |</a>
+                            <c:choose>
+                            	<c:when test="${sessUser.getUserRole() == 'user'}">
+                            		<a href="/FarmStoryJSP/market/cart.do">장바구니(${sessUser.getUserCart()}) |</a>
+                            	</c:when>
+                            	<c:otherwise>
+              						<a href="/FarmStoryJSP/admin/index.do">관리자 |</a>
+                            	</c:otherwise>
+                            </c:choose>
                         </c:otherwise>
                     </c:choose>
               
-              <a href="/FarmStoryJSP/admin/index.do">관리자 |</a>
               <a href="/FarmStoryJSP/community/chat.do">고객센터</a>
             </p>
             <a href="/FarmStoryJSP/index.do" class="headerLogo"><img src="/FarmStoryJSP/images/logo.png" alt="팜스토리 로고"></a>
