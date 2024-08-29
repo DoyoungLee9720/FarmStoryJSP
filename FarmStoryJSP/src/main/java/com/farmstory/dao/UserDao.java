@@ -294,7 +294,7 @@ public class UserDao extends DBHelper{
 		return result;
 
 	}
-		public void deleteUser(String userId) {
+	public int deleteUser(String userId) {
       int result = 0;
       try {
         conn = getConnection();

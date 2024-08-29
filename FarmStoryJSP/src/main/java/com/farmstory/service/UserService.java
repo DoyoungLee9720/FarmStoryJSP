@@ -90,10 +90,7 @@ public enum UserService {
 	public UserDto selectFindId(String name, String email) {
 		return dao.selectFindId(name,email);
 	}
-	
-	public int selectCountCheckUser(String type, String value) {
-		return dao.selectCountCheckUser(type, value);
-	}
+
 
 
   
