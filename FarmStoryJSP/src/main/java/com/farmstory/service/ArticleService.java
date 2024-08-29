@@ -102,4 +102,8 @@ public enum ArticleService {
 	public void UpdateComment(String artNo) {
 		dao.updateComment(artNo);
 	}
+
+	public void DowndateComment(String artNo) {
+		dao.DowndateComment(artNo);
+	}
 }

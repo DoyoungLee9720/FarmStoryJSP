@@ -47,10 +47,10 @@
 	                        </span>
 	                        <textarea name="comment" readonly>${comment.comContent}</textarea>
 	                        
-	                        <c:if test="${(sessUser.userId eq articleDto.artWriter) || (sessUser.userRole eq 'admin')}">
+	                        <c:if test="${(sessUser.userId eq comment.comWriter) || (sessUser.userRole eq 'admin')}">
 		                        <div>
 		                        	<!-- HTML 사용자 정의 속성을 이용한 삭제/수정 -->
-		                            <a href="#" class="commentRemove" data-no="${comment.comNo}">삭제</a>
+		                            <a href="/FarmStoryJSP/comment/delete.do?group=${group}&cate=${cate}&artNo=${articleDto.artNo}&comNo=${comment.comNo}" class="commentRemove" data-no="${comment.comNo}">삭제</a>
 		                            <a href="#" class="commentCancel" data-no="${comment.comNo}">취소</a><!-- style.css 364라인 display: none; 처리하기 -->
 		                            <a href="#" class="commentModify" data-no="${comment.comNo}">수정</a>
 		                        </div>
@@ -61,7 +61,6 @@
 	                    <p class="empty">등록된 댓글이 없습니다.</p>
                     </c:if>
                 </section>
-    
                 <!-- 댓글입력폼 -->
                  <c:if test="${not empty sessUser.userId}">
                 <section class="commentForm">
