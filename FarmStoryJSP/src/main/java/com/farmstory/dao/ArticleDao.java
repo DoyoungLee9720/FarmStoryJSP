@@ -54,15 +54,20 @@ public class ArticleDao extends DBHelper{
 		}
 		return dto;
 	}
-	public List<ArticleDto> selectArticles(int start, String cate){
+	public List<ArticleDto> selectArticles(int start, String artCate){
 		
 		List<ArticleDto> articles = new ArrayList<>();
 		try {
 			conn = getConnection();
+	        logger.info("Category parameter before query: " + artCate);
+
 			psmt = conn.prepareStatement(SQL.SELECT_ARTICLES_CATE);
-			psmt.setString(1, cate);
+			psmt.setString(1, artCate);
 			psmt.setInt(2, start);
+			
+	        
 			rs = psmt.executeQuery();
+			
 			
 			while(rs.next()) {
 				ArticleDto dto = new ArticleDto();
