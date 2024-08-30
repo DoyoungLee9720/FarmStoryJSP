@@ -51,7 +51,7 @@
 							<tbody>
 								<c:forEach var="product" items="${products}">
 									<tr>
-										<td class="thumb"><img src="${product.proimg1}"></td>
+										<td class="thumb"><a href="/FarmStoryJSP/market/view.do?no=${product.prono}"><img src="${product.proimg1}"></a></td>
 										<td>${product.protype}</td>
 										<td><a href="/FarmStoryJSP/market/view.do?no=${product.prono}">${product.proname}</a></td>
 										<td>${product.prosale}%</td>

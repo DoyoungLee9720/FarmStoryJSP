@@ -158,9 +158,9 @@ public class SQL{
 												+"WHERE u.userUID = ?";  
 	// 장바구니 구매
 	public static final String  SELECT_USER_CART_PAY = "SELECT p.proimg1, p.protype, p.proName, "
-												+ "SUM(c.cartstock), p.prosale, p.propoint, p.proprice, c.cartProNo FROM `cart` c "
+												+ "SUM(c.cartstock), p.prosale, p.propoint, p.proprice, c.cartProNo, p.prodeliveryfee FROM `cart` c "
 												+ "LEFT JOIN `product` p ON c.cartProNo = p.proNo WHERE c.CartUid = ? "
-												+ "GROUP BY p.proimg1, p.protype, p.proName, p.prosale, p.propoint, p.proprice, c.cartProNo";
+												+ "GROUP BY p.proimg1, p.protype, p.proName, p.prosale, p.propoint, p.proprice, c.cartProNo ,p.prodeliveryfee";
 	
 	public static final String UPDATE_ORDER = "UPDATE `order` SET"
 												+" orderstock = ?, "
