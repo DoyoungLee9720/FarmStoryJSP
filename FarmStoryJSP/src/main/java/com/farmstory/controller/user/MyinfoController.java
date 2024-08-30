@@ -25,11 +25,7 @@ public class MyinfoController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String uid = req.getParameter("uid");
-		if(uid != null) {
-			UserDto user = service.selectUser(uid);
-			req.setAttribute("sessUser", user);
-		}
+		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/user/myinfo.jsp");
 		dispatcher.forward(req, resp);
 	}

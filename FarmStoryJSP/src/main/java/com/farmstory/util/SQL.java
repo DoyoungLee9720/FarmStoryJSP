@@ -204,7 +204,11 @@ public class SQL{
 													+ "WHERE c.cartUid = ?";
 													
 	public static final String SELECT_FIND_ID = "select `userid`,`username`,`userEmail`,`userRegdate` from `user` where `username`=? and `userEmail`=?";
-	
+
+
+	//비밀번호찾기
+	public static final String SELECT_FIND_PASS = "select * from `user` where `userId`=? and `userEmail`=?";
+
 	// 총 주문 수 
 	public static final String SELECT_ORDERS_COUNT = "SELECT COUNT(*) FROM `order`";
 	// 관리자 주문 페이지 불러오기
@@ -224,5 +228,5 @@ public class SQL{
 
 	// 유저 등급 변경
 	public static final String UPDATE_USER_GRADE = "UPDATE `User` SET `userGrade` = ? WHERE `userId` = ?";
-	public static final String SELECT_FIND_PASS =  "select * from `user` where `userId`=? and `userEmail`=?";
+
 }
