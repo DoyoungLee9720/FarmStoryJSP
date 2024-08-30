@@ -68,7 +68,7 @@
 							<tbody>
 								<c:forEach var="product" items="${products}">
 									<tr>
-										
+										<!-- 이미지 클릭해도 가지도록 -->
 										<td class="thumb">
 										<a href="/FarmStoryJSP/market/view.do?no=${product.prono}">
 										<img src="${product.proimg1}">
