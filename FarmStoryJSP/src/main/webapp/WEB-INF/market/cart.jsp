@@ -97,7 +97,7 @@
 	
 	
 		            fetch('/FarmStoryJSP/market/cart.do', {
-		                method: 'POST',
+		                method: 'DELETE',
 		                headers: {
 		                    'Content-Type': 'application/json'
 		                  },
@@ -116,7 +116,28 @@
 		                console.error('Error:', err);
 		                alert('삭제 중 오류가 발생했습니다.');
 		            });
-		        }
+		        }//del
+		        if (e.target.classList.contains('order')) {
+		            e.preventDefault();
+		            const selectedCheckboxes = document.querySelectorAll('.select:checked');
+		            console.log(selectedCheckboxes)
+		            let selectedIds = [];
+	
+		            for (let checkbox of selectedCheckboxes) {
+		                const row = checkbox.closest('tr');
+		                const productNo = row.querySelector('.no').value.trim();
+		                selectedIds.push(productNo);
+		            }
+	
+		            if (selectedIds.length === 0) {
+		                alert('결제하려는 상품을 선택하세요.');
+		                return;
+		            }
+		            
+		            location.href="/FarmStoryJSP/market/order.do?ordercheck=2&ids="+selectedIds;
+		            
+		            
+		        }//order
 		    }); // EventListener END
 		};
 	
@@ -178,7 +199,7 @@
 				                    <td id="dd">${cart.protype}</td>
 				                    <!-- 상품 이름 -->
 				                    <td>
-				                        <a href="/FarmStoryJSP/market/view?no=" style="font-weight: bold;">${cart.proname}</a>
+				                        <a href="/FarmStoryJSP/market/view?no=${cart.cartprono}" style="font-weight: bold;">${cart.proname}</a>
 				                        <input type="hidden" class="no" value="${cart.cartprono}">
 				                    </td>
 				                    <!-- 수량 -->
@@ -235,7 +256,7 @@
 				            </tr>
 				        </tbody>
 				    </table>
-                    <a href=""><input type="button" value="주문하기"></a>
+                    <a href="#"><input type="button" class="order" value="주문하기"></a>
                 </div>
             </article>
         </section>

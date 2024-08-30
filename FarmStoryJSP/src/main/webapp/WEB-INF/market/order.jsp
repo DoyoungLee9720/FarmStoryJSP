@@ -9,58 +9,107 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 	<script>
-		window.onload = function(){
-			updateTotal();
-			updatepoint();
-			const stockInput = document.querySelector('input[class="userpoint"]');
-	        stockInput.addEventListener('input', function() {
-	        	updatepoint();
-	        });
-			function updateTotal() {
-				const rows = document.querySelectorAll('.market_ListSet tr');
-				console.log(rows);
-				let totalItemCount = 0;
-	            let totalProductPrice = 0;
-	            let totalDiscount = 0;
-	            let totalPoints = 0;
-	            let maxDeliveryFee = 0;
-	            for (let row of rows) {
-	                const quantity = parseInt(row.children[3].innerText.trim(), 10);  // 수량
-	                const discount = parseInt(row.children[4].innerText.replace('%', '').trim(), 10);  // 할인율
-	                const points = parseInt(row.children[5].innerText.replace('p', '').trim(), 10);  // 포인트
-	                const price = parseInt(row.children[6].innerText.replace('원', '').trim(), 10);  // 가격
-	                const delivery = parseInt(row.getElementsByClassName('delivery')[0]?.value.trim(), 10) || 0;  // 배송비 (없는 경우 0)
-	                
-	                // 합계 계산
-	                const itemTotalPrice = quantity * price;
-	                const itemDiscount = itemTotalPrice * (discount / 100);
-	                
-	                totalItemCount += quantity;
-	                totalProductPrice += itemTotalPrice;
-	                totalDiscount += itemDiscount;
-	                totalPoints += points;
-	                maxDeliveryFee = Math.max(maxDeliveryFee, delivery);
+	window.onload = function() {
+	    
+	    // 클릭 이벤트 리스너 추가
+	    document.addEventListener('click', function(e) {
+	        if (e.target.classList.contains('redbutton')) {
+	            e.preventDefault();
+
+	            let datas = [];
+	            const imgs = document.getElementsByClassName('proimg');
+
+	            for (let img of imgs) {
+	                const row = img.closest('tr');
+	                const prono = row.querySelector('.prono').value;
+	                const stock = row.querySelector('.stock').innerText;
+	                console.log('prono : ' + prono + ', stock : ' + stock);
+	                const data = {
+	                    prono: prono,
+	                    stock: stock
+	                };
+	                datas.push(data);
 	            }
-				const totalOrderAmount = totalProductPrice - totalDiscount + maxDeliveryFee;
-				// UI 업데이트
-	            document.getElementById('total-item-count').innerText = totalItemCount;
-	            document.getElementById('total-product-price').innerText = totalProductPrice + "원";
-	            document.getElementById('total-discount').innerText = totalDiscount+ "원";
-	            document.getElementById('total-delivery-fee').innerText = maxDeliveryFee+ "원";
-	            document.getElementById('total-points').innerText = totalPoints +"p";
-	            document.getElementsByClassName('total-amount')[0].innerText = totalOrderAmount+ "원";
-		    }
-			function updatepoint() {
-		        const quantity = parseInt(document.querySelector('input[class="userpoint"]').value, 10);
-		
-		        if (!isNaN(quantity)&&quantity<=${sessUser.getUserPoint()}) {
-		            document.querySelector('#total-point-use').textContent = quantity+`P`;
-		        } else {
-		            // 가격이나 수량이 올바르지 않은 경우
-		            document.querySelector('#total-point-use').textContent = '0P';
-		        }
-		    }
-		}
+
+	            fetch('/FarmStoryJSP/market/order.do', {
+	                method: 'POST',
+	                headers: {
+	                    'Content-Type': 'application/json'
+	                },
+	                body: JSON.stringify(datas)
+	            })
+	            .then(resp => resp.json())
+	            .then(data => {
+	                if (data.success) {
+	                    alert('결제되었습니다.');
+	                    location.href = "/FarmStoryJSP/market/cart.do";
+	                } else {
+	                    alert('결제에 실패했습니다.');
+	                }
+	            })
+	            .catch(err => {
+	                console.error('Error:', err);
+	                alert('결제 중 오류가 발생했습니다.');
+	            });
+	        }
+	    });
+
+	    // 페이지 로드 후 실행되는 함수들
+	    updateTotal();
+	    updatepoint();
+
+	    const stockInput = document.querySelector('input[class="userpoint"]');
+	    stockInput.addEventListener('input', function() {
+	        updatepoint();
+	    });
+
+	    function updateTotal() {
+	        const rows = document.querySelectorAll('.market_ListSet tr');
+	        console.log(rows);
+	        let totalItemCount = 0;
+	        let totalProductPrice = 0;
+	        let totalDiscount = 0;
+	        let totalPoints = 0;
+	        let maxDeliveryFee = 0;
+	        for (let row of rows) {
+	            const quantity = parseInt(row.children[3].innerText.trim(), 10);  // 수량
+	            const discount = parseInt(row.children[4].innerText.replace('%', '').trim(), 10);  // 할인율
+	            const points = parseInt(row.children[5].innerText.replace('p', '').trim(), 10);  // 포인트
+	            const price = parseInt(row.children[6].innerText.replace('원', '').trim(), 10);  // 가격
+	            const delivery = parseInt(row.getElementsByClassName('delivery')[0]?.value.trim(), 10) || 0;  // 배송비 (없는 경우 0)
+	            
+	            // 합계 계산
+	            const itemTotalPrice = quantity * price;
+	            const itemDiscount = itemTotalPrice * (discount / 100);
+
+	            totalItemCount += quantity;
+	            totalProductPrice += itemTotalPrice;
+	            totalDiscount += itemDiscount;
+	            totalPoints += points;
+	            maxDeliveryFee = Math.max(maxDeliveryFee, delivery);
+	        }
+	        const totalOrderAmount = totalProductPrice - totalDiscount + maxDeliveryFee;
+	        // UI 업데이트
+	        document.getElementById('total-item-count').innerText = totalItemCount;
+	        document.getElementById('total-product-price').innerText = totalProductPrice + "원";
+	        document.getElementById('total-discount').innerText = totalDiscount + "원";
+	        document.getElementById('total-delivery-fee').innerText = maxDeliveryFee + "원";
+	        document.getElementById('total-points').innerText = totalPoints + "p";
+	        document.getElementsByClassName('total-amount')[0].innerText = totalOrderAmount + "원";
+	    }
+	    
+	    function updatepoint() {
+	        const quantity = parseInt(document.querySelector('input[class="userpoint"]').value, 10);
+	        const userPoint = ${sessUser.getUserPoint()};  // 서버에서 값이 제대로 넘어오는지 확인
+	        
+	        if (!isNaN(quantity) && quantity <= userPoint) {
+	            document.querySelector('#total-point-use').textContent = quantity + 'P';
+	        } else {
+	            document.querySelector('#total-point-use').textContent = '0P';
+	        }
+	    }
+	};
+
 	</script>
 </head>
 
@@ -88,7 +137,7 @@
 								HOME > 장보기 > <strong>장보기</strong>
 							</p>
 						</nav>
-						<p>전체(${products.size()}) | 과일 | 야채 | 곡류</p>
+						<p>전체(${products.size()+carts.size()}) | 과일 | 야채 | 곡류</p>
 
 						<table>
 							<thead>
@@ -104,18 +153,34 @@
 								</tr>
 							</thead>
 							<tbody class="market_ListSet">
+							<c:if test="${not empty products}">
 								<c:forEach var="product" items="${products}">
 									<tr>
-										<td><img src="${product.proimg1}" alt="${product.proname}"></td>
+										<td><img src="${product.proimg1}" alt="${product.proname}" class="proimg"></td>
 										<td>${product.protype}</td>
-										<td><a href="/FarmStoryJSP/market/view?no=${product.prono}">${product.proname}</a></td>
-										<td>${product.cartstock}</td>
+										<td><a href="/FarmStoryJSP/market/view?no=${product.prono}">${product.proname}</a><input type="hidden" class="prono" value="${product.prono}"></td>
+										<td class="stock">${product.cartstock}</td>
 										<td>${product.prosale}%</td>
 										<td>${product.propoint}p</td>
-										<td>${product.proprice}</td>
-										<td>${product.proprice*(100-product.prosale)/100*product.cartstock}</td>
+										<td>${product.proprice}원</td>
+										<td>${product.proprice*(100-product.prosale)/100*product.cartstock}원</td>
 									</tr>
 								</c:forEach>
+							</c:if>
+							<c:if test="${not empty carts}">
+								<c:forEach var="cart" items="${carts}">
+									<tr>
+										<td><img src="${cart.proimg}" alt="${cart.proname}" class="proimg"></td>
+										<td>${cart.protype}</td>
+										<td><a href="/FarmStoryJSP/market/view?no=${cart.cartprono}">${cart.proname}</a><input type="hidden" class="prono" value="${cart.cartprono}"></td>
+										<td class="stock">${cart.cartstock}</td>
+										<td>${cart.prosale}%</td>
+										<td>${cart.propoint}p</td>
+										<td>${cart.proprice}원</td>
+										<td>${cart.proprice*(100-cart.prosale)/100*cart.cartstock}원</td>
+									</tr>
+								</c:forEach>
+							</c:if>
 							</tbody>
 						</table>
 						<div class="tableContainer">
@@ -173,31 +238,31 @@
 									<tbody>
 										<tr>
 											<td>상품수</td>
-											<td id="total-item-count">${products.size()}</td>
+											<td id="total-item-count">${products.size()+carts.size()}</td>
 										</tr>
 										<tr>
 											<td>상품금액</td>
-											<td id="total-product-price">27,000원</td>
+											<td id="total-product-price"></td>
 										</tr>
 										<tr>
 											<td>할인금액</td>
-											<td id="total-discount">5,000원</td>
+											<td id="total-discount"></td>
 										</tr>
 										<tr>
 											<td>배송비</td>
-											<td id="total-delivery-fee">5,000원</td>
+											<td id="total-delivery-fee"></td>
 										</tr>
 										<tr>
 											<td>포인트사용</td>
-											<td id="total-point-use">2,000P</td>
+											<td id="total-point-use"></td>
 										</tr>
 										<tr>
 											<td>포인트적립</td>
-											<td id="total-points">400P</td>
+											<td id="total-points"></td>
 										</tr>
 										<tr class="total-row">
 											<td>전체주문금액</td>
-											<td><p class="total-amount">22,000원</p></td>
+											<td><p class="total-amount"></p></td>
 										</tr>
 									</tbody>
 									<tfoot>

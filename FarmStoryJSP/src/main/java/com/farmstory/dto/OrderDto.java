@@ -74,6 +74,10 @@ public class OrderDto {
 	public void setOrderprodno(int orderprodno) {
 		this.orderprodno = orderprodno;
 	}
+	public void setOrderprodno(String orderprodno) {
+		if(orderprodno==null)this.orderprodno = 0;
+		else this.orderprodno = Integer.parseInt(orderprodno);
+	}
 	public String getOrderuid() {
 		return orderuid;
 	}
@@ -85,6 +89,10 @@ public class OrderDto {
 	}
 	public void setOrderstock(int orderstock) {
 		this.orderstock = orderstock;
+	}
+	public void setOrderstock(String orderstock) {
+		if(orderstock==null)this.orderstock = 0;
+		else this.orderstock = Integer.parseInt(orderstock);
 	}
 	public String getOrderrdate() {
 		return orderrdate;

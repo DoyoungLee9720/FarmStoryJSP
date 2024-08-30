@@ -5,14 +5,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.farmstory.dto.CartDto;
+import com.farmstory.dto.OrderDto;
 import com.farmstory.dto.ProductDto;
 import com.farmstory.dto.UserDto;
 import com.farmstory.service.CartService;
+import com.farmstory.service.OrderService;
 import com.farmstory.service.ProductService;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -33,6 +36,7 @@ public class CartController extends HttpServlet{
 	
 	private CartService cartService = CartService.INSTANCE;
 	private ProductService productService = ProductService.INSTANCE;
+	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Override
@@ -42,13 +46,13 @@ public class CartController extends HttpServlet{
 		HttpSession session = req.getSession();
 		String uid = ((UserDto)session.getAttribute("sessUser")).getUserId();
 		
-		List<CartDto> cartDto = cartService.selectCartForPay(uid);
+		List<CartDto> cartDto = cartService.selectUserCart(uid);
 		req.setAttribute("cartDto", cartDto);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/market/cart.jsp");
 		dispatcher.forward(req, resp);
 	}
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		String uid = ((UserDto)session.getAttribute("sessUser")).getUserId();
 		// 요청 본문에서 JSON 데이터 읽기
@@ -78,7 +82,7 @@ public class CartController extends HttpServlet{
         }
         logger.debug("totalDeleted : " + totalDeleted);
         // 전체 삭제 성공 여부 판단
-        boolean success = totalDeleted == ids.size();
+        boolean success = totalDeleted >= ids.size();
 
         // 응답 객체 생성
         JsonObject json = new JsonObject();
@@ -92,4 +96,5 @@ public class CartController extends HttpServlet{
         	writer.flush();
         }
 	}
+	
 }
