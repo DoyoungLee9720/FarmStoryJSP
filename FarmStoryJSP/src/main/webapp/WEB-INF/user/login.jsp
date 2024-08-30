@@ -122,7 +122,7 @@ main>p {
         </p>
         <a href="/FarmStoryJSP/user/findpass.do">비밀번호 찾기</a>
         <a href="/FarmStoryJSP/user/findid.do">아이디 찾기</a>
-        <a href="/FarmStoryJSP/user/register.do">회원가입</a>
+        <a href="/FarmStoryJSP/user/terms.do">회원가입</a>
       </div>
     </section>
   </main>
