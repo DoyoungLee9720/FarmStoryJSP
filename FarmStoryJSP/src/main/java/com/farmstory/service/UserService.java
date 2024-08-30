@@ -91,6 +91,12 @@ public enum UserService {
 		return dao.selectFindId(name,email);
 	}
 
+	public UserDto selectFindPass(String uid, String email) {
+		return dao.selectFindPass(uid,email);
+	}
+
+
+
 
 
   
