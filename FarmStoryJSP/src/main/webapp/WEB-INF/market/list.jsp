@@ -8,7 +8,24 @@
 <link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 <title>장보기</title>
 </head>
+<style>
+.num.current {
+    color: #d3d3d3; 
+    font-size: 16px; 
+    transition: font-size 0.3s ease, color 0.3s ease;
+}
 
+.thumb a {
+  display: inline-block; /* 또는 block */
+  width: 120px;
+  height: 120px;
+  text-decoration: none;
+}
+
+
+
+
+</style>
 <body>
 	<%@ include file="/css/_header.jsp"%>
 <div class="marketList">
@@ -51,7 +68,12 @@
 							<tbody>
 								<c:forEach var="product" items="${products}">
 									<tr>
-										<td class="thumb"><a href="/FarmStoryJSP/market/view.do?no=${product.prono}"><img src="${product.proimg1}"></a></td>
+										<!-- 이미지 클릭해도 가지도록 -->
+										<td class="thumb">
+										<a href="/FarmStoryJSP/market/view.do?no=${product.prono}">
+										<img src="${product.proimg1}">
+										</a>
+										</td>
 										<td>${product.protype}</td>
 										<td><a href="/FarmStoryJSP/market/view.do?no=${product.prono}">${product.proname}</a></td>
 										<td>${product.prosale}%</td>
