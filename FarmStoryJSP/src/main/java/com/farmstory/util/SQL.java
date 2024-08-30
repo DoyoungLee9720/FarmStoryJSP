@@ -202,9 +202,10 @@ public class SQL{
 													+ "FROM Cart c "
 													+ "JOIN Product p ON c.cartProNo = p.prono "
 													+ "WHERE c.cartUid = ?";
-	
-	//아이디찾기
-	public static final String SELECT_FIND_ID = "select `userid`,`username`,`userNick`,`userRegdate` from `user` where `name`=? and `userEmail`=?";
+													
+	public static final String SELECT_FIND_ID = "select `userid`,`username`,`userEmail`,`userRegdate` from `user` where `username`=? and `userEmail`=?";
+
+
 	//비밀번호찾기
 	public static final String SELECT_FIND_PASS = "select * from `user` where `userId`=? and `userEmail`=?";
 
@@ -227,5 +228,5 @@ public class SQL{
 
 	// 유저 등급 변경
 	public static final String UPDATE_USER_GRADE = "UPDATE `User` SET `userGrade` = ? WHERE `userId` = ?";
-	
+
 }

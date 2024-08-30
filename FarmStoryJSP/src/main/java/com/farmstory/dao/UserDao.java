@@ -362,7 +362,7 @@ public class UserDao extends DBHelper{
 			}
 
 		} catch (Exception e) {
-		
+			logger.error(e.getMessage());
 		} finally {
 			closeAll();
 		}
