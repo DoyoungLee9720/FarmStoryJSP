@@ -1,24 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<script>
 
-window.onload = function(){
-	const btnNext = document.getElementsByClassName('btnNext')[0];
-
-	
-		btnNext.addEventListener('click', function(e){
-			
-			const chk1 = document.getElementById('chk1').checked;
-			const chk2 = document.getElementById('chk2').checked;
-			
-			if(!(chk1 && chk2)){
-				alert('모두 동의하셔야 합니다.');
-				e.preventDefault();
-			};	
-		
-	});
-}
-
-</script>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,6 +7,26 @@ window.onload = function(){
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 	<title>Farmstory</title>
+	<script>
+
+	window.onload = function(){
+		const btnNext = document.getElementsByClassName('btnNext')[0];
+	
+		
+			btnNext.addEventListener('click', function(e){
+				
+				const chk1 = document.getElementById('chk1').checked;
+				const chk2 = document.getElementById('chk2').checked;
+				
+				if(!(chk1 && chk2)){
+					alert('모두 동의하셔야 합니다.');
+					e.preventDefault();
+				};	
+			
+		});
+	}
+	
+	</script>
 	<style>
 main {
 	height: auto;
