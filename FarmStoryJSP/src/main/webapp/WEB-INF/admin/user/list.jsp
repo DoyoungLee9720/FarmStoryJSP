@@ -49,7 +49,7 @@
 							            </select>
 							        </td>
 									<td>${user.getUserRegdate()}</td>
-									<td><a href="#">[상세확인]</a></td>
+									<td><a href="/FarmStoryJSP/user/myinfo.do?uid=${user.getUserId()}">[상세확인]</a></td>
 								</tr>
 							</c:forEach>
 								
@@ -102,16 +102,22 @@
 		  })
 		}
 	
-	function updateUserGrade(id, grade) {
-		console.log(`User ID: ${id}`);  // 디버깅 로그
-	    console.log(`New Grade: ${grade}`);  // 디버깅 로그
-	    	const formData = new FormData();
-	    	formData.append("id", id);
-	    	formData.append("grade", grade);
+		function updateUserGrade(id, grade) {
+			console.log(`User ID: ${id}`);  // 디버깅 로그
+		    console.log(`New Grade: ${grade}`);  // 디버깅 로그
+	    	
+	    	const data = {
+	   		        id: id,
+	   		        grade: grade
+   		    };
+
 	    	
 	        fetch('/FarmStoryJSP/admin/user/list.do', {
 	            method: 'POST',
-	            body: formData
+		        headers: {
+		            'Content-Type': 'application/json'
+		        },
+		        body: JSON.stringify(data)
 	        })
 	        	.then(resp=>resp.json())
 	        	.then(data=>{
@@ -137,7 +143,11 @@
 	    		console.log(`User ID: ${id}`);  // 디버깅 로그
 	    	    console.log(`New Grade: ${grade}`);  // 디버깅 로그
 	            // 사용자 등급 업데이트
-	            updateUserGrade(id, grade);
+	            if(confirm('정말 변경하시겠습니까?')){
+	            	updateUserGrade(id, grade);
+	            }else{
+	            	 return;
+	            }
 	        });
 	    });
 	});

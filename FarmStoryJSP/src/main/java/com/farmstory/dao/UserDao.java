@@ -170,6 +170,7 @@ public class UserDao extends DBHelper{
 				user.setUserPoint(rs.getString(12));
 				user.setUserRegip(rs.getString(13));
 				user.setUserRegdate(rs.getString(14));
+				user.setUserCart(rs.getString(15));
 			}
 			
 			
@@ -323,7 +324,7 @@ public class UserDao extends DBHelper{
 				dto = new UserDto();
 				dto.setUserId(rs.getString(1));
 				dto.setUserName(rs.getString(2));
-				dto.setUserNick(rs.getString(3));
+				dto.setUserEmail(rs.getString(3));
 				dto.setUserRegdate(rs.getString(4));
 			}
 		} catch (Exception e) {

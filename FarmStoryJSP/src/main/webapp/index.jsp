@@ -380,6 +380,10 @@ a.link {
 a.link:hover {
 	text-decoration: underline;
 }
+.product>img{
+	height: 120px;
+	width: 120px;
+}
 </style>
 </head>
 
@@ -404,15 +408,15 @@ a.link:hover {
 				<c:forEach var="product" items="${products}">
 					<a href="/FarmStoryJSP/market/view.do?no=${product.prono}">
 					
-						<article>
-							<img src="/FarmStoryJSP/images/market_item1.jpg" alt="사과">
+						<article class="product">
+							<img src="${product.proimg1}" alt="${product.proname}">
 							<h1>${product.protype}</h1>
 							<p>${product.proname}</p>
 							<div class="pricediscount">
-								<span class="price">${product.proprice}</span> <span
-									class="discount">${product.prosale}</span>
+								<span class="price">${product.proprice}원</span>
+								<span class="discount">${product.prosale}%</span>
 							</div>
-							<h3>${product.saleprice}</h3>
+							<h3>${product.saleprice}원</h3>
 						</article>
 					</a>
 				</c:forEach>

@@ -206,7 +206,7 @@ main section article>div>p:nth-of-type(3) {
 
 					<p>팜스토리</p>
 					<p>
-						주소 : 경기도 이천시 잘한다구 신난다동 123<br> 전화 : 01-234-5678
+						주소 : 부산광역시 부산진구 부전동 123<br> 전화 : 01-234-5678
 					</p>
 					<p>찾아오시는 길</p>
 					<div id="map" style="width: 500px; height: 400px;" class="map"></div>

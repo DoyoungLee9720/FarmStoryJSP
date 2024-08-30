@@ -268,7 +268,7 @@ footer > div > article > .pageVer {
 .marketList tr {
 	border-bottom: 1px solid #EEEEEE;
 }
-.marketList td.thumb > img {
+.marketList td.thumb > a[href] > img {
 	width: 80px;
 	height: 80px;
 }

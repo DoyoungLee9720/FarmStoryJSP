@@ -97,13 +97,13 @@ public enum ArticleService {
 		}
 		
 		return new PageGroupDto(pageGroupStart, pageGroupEnd);
-	}	
-	
-	/*
-	public int selectCountTotal() {
-		return dao.selectCountTotal();
 	}
-	public void updateHitCount(String no) {
-		dao.updateHitCount(no);
-	}*/
+
+	public void UpdateComment(String artNo) {
+		dao.updateComment(artNo);
+	}
+
+	public void DowndateComment(String artNo) {
+		dao.DowndateComment(artNo);
+	}
 }

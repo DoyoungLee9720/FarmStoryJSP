@@ -38,7 +38,7 @@
                     </c:if>
                 </div>
 				
-				<c:if test="${(adminonly eq 'false') || (sessUser.userRole eq 'admin')}">
+				<c:if test="${((adminonly eq 'false') || (sessUser.userRole eq 'admin')) && not empty sessUser.userId}">
 				<!-- 글쓰기 버튼 -->
                 <a href="/FarmStoryJSP/article/write.do?group=${group}&cate=${cate}" class="btnWrite">글쓰기</a>
 				</c:if>
