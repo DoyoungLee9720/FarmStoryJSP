@@ -14,7 +14,14 @@ public class CartDto {
 	private int prosale;
 	private int propoint;
 	private int proprice;
+	private int prodeliveryfee;
 	
+	public int getProdeliveryfee() {
+		return prodeliveryfee;
+	}
+	public void setProdeliveryfee(int prodeliveryfee) {
+		this.prodeliveryfee = prodeliveryfee;
+	}
 	public String getProimg() {
 		return proimg;
 	}
