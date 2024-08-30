@@ -9,13 +9,12 @@
     <title>상품상세보기</title>
 	<script>
 	    window.onload = function () {
-	    	/* const countFruitInput = document.querySelector('input[class="stock"]');
-	        countFruitInput.addEventListener('input', allowOnlyNumbers);
 
-	        const price = ${ProductDto.proprice} || 0; // 서버에서 전달된 값을 가져옵니다.
-
-	        // 페이지 로드 시 초기 합계 업데이트
-	        updateTotal(); */
+	        updateTotal();
+	        const stockInput = document.querySelector('input[class="stock"]');
+	        stockInput.addEventListener('input', function() {
+	            updateTotal();
+	        });
 	        
 	        document.addEventListener('click', function(e) {
 	        	const pronoElement = document.getElementsByClassName('prono')[0];
@@ -130,7 +129,7 @@
 	                                    </tr>
 	                                    <tr>
 	                                        <th>합계</th>
-	                                        <td class="colorRed"></td>
+	                                        <td class="colorRed">원</td>
 	                                    </tr>
 	                                </table>
 	                                <div class="button-container">

@@ -9,7 +9,41 @@
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
 	<script>
 		window.onload = function(){
-			
+
+			function updateTotal() {
+				const selectedCheckboxes1 = document.querySelectorAll('.select:checked');
+				let totalItemCount = 0;
+	            let totalProductPrice = 0;
+	            let totalDiscount = 0;
+	            let totalPoints = 0;
+	            let maxDeliveryFee = 0;
+				for (let checkbox of selectedCheckboxes1) {
+	                const row = checkbox.closest('tr');
+	                const quantity_column = parseInt(row.querySelector('.quantity-column').innerText.trim(), 10);
+	                const discount_column = parseInt(row.querySelector('.discount-column').innerText.replace('%', '').trim(), 10);
+	                const points_column = parseInt(row.querySelector('.points-column').innerText.replace('p', '').trim(), 10);
+	                const price_column = parseInt(row.querySelector('.price-column').innerText.replace('원', '').trim(), 10);
+	                const delivery = parseInt(row.getElementsByClassName('delivery')[0].value.trim(), 10);
+	                
+	                // 합계 계산
+	                const itemTotalPrice = quantity_column * price_column;
+	                const itemDiscount = itemTotalPrice * (discount_column / 100);
+	                
+	                totalItemCount += quantity_column;
+	                totalProductPrice += itemTotalPrice;
+	                totalDiscount += itemDiscount;
+	                totalPoints += points_column;
+	                maxDeliveryFee = Math.max(maxDeliveryFee, delivery);
+	            }
+				const totalOrderAmount = totalProductPrice - totalDiscount + maxDeliveryFee;
+				// UI 업데이트
+	            document.getElementById('total-item-count').innerText = totalItemCount;
+	            document.getElementById('total-product-price').innerText = totalProductPrice + "원";
+	            document.getElementById('total-discount').innerText = totalDiscount+ "원";
+	            document.getElementById('total-delivery-fee').innerText = maxDeliveryFee+ "원";
+	            document.getElementById('total-points').innerText = totalPoints +"p";
+	            document.getElementById('total-order-amount').innerText = totalOrderAmount+ "원";
+		    }
 			document.addEventListener('click', function(e) {
 		        const selectall = document.querySelector('.selectall');
 		        const checkboxes = document.querySelectorAll('.select');
@@ -17,11 +51,13 @@
 		        // 전체 선택 체크박스 클릭 시
 		        if (e.target.classList.contains('selectall')) {
 		            selectAll(e.target);
+		            updateTotal();
 		        }
 	
 		        // 개별 체크박스 클릭 시
 		        if (e.target.classList.contains('select')) {
 		            updateSelectAllCheckbox();
+		            updateTotal();
 		        }
 	
 		        function selectAll(selectAllCheckbox) {
@@ -34,17 +70,19 @@
 		            const allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
 		            selectall.checked = allChecked;
 		        }
-	
+		        
+
 		        // 삭제 버튼 클릭 시
 		        if (e.target.classList.contains('del')) {
 		            e.preventDefault();
 	
 		            const selectedCheckboxes = document.querySelectorAll('.select:checked');
+		            console.log(selectedCheckboxes)
 		            let selectedIds = [];
 	
 		            for (let checkbox of selectedCheckboxes) {
 		                const row = checkbox.closest('tr');
-		                const productNo = row.querySelector('.no').textContent.trim();
+		                const productNo = row.querySelector('.no').value.trim();
 		                selectedIds.push(productNo);
 		            }
 	
@@ -144,13 +182,16 @@
 				                        <input type="hidden" class="no" value="${cart.cartprono}">
 				                    </td>
 				                    <!-- 수량 -->
-				                    <td id="dd">${cart.cartstock}</td>
-				                    <!-- 할인율 -->
-				                    <td id="dd">${cart.prosale}%</td>
-				                    <!-- 포인트 -->
-				                    <td id="dd">${cart.propoint}p</td>
-				                    <!-- 가격 -->
-				                    <td id="dd">${cart.proprice}원</td>
+									<td id="dd" class="quantity-column">${cart.cartstock}</td>
+									<!-- 할인율 -->
+									<td id="dd" class="discount-column">${cart.prosale}%</td>
+									<!-- 포인트 -->
+									<td id="dd" class="points-column">${cart.propoint}p</td>
+									<!-- 가격 -->
+									<td id="dd" class="price-column">${cart.proprice}원
+									<input type="hidden" class="delivery" value="${cart.prodeliveryfee}">
+									</td>
+									
 				                    <!-- 합계 -->
 				                    <td id="dd">
 				                        <span style="font-weight: bold;">

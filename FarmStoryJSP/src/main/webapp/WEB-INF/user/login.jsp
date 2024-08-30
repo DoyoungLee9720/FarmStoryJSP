@@ -1,6 +1,21 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
+<script>
+const success = ${success};
+
+if(success==100){
+	alert('로그인에 실패했습니다. 다시 한번 아이디와 비밀번호를 확인 하시기 바랍니다.');
+}else if(success==200){
+	alert('성공적으로 로그아웃 되었습니다.');
+}else if(success==300){
+	alert('회원가입을 축하합니다. 새로 로그인 해주세요');
+}
+//else if(success==102){
+	//alert('먼저 로그인을 하셔야 합니다.');
+//}
+</script>
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

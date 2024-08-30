@@ -74,7 +74,6 @@
 										<img src="${product.proimg1}">
 										</a>
 										</td>
-										
 										<td>${product.protype}</td>
 										<td><a href="/FarmStoryJSP/market/view.do?no=${product.prono}">${product.proname}</a></td>
 										<td>${product.prosale}%</td>

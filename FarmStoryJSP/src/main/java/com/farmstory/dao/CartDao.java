@@ -91,6 +91,7 @@ public class CartDao extends DBHelper{
 				dto.setPropoint(rs.getInt(6));
 				dto.setProprice(rs.getInt(7));
 				dto.setCartprono(rs.getInt(8));
+				dto.setProdeliveryfee(rs.getInt(9));
 				cart.add(dto);
 			}
 		} catch (Exception e) {

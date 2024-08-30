@@ -8,6 +8,60 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<link rel="stylesheet" href="/FarmStoryJSP/css/farmstory.css">
+	<script>
+		window.onload = function(){
+			updateTotal();
+			updatepoint();
+			const stockInput = document.querySelector('input[class="userpoint"]');
+	        stockInput.addEventListener('input', function() {
+	        	updatepoint();
+	        });
+			function updateTotal() {
+				const rows = document.querySelectorAll('.market_ListSet tr');
+				console.log(rows);
+				let totalItemCount = 0;
+	            let totalProductPrice = 0;
+	            let totalDiscount = 0;
+	            let totalPoints = 0;
+	            let maxDeliveryFee = 0;
+	            for (let row of rows) {
+	                const quantity = parseInt(row.children[3].innerText.trim(), 10);  // 수량
+	                const discount = parseInt(row.children[4].innerText.replace('%', '').trim(), 10);  // 할인율
+	                const points = parseInt(row.children[5].innerText.replace('p', '').trim(), 10);  // 포인트
+	                const price = parseInt(row.children[6].innerText.replace('원', '').trim(), 10);  // 가격
+	                const delivery = parseInt(row.getElementsByClassName('delivery')[0]?.value.trim(), 10) || 0;  // 배송비 (없는 경우 0)
+	                
+	                // 합계 계산
+	                const itemTotalPrice = quantity * price;
+	                const itemDiscount = itemTotalPrice * (discount / 100);
+	                
+	                totalItemCount += quantity;
+	                totalProductPrice += itemTotalPrice;
+	                totalDiscount += itemDiscount;
+	                totalPoints += points;
+	                maxDeliveryFee = Math.max(maxDeliveryFee, delivery);
+	            }
+				const totalOrderAmount = totalProductPrice - totalDiscount + maxDeliveryFee;
+				// UI 업데이트
+	            document.getElementById('total-item-count').innerText = totalItemCount;
+	            document.getElementById('total-product-price').innerText = totalProductPrice + "원";
+	            document.getElementById('total-discount').innerText = totalDiscount+ "원";
+	            document.getElementById('total-delivery-fee').innerText = maxDeliveryFee+ "원";
+	            document.getElementById('total-points').innerText = totalPoints +"p";
+	            document.getElementsByClassName('total-amount')[0].innerText = totalOrderAmount+ "원";
+		    }
+			function updatepoint() {
+		        const quantity = parseInt(document.querySelector('input[class="userpoint"]').value, 10);
+		
+		        if (!isNaN(quantity)&&quantity<=${sessUser.getUserPoint()}) {
+		            document.querySelector('#total-point-use').textContent = quantity+`P`;
+		        } else {
+		            // 가격이나 수량이 올바르지 않은 경우
+		            document.querySelector('#total-point-use').textContent = '0P';
+		        }
+		    }
+		}
+	</script>
 </head>
 
 <body>
@@ -79,7 +133,7 @@
 								<tr>
 									<td>포인트사용</td>
 									<td>
-										<input type="number" max="${sessUser.getUserPoint()}" placeholder="포인트 입력">
+										<input type="number" max="${sessUser.getUserPoint()}" placeholder="포인트 입력" class="userpoint">
 										<input type="button" value="사용하기"><br>
 										<span>사용가능 ${sessUser.getUserPoint()}P</span>
 									</td>
@@ -119,27 +173,27 @@
 									<tbody>
 										<tr>
 											<td>상품수</td>
-											<td>${products.size()}</td>
+											<td id="total-item-count">${products.size()}</td>
 										</tr>
 										<tr>
 											<td>상품금액</td>
-											<td>27,000원</td>
+											<td id="total-product-price">27,000원</td>
 										</tr>
 										<tr>
 											<td>할인금액</td>
-											<td>5,000원</td>
+											<td id="total-discount">5,000원</td>
 										</tr>
 										<tr>
 											<td>배송비</td>
-											<td>5,000원</td>
+											<td id="total-delivery-fee">5,000원</td>
 										</tr>
 										<tr>
 											<td>포인트사용</td>
-											<td>2,000P</td>
+											<td id="total-point-use">2,000P</td>
 										</tr>
 										<tr>
 											<td>포인트적립</td>
-											<td>400P</td>
+											<td id="total-points">400P</td>
 										</tr>
 										<tr class="total-row">
 											<td>전체주문금액</td>
