@@ -142,23 +142,27 @@ public class SQL{
 	
 	//ORDER
 	
-	public static final String INSERT_ORDER ="INSERT INTO `Order` set "
-												+ "`oderUid`=?,"
-												+ "`oderprodNO`=?,"
-												+ "`oderstock`=?,"
-												+ "`oderRdate`=NOW()";
-	// 특정 사용자의 주문내역을 조회
-	public static final String SELECT_ORDERS = "SELECT o.orderNo, o.orderprodNO, o.orderstock, o.orderRdate, " 
-												+"p.proimg1, p.proname, p.prosale, p.propoint, p.proprice, p.prodeliveryfee" 
-												+"FROM `order` AS o " 
-												+"JOIN `product` AS p ON o.orderprodNO = p.prono " 
-												+"JOIN `user` AS u ON o.orderUid = u.userUID " 
-												+"WHERE u.userUID = ?";  
-	// 장바구니 구매
-	public static final String  SELECT_USER_CART_PAY = "SELECT p.proimg1, p.protype, p.proName, "
-												+ "SUM(c.cartstock), p.prosale, p.propoint, p.proprice, c.cartProNo, p.prodeliveryfee FROM `cart` c "
-												+ "LEFT JOIN `product` p ON c.cartProNo = p.proNo WHERE c.CartUid = ? "
-												+ "GROUP BY p.proimg1, p.protype, p.proName, p.prosale, p.propoint, p.proprice, c.cartProNo ,p.prodeliveryfee";
+		public static final String INSERT_ORDER ="INSERT INTO `Order` set "
+													+ "`orderUid`=?,"
+													+ "`orderproNO`=?,"
+													+ "`orderstock`=?,"
+													+ "`orderRdate`=NOW()";
+		// 특정 사용자의 주문내역을 조회
+		public static final String SELECT_ORDERS = "SELECT o.orderNo, o.orderprodNO, o.orderstock, o.orderRdate, " 
+													+"p.proimg1, p.proname, p.prosale, p.propoint, p.proprice, p.prodeliveryfee" 
+													+"FROM `order` AS o " 
+													+"JOIN `product` AS p ON o.orderprodNO = p.prono " 
+													+"JOIN `user` AS u ON o.orderUid = u.userUID " 
+													+"WHERE u.userUID = ?";  
+		// 장바구니
+		public static final String  SELECT_USER_CART = "SELECT p.proimg1, p.protype, p.proName, "
+													+ "SUM(c.cartstock), p.prosale, p.propoint, p.proprice, c.cartProNo, p.prodeliveryfee FROM `cart` c "
+													+ "LEFT JOIN `product` p ON c.cartProNo = p.proNo WHERE c.CartUid = ? "
+													+ "GROUP BY p.proimg1, p.protype, p.proName, p.prosale, p.propoint, p.proprice, c.cartProNo ,p.prodeliveryfee";
+		public static final String  SELECT_USER_CART_FOR_PAY = "SELECT p.proimg1, p.protype, p.proName, "
+													+ "SUM(c.cartstock), p.prosale, p.propoint, p.proprice, c.cartProNo, p.prodeliveryfee FROM `cart` c "
+													+ "LEFT JOIN `product` p ON c.cartProNo = p.proNo WHERE c.CartUid = ? AND c.cartProNo=? "
+													+ "GROUP BY p.proimg1, p.protype, p.proName, p.prosale, p.propoint, p.proprice, c.cartProNo ,p.prodeliveryfee";
 	
 	public static final String UPDATE_ORDER = "UPDATE `order` SET"
 												+" orderstock = ?, "
