@@ -105,7 +105,7 @@
                                 <td>${user.getUserHp()}</td>
                                 <td>${user.getUserEmail()}</td>
                                 <td>${user.getUserGrade()}</td>
-                                <td>${user.getUserRegday()}</td>
+                                <td>${user.getUserRegdate()}</td>
                             </tr>
                         	</c:forEach>
                         </tbody>

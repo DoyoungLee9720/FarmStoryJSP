@@ -48,7 +48,8 @@
 	
 		            for (let checkbox of selectedCheckboxes) {
 		                const row = checkbox.closest('tr');
-		                const productNo = row.querySelector('.no').textContent.trim();
+		                const productNo = row.querySelector('.no1').value.trim();
+		                console.log(productNo);
 		                selectedIds.push(productNo);
 		            }
 	
@@ -115,7 +116,7 @@
 								<tr>
 									<td><input type="checkbox" class="select"></td>
 									<td><img src="${product.proimg1}"></td>
-									<td class="no">${product.prono}</td>
+									<td class="no">${product.prono}<input type="hidden" class="no1" value="${product.prono}"></td>
 									<td>${product.proname}</td>
 									<td>${product.protype}</td>
 									<td class="price">${product.proprice}</td>

@@ -573,7 +573,7 @@ window.onload = function(){
           </tr>
         </table>
         <div id=btns>
-          <a href="/FarmStoryJSP/user/terms.do" class="btnCancel">취소</a>
+          <a href="/FarmStoryJSP/index.do" class="btnCancel">취소</a>
           <input type="submit" class="btnSubmit" value="회원수정" />
         </div>
       </form>

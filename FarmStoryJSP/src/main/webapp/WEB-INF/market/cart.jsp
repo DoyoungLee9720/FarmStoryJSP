@@ -77,7 +77,7 @@
 		            e.preventDefault();
 	
 		            const selectedCheckboxes = document.querySelectorAll('.select:checked');
-		            console.log(selectedCheckboxes)
+		            console.log(selectedCheckboxes);
 		            let selectedIds = [];
 	
 		            for (let checkbox of selectedCheckboxes) {

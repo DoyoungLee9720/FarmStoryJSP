@@ -77,6 +77,7 @@ public class ProdListController extends HttpServlet{
         for (String id : ids) {
         	try {
                 totalDeleted += service.deleteProduct(id);
+                System.out.println(totalDeleted);
             } catch (Exception e) {
                 logger.error("Failed to delete product with ID: " + id, e);
                 // 에러가 발생한 ID는 계속 진행하되, 에러를 기록

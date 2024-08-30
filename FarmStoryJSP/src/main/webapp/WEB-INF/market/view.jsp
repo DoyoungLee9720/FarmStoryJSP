@@ -103,7 +103,7 @@
                         </nav>
                         <p class="section-title">기본정보</p>
                         <div class="product-info">
-                            <img src="${ProductDto.proimg2}" alt="상품 이미지" class="thumb">
+                            <img src="${ProductDto.proimg1}" alt="상품 이미지" class="thumb">
                             <div class="product-details">
                             	<form>
 	                                <table>
@@ -144,6 +144,7 @@
                         
                         <div>
                             <p class="section-title">상품설명</p>
+                            <img src="${ProductDto.proimg2}" alt="상품 기본설명">
                             <img src="${ProductDto.proimg3}" alt="상품 상세설명">
                         </div>
                     </article>

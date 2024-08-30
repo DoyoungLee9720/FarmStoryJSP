@@ -33,10 +33,9 @@ public class FindpassController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uid = req.getParameter("uid");
 		String email = req.getParameter("email");
-		logger.debug("name : " + uid + "email : " + email);
+		logger.debug("name : " + uid + " email : " + email);
 		
-		UserDto dto = service.selectFindId(uid, email);
-		
+		UserDto dto = service.selectFindPass(uid, email);
 		
 		if(dto != null) {
 		HttpSession session = req.getSession();
