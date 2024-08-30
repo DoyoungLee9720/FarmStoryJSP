@@ -48,7 +48,7 @@ public class FindIdController extends HttpServlet {
 		logger.debug(dto.toString());
 		
 		}else {
-			resp.sendRedirect("/FarmStoryJSP/user/login.do");
+			resp.sendRedirect("/FarmStoryJSP/user/login.do?success=800");
 		}
 	}
 }
