@@ -87,7 +87,9 @@ public enum UserService {
 	public UserDto selectFindId(String name, String email) {
 		return dao.selectFindId(name,email);
 	}
-	
+	public UserDto selectFindPass(String uid, String email) {
+		return dao.selectFindPass(uid,email);
+	}
 
 	public String sendEmailCode(String email) {
 		
