@@ -226,4 +226,5 @@ public class SQL{
 
 	// 유저 등급 변경
 	public static final String UPDATE_USER_GRADE = "UPDATE `User` SET `userGrade` = ? WHERE `userId` = ?";
+	public static final String SELECT_FIND_PASS = "select * from `user` where `userId`=? and `userEmail`=?";
 }
