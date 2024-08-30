@@ -56,8 +56,9 @@ public enum UserService {
 	public List<UserDto> selectPagedUsers(PageGroupDto page) {
 		return dao.selectPagedUsers(page);
 	}
-	
-
+	public int updateUserGrade(String id, String grade) {
+		return dao.updateUserGrade(id, grade);
+	}
 	public int selectUserCount() { 
 		return dao.selectUserCount();
 	}
@@ -72,6 +73,9 @@ public enum UserService {
 	public UserDto selectUser(String userId, String pass) {
 		return dao.selectUser(userId,pass);
 	}
+	public UserDto selectUser(String userId) {
+		return dao.selectUser(userId);
+	}
 	public List<UserDto> selectUsers() {
 		return dao.selectUsers();
 	}
@@ -82,21 +86,24 @@ public enum UserService {
 	public int deleteUser(String userId) {
 		return dao.deleteUser(userId);
 	}
-	
-	
+
 	public UserDto selectFindId(String name, String email) {
 		return dao.selectFindId(name,email);
 	}
+
 	public UserDto selectFindPass(String uid, String email) {
 		return dao.selectFindPass(uid,email);
 	}
 
+
+
+
+
+  
+  
 	public String sendEmailCode(String email) {
-		
-		
 		//인증코드 생성
 		int code =ThreadLocalRandom.current().nextInt(100000, 1000000);
-		
 		
 		//이메일 기본정보
 		String title = "FarmStory 이메일 인증코드입니다.";

@@ -25,7 +25,11 @@ public class MyinfoController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		String uid = req.getParameter("uid");
+		if(uid != null) {
+			UserDto user = service.selectUser(uid);
+			req.setAttribute("sessUser", user);
+		}
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/user/myinfo.jsp");
 		dispatcher.forward(req, resp);
 	}
@@ -66,7 +70,7 @@ public class MyinfoController extends HttpServlet{
 		
 		resp.sendRedirect("/FarmStoryJSP/");
 	    } else {
-	        // UserDto가 없을 경우의 처리 (예: 로그인 페이지로 리다이렉트)
+	        // UserDto가 없을 경우의 처리 로그인 페이지로 리다이렉트)
 	        resp.sendRedirect("/FarmStoryJSP/user/login.do");
 	    }
 	}

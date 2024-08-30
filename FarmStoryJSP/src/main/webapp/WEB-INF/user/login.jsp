@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="ko">
 <script>
 const success = ${success};
 
@@ -13,8 +15,7 @@ if(success==100){
 	//alert('먼저 로그인을 하셔야 합니다.');
 //}
 </script>
-<!DOCTYPE html>
-<html lang="ko">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -121,7 +122,7 @@ main>p {
         </p>
         <a href="/FarmStoryJSP/user/findpass.do">비밀번호 찾기</a>
         <a href="/FarmStoryJSP/user/findid.do">아이디 찾기</a>
-        <a href="/FarmStoryJSP/user/register.do">회원가입</a>
+        <a href="/FarmStoryJSP/user/terms.do">회원가입</a>
       </div>
     </section>
   </main>

@@ -14,49 +14,38 @@ import com.farmstory.util.SQL;
 public class ProductDao extends DBHelper {
 
 	private static ProductDao instance = new ProductDao();
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	public static ProductDao getInstance() {
 		return instance;
 	}
-
-	private ProductDao() {
-	}
+	private ProductDao() { }
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	
 	public int insertProduct(ProductDto dto) {
-		int proNo = 0;
+		int result = 0;
 		try {
 			conn = getConnection();
-			conn.setAutoCommit(false);
 			psmt = conn.prepareStatement(SQL.INSERT_PRODUCT);
-			psmt.setInt(1, dto.getProNo());
-			psmt.setString(2, dto.getProName());
-			psmt.setString(3, dto.getProType());
-			psmt.setInt(4, dto.getProPrice());
-			psmt.setInt(5, dto.getProPoint());
-			psmt.setInt(6, dto.getProSale());
-			psmt.setInt(7, dto.getProDeliveryfee());
-			psmt.setInt(8, dto.getProStock());
-			psmt.setString(9, dto.getProImg1());
-			psmt.setString(10, dto.getProImg2());
-			psmt.setString(11, dto.getProImg3());
-			psmt.setString(12, dto.getProETC());
-			psmt.executeUpdate();
-			
-			
-			
-			rs = psmt.executeQuery(SQL.SELECT_MAX_NO);
-			if(rs.next()) {
-				proNo = rs.getInt(1);
-			}
-			conn.commit();
+			psmt.setString(1, dto.getProname());
+			psmt.setString(2, dto.getProtype());
+			psmt.setInt(3, dto.getProprice());
+			psmt.setInt(4, dto.getPropoint());
+			psmt.setInt(5, dto.getProsale());
+			psmt.setInt(6, dto.getProdeliveryfee());
+			psmt.setInt(7, dto.getProstock());
+			psmt.setString(8, dto.getProimg1());
+			psmt.setString(9, dto.getProimg2());
+			psmt.setString(10, dto.getProimg3());
+			psmt.setString(11, dto.getProetc());
+			result = psmt.executeUpdate();
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		} finally {
 			closeAll();
 		}
-		return proNo;
+		return result;
 	}
 
 	public int selectCountTotal() {
@@ -77,29 +66,29 @@ public class ProductDao extends DBHelper {
 		return total;
 	}
 
-	public ProductDto selectProduct(int proNo) {
+	public ProductDto selectProduct(String prono) {
 		ProductDto dto = null;
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.SELECT_PRODUCT);
-			psmt.setInt(1, proNo);
+			psmt.setString(1, prono);
 
 			rs = psmt.executeQuery();
 			if (rs.next()) {
 				dto = new ProductDto();
-				dto.setProNo(rs.getInt(1));
-				dto.setProName(rs.getString(2));
-				dto.setProType(rs.getString(3));
-				dto.setProPrice(rs.getInt(4));
-				dto.setProPoint(rs.getInt(5));
-				dto.setProSale(rs.getInt(6));
-				dto.setProDeliveryfee(rs.getInt(7));
-				dto.setProStock(rs.getInt(8));
-				dto.setProImg1(rs.getString(9));
-				dto.setProImg2(rs.getString(10));
-				dto.setProImg3(rs.getString(11));
-				dto.setProETC(rs.getString(12));
-				dto.setProRdate(rs.getString(13));
+				dto.setProno(rs.getInt(1));
+				dto.setProname(rs.getString(2));
+				dto.setProtype(rs.getString(3));
+				dto.setProprice(rs.getInt(4));
+				dto.setPropoint(rs.getInt(5));
+				dto.setProsale(rs.getInt(6));
+				dto.setProdeliveryfee(rs.getInt(7));
+				dto.setProstock(rs.getInt(8));
+				dto.setProimg1(rs.getString(9));
+				dto.setProimg2(rs.getString(10));
+				dto.setProimg3(rs.getString(11));
+				dto.setProetc(rs.getString(12));
+				dto.setPrordate(rs.getString(13));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -108,6 +97,7 @@ public class ProductDao extends DBHelper {
 		}
 		return dto;
 	}
+	
 
 	public List<ProductDto> selectProducts(int start) {
 		List<ProductDto> products = new ArrayList<>();
@@ -118,19 +108,19 @@ public class ProductDao extends DBHelper {
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				ProductDto dto = new ProductDto();
-				dto.setProNo(rs.getInt(1));
-				dto.setProName(rs.getString(2));
-				dto.setProType(rs.getString(3));
-				dto.setProPrice(rs.getInt(4));
-				dto.setProPoint(rs.getInt(5));
-				dto.setProSale(rs.getInt(6));
-				dto.setProDeliveryfee(rs.getInt(7));
-				dto.setProStock(rs.getInt(8));
-				dto.setProImg1(rs.getString(9));
-				dto.setProImg2(rs.getString(10));
-				dto.setProImg3(rs.getString(11));
-				dto.setProETC(rs.getString(12));
-				dto.setProRdate(rs.getString(13));
+				dto.setProno(rs.getInt(1));
+				dto.setProname(rs.getString(2));
+				dto.setProtype(rs.getString(3));
+				dto.setProprice(rs.getInt(4));
+				dto.setPropoint(rs.getInt(5));
+				dto.setProsale(rs.getInt(6));
+				dto.setProdeliveryfee(rs.getInt(7));
+				dto.setProstock(rs.getInt(8));
+				dto.setProimg1(rs.getString(9));
+				dto.setProimg2(rs.getString(10));
+				dto.setProimg3(rs.getString(11));
+				dto.setProetc(rs.getString(12));
+				dto.setPrordate(rs.getString(13));
 				products.add(dto);
 			}
 		} catch (Exception e) {
@@ -145,7 +135,18 @@ public class ProductDao extends DBHelper {
 
 	}
 
-	public void deleteProduct(int proNo) {
-
+	public int deleteProduct(String prono) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.DELETE_PRODUCT);
+			psmt.setString(1, prono);
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		} finally {
+			closeAll();
+		}
+		return result;
 	}
 }
