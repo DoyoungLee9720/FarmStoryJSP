@@ -14,10 +14,13 @@ public enum CartService {
 	public List<CartDto> selectCarts(String cartuid){
 		return dao.selectCarts(cartuid);
 	}
-	public List<CartDto> selectCartForPay(String uid){
-		return dao.selectCartForPay(uid);
+	public List<CartDto> selectUserCart(String uid){
+		return dao.selectUserCart(uid);
 	}
 	public int deleteCart(String cartno,String cartuid) {
 		return dao.deleteCart(cartno, cartuid);
+	}
+	public CartDto selectUserCartForPay(String uid, String prono){
+		return dao.selectUserCartForPay(uid, prono);
 	}
 }

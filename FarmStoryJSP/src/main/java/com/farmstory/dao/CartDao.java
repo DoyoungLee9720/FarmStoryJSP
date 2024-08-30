@@ -74,11 +74,11 @@ public class CartDao extends DBHelper{
 		}
 		return result;
 	}
-	public List<CartDto> selectCartForPay(String uid){
+	public List<CartDto> selectUserCart(String uid){
 		List<CartDto> cart = new ArrayList<CartDto>();
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.SELECT_USER_CART_PAY);
+			psmt = conn.prepareStatement(SQL.SELECT_USER_CART);
 			psmt.setString(1, uid);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
@@ -93,6 +93,33 @@ public class CartDao extends DBHelper{
 				dto.setCartprono(rs.getInt(8));
 				dto.setProdeliveryfee(rs.getInt(9));
 				cart.add(dto);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return cart;
+	}
+	public CartDto selectUserCartForPay(String uid, String prono){
+		CartDto cart = null;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_USER_CART_FOR_PAY);
+			psmt.setString(1, uid);
+			psmt.setString(2, prono);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				cart = new CartDto();
+				cart.setProimg(rs.getString(1));
+				cart.setProtype(rs.getString(2));
+				cart.setProname(rs.getString(3));
+				cart.setCartstock(rs.getInt(4));
+				cart.setProsale(rs.getInt(5));
+				cart.setPropoint(rs.getInt(6));
+				cart.setProprice(rs.getInt(7));
+				cart.setCartprono(rs.getInt(8));
+				cart.setProdeliveryfee(rs.getInt(9));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());

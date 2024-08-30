@@ -35,8 +35,21 @@ public class OrderDao extends DBHelper{
 		}
 		return total;
 	}
-	public void insertOrder(ProductDto productDto, int quantity) {
-		
+	public int insertOrder(OrderDto dto) {
+		int result = 0;
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.INSERT_ORDER);
+			psmt.setString(1, dto.getOrderuid());
+			psmt.setInt(2, dto.getOrderprodno());
+			psmt.setInt(3, dto.getOrderstock());
+			result = psmt.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}finally {
+			closeAll();
+		}
+		return result;
 	}
 	public OrderDto selectOrder(String order) {
 		return null;

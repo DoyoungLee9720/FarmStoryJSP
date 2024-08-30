@@ -54,8 +54,8 @@ public enum OrderService {
 	public int countTotal() {
 		return dao.countTotal();
 	}
-	public void insertOrder(ProductDto productDto, int quantity) {
-		dao.insertOrder(productDto, quantity);
+	public int insertOrder(OrderDto dto) {
+		return dao.insertOrder(dto);
 	}
 	public OrderDto selectOrder(String order) {
 		return dao.selectOrder(order);
